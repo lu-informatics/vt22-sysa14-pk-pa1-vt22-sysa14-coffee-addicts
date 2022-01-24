@@ -32,15 +32,17 @@ public partial class Form1 : Form
         try
         {
             dataGridView1.DataSource = dataAccessLayer.GetBeans().Tables[0];
+            dataGridView1.Update();
         }
         catch (SqlException ex)
         {
             MessageBox.Show(ex.Message);
         }
+        errorBox.Text = dataAccessLayer.IsServerConnected().ToString();
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-
+        
     }
 }

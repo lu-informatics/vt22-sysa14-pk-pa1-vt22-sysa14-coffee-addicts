@@ -27,12 +27,28 @@ public class DataAccessLayer
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
-                        adapter.Fill(dataSetBeans);
+                        adapter.Fill(dataSetBeans, "Beans");
 
                     }
 
                     return dataSetBeans;
                 }
+            }
+        }
+    }
+
+    public bool IsServerConnected()
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            try
+            {
+                connection.Open();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
             }
         }
     }
