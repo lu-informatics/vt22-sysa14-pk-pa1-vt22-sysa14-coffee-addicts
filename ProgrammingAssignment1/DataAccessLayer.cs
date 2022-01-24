@@ -27,7 +27,7 @@ public class DataAccessLayer
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
-                        adapter.Fill(dataSetBeans, "Beans");
+                        adapter.Fill(dataSetBeans);
 
                     }
 
@@ -35,6 +35,18 @@ public class DataAccessLayer
                 }
             }
         }
+    }
+    public DataSet GetBeans2()
+    {
+        var select = "SELECT * FROM Beans";
+        var c = new SqlConnection(connectionString);
+        var dataAdapter = new SqlDataAdapter(select, c);
+
+        var commandBuilder = new SqlCommandBuilder(dataAdapter);
+        var ds = new DataSet();
+        dataAdapter.Fill(ds);
+
+        return ds;
     }
 
     public bool IsServerConnected()

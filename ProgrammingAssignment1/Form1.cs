@@ -12,7 +12,7 @@ public partial class Form1 : Form
         // Test from Filip! Latest test 22-01-24.
         //hejj
         //hejhej
-        dataGridView1 = new DataGridView();
+      
         try
         {
             dataGridView1.DataSource = dataAccessLayer.GetBeans().Tables[0];
@@ -26,19 +26,7 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        //dataGridView1.DataSource = null;
-        //DataSet mySet = new DataSet();
-        //dataGridView1 = new DataGridView();
-        try
-        {
-            dataGridView1.DataSource = dataAccessLayer.GetBeans().Tables[0];
-            dataGridView1.Update();
-        }
-        catch (SqlException ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-        errorBox.Text = dataAccessLayer.IsServerConnected().ToString();
+        
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
