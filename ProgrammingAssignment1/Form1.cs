@@ -17,7 +17,11 @@ public partial class Form1 : Form
       
         try
         {
+            //Beans beans = new Beans("Light", "235");
+            //dataAccessLayer.InsertRowTest(beans);
+            
             dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
+
         }
         catch (SqlException ex)
         {

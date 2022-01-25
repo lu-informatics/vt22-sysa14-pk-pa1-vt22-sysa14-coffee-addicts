@@ -34,33 +34,64 @@ public class DataAccessLayer
             }
         }
     }
-    public void CreateRow (Object o)
+
+    public void InsertRowTest(object o)
+    {
+        Beans bean = new Beans();
+        if (o is Beans)
+        {
+            bean = o as Beans;
+        }
+        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        {
+            using(SqlDataAdapter adapter = CreateAdapter.CreateBeansAdapter(sqlConnection))
+            {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                adapter.InsertCommand.Parameters[0].Value = bean.Roast;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                adapter.InsertCommand.Parameters[1].Value = bean.EAN1;
+                sqlConnection.Open();
+                adapter.InsertCommand.ExecuteNonQuery();
+              
+            }
+        }
+  
+    }
+    public void CreateRow (object o)
     {
         string table = "";
         string values = "";
-        SqlParameter param1;
-        SqlParameter param2;
+        SqlParameter param1 = new SqlParameter();
+        SqlParameter param2 = new SqlParameter();
 
 
-        if (o.GetType() == typeof(Beans))
+        if (o is Beans)
         {
-            table = "Beans";
-            values = "VALUES(@roast,@EAN)";
-            param1 = new SqlParameter("@roast", SqlDbType.Text, 255);
-            //param1.Value = o.
+            Beans bean = (Beans) o;
+            values = "@roast,@EAN";
+            param1 = new SqlParameter("@roast", SqlDbType.VarChar, 255);
+            param2 = new SqlParameter("@EAN", SqlDbType.VarChar, 255);
+            param1.Value = bean.Roast;
+            param2.Value = bean.EAN1;
             
-        }
-        else if(o.GetType() == typeof(Coffee))
-        {
-            table = "Coffee";
-            values = "VALUES(?,?,?,?,?)";
+            
         }
 
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlCommand sqlCommand = new SqlCommand($"INSERT INTO {table} {values};", sqlConnection))
+            using (SqlCommand sqlCommand = new SqlCommand($"INSERT INTO {table} VALUES({values});", sqlConnection))
             {
+                if(table == "Beans")
+                {
+                    sqlCommand.Parameters.Add(param1);
+                    sqlCommand.Parameters.Add(param2);
+                    sqlCommand.Prepare();
+                    sqlCommand.ExecuteNonQuery();
 
+                    sqlCommand.Parameters[0].Value = "Dark";
+                    sqlCommand.Parameters[1].Value = "324";
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
         }
     }
@@ -69,6 +100,7 @@ public class DataAccessLayer
     {
 
     }
+    /*
  private static void SqlCommandPrepareEx(string connectionString)
 {
     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -98,6 +130,7 @@ public class DataAccessLayer
         command.ExecuteNonQuery();
     }
 }
+    */
 
 
     public bool IsServerConnected()
