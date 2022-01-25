@@ -5,9 +5,11 @@ namespace ProgrammingAssignment1;
 public partial class Form1 : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
+    
     public Form1()
     {
         InitializeComponent();
+       
 
         // Test from Filip! Latest test 22-01-24.
         //hejj
@@ -15,7 +17,7 @@ public partial class Form1 : Form
       
         try
         {
-            dataGridView1.DataSource = dataAccessLayer.GetBeans().Tables[0];
+            dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
         }
         catch (SqlException ex)
         {
