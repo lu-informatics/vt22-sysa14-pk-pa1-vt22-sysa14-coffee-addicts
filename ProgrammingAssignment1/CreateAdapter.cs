@@ -3,22 +3,35 @@ using System.Data.SqlClient;
 using System.Data;
 public class CreateAdapter
 {
-    public static SqlDataAdapter CreateBeansAdapter(SqlConnection connection, string tableName)
+    public static SqlDataAdapter CreateAdapterManager(SqlConnection connection, string tableName)
     {
 
         DataAccessLayer dataAccessLayer = new DataAccessLayer();
-        List <string> columnNames = dataAccessLayer.GetMetaData(tableName,"COLUMN_NAME");
-        List <string> types =   dataAccessLayer.GetMetaData(tableName,"DATA_TYPE");
-        string insert = "INSERT INTO ";
-        string update = "UPDATE ";
-        string delete = "DELETE FROM ";
+      
+        DataSet dataSet = dataAccessLayer.GetMetaData(tableName);
+
+        SqlDataAdapter adapter = new SqlDataAdapter();
+        SqlCommand command = new SqlCommand();
         
+        string insert = $"INSERT INTO {tableName} VALUES(";
         
-        /*
+        string update = $"UPDATE {tableName} SET ";
+
+        //string delete = $"DELETE FROM {tableName} WHERE {dataSet.GetString()}";
+
+        foreach (DataRow row in dataSet.Tables[0].Rows)
+        {
+            insert += "@" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
+        }
+        insert.Remove(insert.Length - 1, 1);
+        insert += ")";
+
+                
+                /*
         switch (tableName)
         {
             case == "Beans" :
-                insert = "INSERT INTO ? (?, ?) " +
+                insert = "INSERT INTO TableName  " +
                     "VALUES("@?", @EAN)";
                 update = "UPDATE Beans SET roast = @roast " + 
                      "WHERE EAN = @oldEAN";
@@ -51,8 +64,7 @@ public class CreateAdapter
 
 
         
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        SqlCommand command = new SqlCommand();
+
 
 
         //Create the InsertCommand

@@ -17,20 +17,34 @@ public class DataAccessLayer
         connectionString = builder.ConnectionString;
     }
 
-    public List<string> GetMetaData(string tableName, string columnName)
+    public DataSet GetMetaData(string tableName)
     { 
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
             using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'", sqlConnection))
             {
-                sqlConnection.Open();
+                DataSet dataSet = new DataSet();
+                using(SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    adapter.SelectCommand = sqlCommand;
+                    adapter.Fill(dataSet);
+
+                    return dataSet;
+                }
+                
+
+                /*
+                 * sqlConnection.Open();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
+                /*
                 List<string> rows = new List<string>();
                 while (reader.Read())
                 {
                     rows.Add(reader.GetString(columnName));
                 }
-                return rows;
+                
+                return reader;
+                */
             }
         }
     }
@@ -53,22 +67,17 @@ public class DataAccessLayer
             }
         }
     }
-    /*
-    public void InsertRowTest(object[] values)
+    
+    public void InsertRowTest()
     {   
         
-        Beans obj = new Beans();
-        //object obj = new object();
-        if (o is Beans)
-        {
-            obj = o as Beans;
-        }
+        
         
 
         
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using(SqlDataAdapter adapter = CreateAdapter.CreateBeansAdapter(sqlConnection, values[0]))
+            using(SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, "Beans"))
             {
                 adapter.InsertCommand.Parameters[0].Value = "Medium";
                 adapter.InsertCommand.Parameters[1].Value = "828";
@@ -79,7 +88,7 @@ public class DataAccessLayer
         }
   
     }
-*/
+
     public void CreateRow (object o)
     {
         string table = "";
