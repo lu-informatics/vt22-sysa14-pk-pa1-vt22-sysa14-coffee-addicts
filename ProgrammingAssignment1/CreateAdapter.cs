@@ -34,9 +34,9 @@ public class CreateAdapter
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
             SqlDbType dbType = new SqlDbType();
-            var length = row.ItemArray[8];
-            var type = row.ItemArray[7]; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME,  [7] = type, [8] = length. Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
-            var name = row.ItemArray[3] as string;
+            var length = row.ItemArray[8]; //[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
+            var type = row.ItemArray[7]; //   [7] = type,  
+            var name = row.ItemArray[3] as string; //[3] är COLUMN_NAME,
 
 
             if (type.Equals("varchar")) 
@@ -49,7 +49,7 @@ public class CreateAdapter
             }
             
             Debug.WriteLine(length.GetType());
-            command.Parameters.Add(name, dbType, (int) length , "@" + name);
+            command.Parameters.Add(name, dbType, (int)length , "@" + name);
         }
 
         //Adding the parameters for InsertCommand
