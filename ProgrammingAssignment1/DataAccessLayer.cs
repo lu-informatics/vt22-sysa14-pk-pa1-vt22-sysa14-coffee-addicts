@@ -1,6 +1,5 @@
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
 public class DataAccessLayer
 {
     private string connectionString;
@@ -18,20 +17,20 @@ public class DataAccessLayer
     }
 
     public DataSet GetMetaData(string tableName)
-    { 
+    {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
             using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'", sqlConnection))
             {
                 DataSet dataSet = new DataSet();
-                using(SqlDataAdapter adapter = new SqlDataAdapter())
+                using (SqlDataAdapter adapter = new SqlDataAdapter())
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
 
                     return dataSet;
                 }
-                
+
 
                 /*
                  * sqlConnection.Open();
@@ -49,8 +48,9 @@ public class DataAccessLayer
         }
     }
 
-    public DataSet GetTable(string tableName) { 
+    public DataSet GetTable(string tableName)
     {
+        {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM {tableName}", sqlConnection))
@@ -67,23 +67,24 @@ public class DataAccessLayer
             }
         }
     }
-    
+
     public void InsertRowTest()
-    {   
+    {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using(SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, "Beans"))
+            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, "Beans"))
             {
+                Random random = new Random();
                 sqlConnection.Open();
-                adapter.InsertCommand.Parameters[0].Value = "Medium Dark";
-                adapter.InsertCommand.Parameters[1].Value = "82342";
+                adapter.InsertCommand.Parameters[0].Value = "Victors Test Roast";
+                adapter.InsertCommand.Parameters[1].Value = random.Next(100, 2000).ToString();
                 _ = adapter.InsertCommand.ExecuteNonQuery(); //Klagar här, Incorrect syntax near ')'
             }
         }
-  
+
     }
 
-    public void CreateRow (object o)
+    public void CreateRow(object o)
     {
         string table = "";
         string values = "";
@@ -93,21 +94,21 @@ public class DataAccessLayer
 
         if (o is Beans)
         {
-            Beans bean = (Beans) o;
+            Beans bean = (Beans)o;
             values = "@roast,@EAN";
             param1 = new SqlParameter("@roast", SqlDbType.VarChar, 255);
             param2 = new SqlParameter("@EAN", SqlDbType.VarChar, 255);
             param1.Value = bean.Roast;
             param2.Value = bean.EAN1;
-            
-            
+
+
         }
 
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
             using (SqlCommand sqlCommand = new SqlCommand($"INSERT INTO {table} VALUES({values});", sqlConnection))
             {
-                if(table == "Beans")
+                if (table == "Beans")
                 {
                     sqlCommand.Parameters.Add(param1);
                     sqlCommand.Parameters.Add(param2);
@@ -121,7 +122,7 @@ public class DataAccessLayer
             }
         }
     }
-    
+
     public void UpdateRow(Object o)
     {
 

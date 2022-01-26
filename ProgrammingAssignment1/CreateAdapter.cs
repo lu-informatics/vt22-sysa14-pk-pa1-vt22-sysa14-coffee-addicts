@@ -20,21 +20,40 @@ public class CreateAdapter
         string update = $"UPDATE {tableName} SET ";
 
         //string delete = $"DELETE FROM {tableName} WHERE {dataSet.GetString()}";
-
+        
+        //Create the InsertCommand
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
             insert += "@" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
         }
         insert = insert.Remove(insert.Length - 1, 1);
         insert += ")";
-        Debug.WriteLine(insert);
-        //Debug.WriteLine(insert);
-        //Create the InsertCommand
         command = new SqlCommand(insert, connection);
-        
+
+
+        foreach (DataRow row in dataSet.Tables[0].Rows)
+        {
+            SqlDbType dbType = new SqlDbType();
+            var length = row.ItemArray[8];
+            var type = row.ItemArray[7]; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME,  [7] = type, [8] = length. Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
+            var name = row.ItemArray[3] as string;
+
+
+            if (type.Equals("varchar")) 
+            { 
+                dbType = SqlDbType.VarChar; 
+            }else if (type.Equals("int"))
+            {
+                dbType = SqlDbType.Int;
+            }
+            
+            Debug.WriteLine(length.GetType());
+            command.Parameters.Add(name, dbType, (int)length, "@" + name);
+        }
+
         //Adding the parameters for InsertCommand
-        command.Parameters.Add("@roast", SqlDbType.VarChar, 255, "roast");
-        command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
+        //command.Parameters.Add("@roast", SqlDbType.VarChar, 255, "roast");
+        //command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
 
         adapter.InsertCommand = command;
 
