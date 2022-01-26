@@ -45,10 +45,11 @@ public class CreateAdapter
             }else if (type.Equals("int"))
             {
                 dbType = SqlDbType.Int;
+                length = 0;
             }
             
             Debug.WriteLine(length.GetType());
-            command.Parameters.Add(name, dbType, (int)length, "@" + name);
+            command.Parameters.Add(name, dbType, (int) length , "@" + name);
         }
 
         //Adding the parameters for InsertCommand
