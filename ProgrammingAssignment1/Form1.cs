@@ -21,7 +21,8 @@ public partial class Form1 : Form
             //dataAccessLayer.InsertRowTest(beans);
             
             dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
-            
+            //dataAccessLayer.InsertRowTest();
+
 
         }
         catch (SqlException ex)
@@ -32,8 +33,9 @@ public partial class Form1 : Form
     }
 
     private void button1_Click(object sender, EventArgs e)
-    {   
+    {
         dataAccessLayer.InsertRowTest();
+
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

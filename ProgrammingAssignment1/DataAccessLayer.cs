@@ -70,20 +70,14 @@ public class DataAccessLayer
     
     public void InsertRowTest()
     {   
-        
-        
-        
-
-        
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
             using(SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, "Beans"))
             {
-                adapter.InsertCommand.Parameters[0].Value = "Medium";
-                adapter.InsertCommand.Parameters[1].Value = "828";
                 sqlConnection.Open();
-                adapter.InsertCommand.ExecuteNonQuery();
-              
+                adapter.InsertCommand.Parameters[0].Value = "Medium Dark";
+                adapter.InsertCommand.Parameters[1].Value = "82342";
+                _ = adapter.InsertCommand.ExecuteNonQuery(); //Klagar här, Incorrect syntax near ')'
             }
         }
   

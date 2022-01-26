@@ -1,6 +1,8 @@
 
 using System.Data.SqlClient;
 using System.Data;
+using System.Diagnostics;
+
 public class CreateAdapter
 {
     public static SqlDataAdapter CreateAdapterManager(SqlConnection connection, string tableName)
@@ -13,7 +15,7 @@ public class CreateAdapter
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommand command = new SqlCommand();
         
-        string insert = $"INSERT INTO {tableName} VALUES(";
+        string insert = $"INSERT INTO {tableName} (roast, EAN) VALUES(";
         
         string update = $"UPDATE {tableName} SET ";
 
@@ -23,53 +25,12 @@ public class CreateAdapter
         {
             insert += "@" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
         }
-        insert.Remove(insert.Length - 1, 1);
+        insert = insert.Remove(insert.Length - 1, 1);
         insert += ")";
-
-                
-                /*
-        switch (tableName)
-        {
-            case == "Beans" :
-                insert = "INSERT INTO TableName  " +
-                    "VALUES("@?", @EAN)";
-                update = "UPDATE Beans SET roast = @roast " + 
-                     "WHERE EAN = @oldEAN";
-                delete = "DELETE FROM Beans WHERE EAN = @EAN";
-                break;
-            case == "Beverage": //
-                insert = "INSERT INTO Beverage (proccessMilkType) ";
-            case == "Coffee" :
-                insert = "INSERT INTO Coffee ( grindSize, beansEAN, waterSize, beanWeightGram) " +
-                    " @grindSize, @beansEAN, @waterSize, @beanWeightGram";
-                update = "UPDATE Coffee SET grindSize = @grindSize, beanWeightGram = @beanWeightGram " + 
-                    "WHERE beansEAN = @beansEAN AND waterSize = @waterSize";
-                delete = "DELETE FROM Coffee WHERE beansEAN = @beansEAN AND waterSize = @waterSize";
-                break;
-            case == "Milk" :
-                insert = "INSERT INTO Milk (type, name, brand) " + 
-                    "VALUES (@type, @name, @brand)";
-                update = "UPDATE Milk SET name = @name, brand = @brand " + 
-                    "WHERE type = @type";
-                delete = "DELETE FROM Milk WHERE type = @type";
-                break;
-            case == "Modifier" :
-                insert = "INSERT INTO Modifier (temperature, foam, name) " + 
-                    "WHERE name = @name";
-                update = "UPDATE Modifier";
-
-        }
-        */
-
-
-
-        
-
-
-
+        Debug.WriteLine(insert);
+        //Debug.WriteLine(insert);
         //Create the InsertCommand
-        command = new SqlCommand("INSERT INTO Beans (roast, EAN) " +
-            "VALUES(@roast, @EAN)", connection);
+        command = new SqlCommand(insert, connection);
         
         //Adding the parameters for InsertCommand
         command.Parameters.Add("@roast", SqlDbType.VarChar, 255, "roast");
@@ -77,6 +38,40 @@ public class CreateAdapter
 
         adapter.InsertCommand = command;
 
+
+        /*
+switch (tableName)
+{
+    case == "Beans" :
+        insert = "INSERT INTO TableName  " +
+            "VALUES("@?", @EAN)";
+        update = "UPDATE Beans SET roast = @roast " + 
+             "WHERE EAN = @oldEAN";
+        delete = "DELETE FROM Beans WHERE EAN = @EAN";
+        break;
+    case == "Beverage": //
+        insert = "INSERT INTO Beverage (proccessMilkType) ";
+    case == "Coffee" :
+        insert = "INSERT INTO Coffee ( grindSize, beansEAN, waterSize, beanWeightGram) " +
+            " @grindSize, @beansEAN, @waterSize, @beanWeightGram";
+        update = "UPDATE Coffee SET grindSize = @grindSize, beanWeightGram = @beanWeightGram " + 
+            "WHERE beansEAN = @beansEAN AND waterSize = @waterSize";
+        delete = "DELETE FROM Coffee WHERE beansEAN = @beansEAN AND waterSize = @waterSize";
+        break;
+    case == "Milk" :
+        insert = "INSERT INTO Milk (type, name, brand) " + 
+            "VALUES (@type, @name, @brand)";
+        update = "UPDATE Milk SET name = @name, brand = @brand " + 
+            "WHERE type = @type";
+        delete = "DELETE FROM Milk WHERE type = @type";
+        break;
+    case == "Modifier" :
+        insert = "INSERT INTO Modifier (temperature, foam, name) " + 
+            "WHERE name = @name";
+        update = "UPDATE Modifier";
+
+}
+*/
         //Create the UpdateCommand
         command = new SqlCommand("UPDATE Beans SET roast = @roast " + 
             "WHERE EAN = @oldEAN", connection);
