@@ -30,7 +30,7 @@ public class CreateAdapter
         insert += ")";
         command = new SqlCommand(insert, connection);
 
-
+        //Adding the parameters based on the MetaData
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
             SqlDbType dbType = new SqlDbType();
