@@ -31,8 +31,15 @@ public partial class Form1 : Form
     }
 
     private void button1_Click(object sender, EventArgs e)
-    {
-        
+    {   
+        string st = "";
+        List<string> list = dataAccessLayer.GetMetaData("Beans", "DATA_TYPE");
+        foreach(string name in list)
+        {
+            st += name;
+            
+        }
+        errorBox.Text = st;
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections;
 public class DataAccessLayer
 {
     private string connectionString;
@@ -14,6 +15,24 @@ public class DataAccessLayer
         builder.Password = "1234";
 
         connectionString = builder.ConnectionString;
+    }
+
+    public List<string> GetMetaData(string tableName, string columnName)
+    { 
+        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'", sqlConnection))
+            {
+                sqlConnection.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                List<string> rows = new List<string>();
+                while (reader.Read())
+                {
+                    rows.Add(reader.GetString(columnName));
+                }
+                return rows;
+            }
+        }
     }
 
     public DataSet GetTable(string tableName) { 
@@ -34,22 +53,25 @@ public class DataAccessLayer
             }
         }
     }
-
-    public void InsertRowTest(object o)
-    {
-        Beans bean = new Beans();
+    /*
+    public void InsertRowTest(object[] values)
+    {   
+        
+        Beans obj = new Beans();
+        //object obj = new object();
         if (o is Beans)
         {
-            bean = o as Beans;
+            obj = o as Beans;
         }
+        
+
+        
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using(SqlDataAdapter adapter = CreateAdapter.CreateBeansAdapter(sqlConnection))
+            using(SqlDataAdapter adapter = CreateAdapter.CreateBeansAdapter(sqlConnection, values[0]))
             {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                adapter.InsertCommand.Parameters[0].Value = bean.Roast;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-                adapter.InsertCommand.Parameters[1].Value = bean.EAN1;
+                adapter.InsertCommand.Parameters[0].Value = "Medium";
+                adapter.InsertCommand.Parameters[1].Value = "828";
                 sqlConnection.Open();
                 adapter.InsertCommand.ExecuteNonQuery();
               
@@ -57,6 +79,7 @@ public class DataAccessLayer
         }
   
     }
+*/
     public void CreateRow (object o)
     {
         string table = "";
