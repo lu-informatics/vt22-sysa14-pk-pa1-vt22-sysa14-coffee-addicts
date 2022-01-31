@@ -16,6 +16,25 @@ public class DataAccessLayer
         connectionString = builder.ConnectionString;
     }
 
+    public DataSet GetKeys(string tableName)
+    {
+        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand sqlCommand = new SqlCommand($"SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{tableName}'"
+, sqlConnection))
+            {
+                DataSet dataSet = new DataSet();
+                using (SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    adapter.SelectCommand = sqlCommand;
+                    adapter.Fill(dataSet);
+
+                    return dataSet;
+                }
+            }
+        }
+    }
+
     public DataSet GetMetaData(string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -30,20 +49,6 @@ public class DataAccessLayer
 
                     return dataSet;
                 }
-
-
-                /*
-                 * sqlConnection.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-                /*
-                List<string> rows = new List<string>();
-                while (reader.Read())
-                {
-                    rows.Add(reader.GetString(columnName));
-                }
-                
-                return reader;
-                */
             }
         }
     }
@@ -68,65 +73,44 @@ public class DataAccessLayer
         }
     }
 
-    public void InsertRowTest()
+    public void InsertRow(object[] objects, string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, "Beans"))
+            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterManager(sqlConnection, tableName))
             {
-                Random random = new Random();
                 sqlConnection.Open();
-                adapter.InsertCommand.Parameters[0].Value = "Victors Test Roast";
-                adapter.InsertCommand.Parameters[1].Value = random.Next(100, 2000).ToString();
-                _ = adapter.InsertCommand.ExecuteNonQuery(); //Klagar här, Incorrect syntax near ')'
+                int i = 0;
+                foreach(object o in objects)
+                {
+                    adapter.InsertCommand.Parameters[i].Value = o;
+                    i++;
+                }
+                adapter.InsertCommand.ExecuteNonQuery();
             }
         }
-
     }
-
-    public void CreateRow(object o)
+    
+    public void UpdateRow(object[] objects, string tableName)
     {
-        string table = "";
-        string values = "";
-        SqlParameter param1 = new SqlParameter();
-        SqlParameter param2 = new SqlParameter();
-
-
-        if (o is Beans)
-        {
-            Beans bean = (Beans)o;
-            values = "@roast,@EAN";
-            param1 = new SqlParameter("@roast", SqlDbType.VarChar, 255);
-            param2 = new SqlParameter("@EAN", SqlDbType.VarChar, 255);
-            param1.Value = bean.Roast;
-            param2.Value = bean.EAN1;
-
-
-        }
-
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlCommand sqlCommand = new SqlCommand($"INSERT INTO {table} VALUES({values});", sqlConnection))
+            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterUpdateCommand(sqlConnection, tableName))
             {
-                if (table == "Beans")
+                sqlConnection.Open();
+                int i = 0;
+                foreach (object o in objects)
                 {
-                    sqlCommand.Parameters.Add(param1);
-                    sqlCommand.Parameters.Add(param2);
-                    sqlCommand.Prepare();
-                    sqlCommand.ExecuteNonQuery();
-
-                    sqlCommand.Parameters[0].Value = "Dark";
-                    sqlCommand.Parameters[1].Value = "324";
-                    sqlCommand.ExecuteNonQuery();
+                    adapter.UpdateCommand.Parameters[i].Value = o;
+                    i++;
                 }
+                adapter.UpdateCommand.ExecuteNonQuery();
             }
         }
     }
+    
 
-    public void UpdateRow(Object o)
-    {
 
-    }
     /*
  private static void SqlCommandPrepareEx(string connectionString)
 {
