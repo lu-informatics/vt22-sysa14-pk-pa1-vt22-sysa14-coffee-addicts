@@ -18,8 +18,9 @@ public partial class Form1 : Form
         try
         {
             //Beans beans = new Beans("Light", "235");
-            //dataAccessLayer.InsertRowTest(beans);
-            
+
+            var objects = new object[2] {"Beansssss","420"};
+            dataAccessLayer.UpdateRow(objects, "Beans");
             dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
             //dataAccessLayer.InsertRowTest();
 
@@ -34,7 +35,7 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        dataAccessLayer.InsertRowTest();
+        //dataAccessLayer.InsertRowTest();
 
     }
 
