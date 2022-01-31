@@ -15,5 +15,5 @@ public class Process
     public string ModifierName { get => modifierName; set => modifierName = value; }
     public string MilkType { get => milkType; set => milkType = value; }
 
-    
+
 }

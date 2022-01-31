@@ -1,6 +1,6 @@
 
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 
 public class CreateAdapter
@@ -9,18 +9,18 @@ public class CreateAdapter
     {
 
         DataAccessLayer dataAccessLayer = new DataAccessLayer();
-      
+
         DataSet dataSet = dataAccessLayer.GetMetaData(tableName);
 
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommand command = new SqlCommand();
-        
+
         string insert = $"INSERT INTO {tableName} VALUES(";
 
         //string delete = $"DELETE FROM {tableName} WHERE {dataSet.GetString()}";
-        
+
         //Create the InsertCommand
-       
+
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
             insert += "@" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
@@ -32,26 +32,27 @@ public class CreateAdapter
         //Adding the parameters based on the MetaData
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
-           // insert += "@" + row.ItemArray[3] + ",";
+            // insert += "@" + row.ItemArray[3] + ",";
             SqlDbType dbType = new SqlDbType();
             var length = row.ItemArray[8]; //[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
             var type = row.ItemArray[7]; //   [7] = type,  
             var name = row.ItemArray[3] as string; //[3] är COLUMN_NAME,
 
-            if (type.Equals("varchar")) 
-            { 
-                dbType = SqlDbType.VarChar; 
-            } else if (type.Equals("int"))
+            if (type.Equals("varchar"))
+            {
+                dbType = SqlDbType.VarChar;
+            }
+            else if (type.Equals("int"))
             {
                 dbType = SqlDbType.Int;
                 length = 0;
-            }         
-            command.Parameters.Add("@" + name, dbType, (int)length , name);
+            }
+            command.Parameters.Add("@" + name, dbType, (int)length, name);
         }
 
 
         adapter.InsertCommand = command;
-        
+
         //Create DeleteCommand
         //command = new SqlCommand("DELETE FROM Beans WHERE EAN = @EAN", connection);
         //parameter = command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
@@ -69,7 +70,7 @@ public class CreateAdapter
         DataSet keyData = dataAccessLayer.GetKeys(tableName);
 
         SqlDataAdapter adapter = new SqlDataAdapter();
-        SqlCommand command = new SqlCommand();
+
 
         string update = $"UPDATE {tableName} SET ";
         string where = " WHERE ";
@@ -78,7 +79,7 @@ public class CreateAdapter
 
         foreach (DataRow row in metaData.Tables[0].Rows)
         {
-            update += row.ItemArray[3] + " = @" + row.ItemArray[3] +  ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
+            update += row.ItemArray[3] + " = @" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
         }
         Debug.Write(update);
         update = update.Remove(update.Length - 1, 1);
@@ -90,38 +91,28 @@ public class CreateAdapter
         where = where.Remove(where.Length - 1, 1);
 
         string query = update + where;
-        command = new SqlCommand(query, connection);
+        var command = new SqlCommand(query, connection);
         Debug.Write(query);
         //Adding the parameters based on the MetaData
         foreach (DataRow row in metaData.Tables[0].Rows)
         {
-           // insert += "@" + row.ItemArray[3] + ",";
             SqlDbType dbType = new SqlDbType();
             var length = row.ItemArray[8]; //[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
             var type = row.ItemArray[7]; //   [7] = type,  
             var name = row.ItemArray[3] as string; //[3] är COLUMN_NAME,
 
-            if (type.Equals("varchar")) 
-            { 
-                dbType = SqlDbType.VarChar; 
-            } else if (type.Equals("int"))
+            if (type.Equals("varchar"))
+            {
+                dbType = SqlDbType.VarChar;
+            }
+            else if (type.Equals("int"))
             {
                 dbType = SqlDbType.Int;
                 length = 0;
-            }         
-            command.Parameters.Add("@" + name, dbType, (int)length , name);
+            }
+            command.Parameters.Add("@" + name, dbType, (int)length, name);
         }
 
-
-        //command = new SqlCommand("UPDATE Beans SET roast = @roast " +
-        //    "WHERE EAN = @oldEAN", connection);
-
-        //Add parameters for UpdateCommand
-        //command.Parameters.Add("@roast", SqlDbType.VarChar, 255, "roast");
-        //command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
-        //SqlParameter parameter = command.Parameters.Add("@oldEAN", SqlDbType.VarChar, 255, "EAN");
-
-        //parameter.SourceVersion = DataRowVersion.Original;
 
         adapter.UpdateCommand = command;
 

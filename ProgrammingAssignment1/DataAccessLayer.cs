@@ -81,7 +81,7 @@ public class DataAccessLayer
             {
                 sqlConnection.Open();
                 int i = 0;
-                foreach(object o in objects)
+                foreach (object o in objects)
                 {
                     adapter.InsertCommand.Parameters[i].Value = o;
                     i++;
@@ -90,7 +90,7 @@ public class DataAccessLayer
             }
         }
     }
-    
+
     public void UpdateRow(object[] objects, string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -108,7 +108,7 @@ public class DataAccessLayer
             }
         }
     }
-    
+
 
 
     /*
