@@ -19,9 +19,9 @@ public partial class Form1 : Form
         {
             //Beans beans = new Beans("Light", "235");
 
-            var objects = new object[2] {"Beansssss","420"};
-            dataAccessLayer.UpdateRow(objects, "Beans");
-            dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
+            var objects = new object[2] {"6969", "Stor"};
+            dataAccessLayer.DeleteRow(objects, "Coffee");
+            dataGridView1.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
             //dataAccessLayer.InsertRowTest();
 
 

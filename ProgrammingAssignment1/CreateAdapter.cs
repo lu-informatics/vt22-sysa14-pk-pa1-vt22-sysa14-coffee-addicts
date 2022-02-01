@@ -17,8 +17,6 @@ public class CreateAdapter
         
         string insert = $"INSERT INTO {tableName} VALUES(";
 
-        //string delete = $"DELETE FROM {tableName} WHERE {dataSet.GetString()}";
-        
         //Create the InsertCommand
        
         foreach (DataRow row in dataSet.Tables[0].Rows)
@@ -32,7 +30,7 @@ public class CreateAdapter
         //Adding the parameters based on the MetaData
         foreach (DataRow row in dataSet.Tables[0].Rows)
         {
-           // insert += "@" + row.ItemArray[3] + ",";
+            // insert += "@" + row.ItemArray[3] + ",";
             SqlDbType dbType = new SqlDbType();
             var length = row.ItemArray[8]; //[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
             var type = row.ItemArray[7]; //   [7] = type,  
@@ -51,12 +49,6 @@ public class CreateAdapter
 
 
         adapter.InsertCommand = command;
-        
-        //Create DeleteCommand
-        //command = new SqlCommand("DELETE FROM Beans WHERE EAN = @EAN", connection);
-        //parameter = command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
-        //parameter.SourceVersion = DataRowVersion.Original;
-        //adapter.DeleteCommand = command;
 
         return adapter;
 
@@ -88,10 +80,10 @@ public class CreateAdapter
             where += row.ItemArray[0] + " = @" + row.ItemArray[0] + ",";
         }
         where = where.Remove(where.Length - 1, 1);
-
         string query = update + where;
         command = new SqlCommand(query, connection);
-        Debug.Write(query);
+
+
         //Adding the parameters based on the MetaData
         foreach (DataRow row in metaData.Tables[0].Rows)
         {
@@ -127,36 +119,40 @@ public class CreateAdapter
 
         return adapter;
     }
-    /*public static SqlDataAdapter CreateAdapterDeleteCommand(SqlConnection connection, string tableName)
+    public static SqlDataAdapter CreateAdapterDeleteCommand(SqlConnection connection, string tableName)
     {
         DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
-        DataSet dataSet = dataAccessLayer.GetMetaData(tableName);
+        DataSet keyData = dataAccessLayer.GetKeys(tableName);
 
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommand command = new SqlCommand();
 
-        string delete = $"DELETE {tableName} SET ";
+        string delete = $"DELETE {tableName} WHERE ";
 
-        //Create the UpdateCommand
+        foreach (DataRow row in keyData.Tables[0].Rows)
+        {
+            delete += row.ItemArray[0] + " = @" + row.ItemArray[0] + " AND "; //ItemArray lägger var värde från KeyDatan in i en array, [0] är Primary Key
+        }
 
-        command = new SqlCommand("DELETE Beans WHERE roast = @roast " +
-            "WHERE EAN = @oldEAN", connection);
+        delete = delete.Remove(delete.Length - 5, 5);
+        Debug.WriteLine(delete);
+        command = new SqlCommand(delete, connection);
+        
+        foreach (DataRow row in keyData.Tables[0].Rows)
+        {
+            string name = row.ItemArray[0] as string;
+            command.Parameters.Add("@" + name, SqlDbType.VarChar, 255, name);
+        }
 
-        //Add parameters for UpdateCommand
-        command.Parameters.Add("@roast", SqlDbType.VarChar, 255, "roast");
-        command.Parameters.Add("@EAN", SqlDbType.VarChar, 255, "EAN");
-        SqlParameter parameter = command.Parameters.Add("@oldEAN", SqlDbType.VarChar, 255, "EAN");
 
-        parameter.SourceVersion = DataRowVersion.Original;
-
-        adapter.UpdateCommand = command;
+        adapter.DeleteCommand = command;
 
 
         return adapter;
     
     }
-    */
+
 
 
 
