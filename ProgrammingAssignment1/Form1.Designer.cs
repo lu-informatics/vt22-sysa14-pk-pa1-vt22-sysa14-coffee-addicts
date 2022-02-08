@@ -34,7 +34,7 @@ partial class Form1
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@ partial class Form1
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this.searchTextBox);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.textBox3);
             this.tabPage1.Controls.Add(this.label5);
@@ -129,12 +129,13 @@ partial class Form1
             this.label7.TabIndex = 12;
             this.label7.Text = "Search";
             // 
-            // textBox4
+            // searchTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(126, 16);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(240, 23);
-            this.textBox4.TabIndex = 11;
+            this.searchTextBox.Location = new System.Drawing.Point(126, 16);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(240, 23);
+            this.searchTextBox.TabIndex = 11;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // label6
             // 
@@ -285,5 +286,5 @@ partial class Form1
     private Label label6;
     private Button button3;
     private Label label7;
-    private TextBox textBox4;
+    private TextBox searchTextBox;
 }

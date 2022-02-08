@@ -68,4 +68,9 @@ public partial class Form1 : Form
     {
 
     }
+
+    private void searchTextBox_TextChanged(object sender, EventArgs e)
+    {
+        (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format($"EAN LIKE '%{searchTextBox.Text}%' OR roast LIKE '%{searchTextBox.Text}%' " );
+    }
 }
