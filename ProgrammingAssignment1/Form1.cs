@@ -19,9 +19,8 @@ public partial class Form1 : Form
         {
             //Beans beans = new Beans("Light", "235");
 
-            var objects = new object[2] {"6969", "Stor"};
-            dataAccessLayer.DeleteRow(objects, "Coffee");
-            dataGridView1.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
+          
+            dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
             //dataAccessLayer.InsertRowTest();
 
 
@@ -33,10 +32,21 @@ public partial class Form1 : Form
         
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void OnInsertButton(object sender, EventArgs e)
     {
-        //dataAccessLayer.InsertRowTest();
-
+        try {
+            string ean = eanBox.Text;
+            string name = nameBox.Text;
+            var bean = new string[] { name, ean };
+            dataAccessLayer.InsertRow(bean, "Beans");
+            dataGridView1.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
+        }
+        catch(SqlException ex)
+        {
+            label1.Text= ex.Message;
+        }
+        
+        
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -50,6 +60,11 @@ public partial class Form1 : Form
     }
 
     private void groupBox1_Enter(object sender, EventArgs e)
+    {
+
+    }
+
+    private void errorBox_TextChanged(object sender, EventArgs e)
     {
 
     }
