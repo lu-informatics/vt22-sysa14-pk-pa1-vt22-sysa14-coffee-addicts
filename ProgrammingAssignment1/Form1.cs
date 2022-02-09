@@ -145,9 +145,9 @@ public partial class Form1 : Form
         {
             int.TryParse(coffeeTab_grindSizeTextBox.Text, out int grindSizeResult); //bör lägga till liten koll så man skriver in en int!
             int.TryParse(coffeeTab_beanWeightTextBox.Text, out int beanWeightResult);
-            var water = waterComboBox.SelectedItem as DataRowView;
-            var bean = beanComboBox.SelectedItem as DataRowView;
-            var coffee = new object[] {bean[0], water[0], grindSizeResult, beanWeightResult };     
+            var waterSize = (waterComboBox.SelectedItem as DataRowView)[0];
+            var beanEan = (beanComboBox.SelectedItem as DataRowView)[0];
+            var coffee = new object[] {beanEan, waterSize, grindSizeResult, beanWeightResult };     
             dataAccessLayer.InsertRow(coffee, "Coffee");
             
             coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
