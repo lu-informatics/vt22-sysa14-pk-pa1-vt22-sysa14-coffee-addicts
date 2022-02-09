@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 namespace ProgrammingAssignment1;
 
 public partial class Form1 : Form
@@ -31,16 +32,23 @@ public partial class Form1 : Form
             DataTable coffeeDataTable = dataAccessLayer.GetTable("Coffee").Tables[0];
             coffeeDataGridView.DataSource = coffeeDataTable;
 
-            foreach (DataRow row in beansDataTable.Rows)
-            {
-                beanComboBox.Items.Add($"EAN: {row[0]}, Roast: {row[1]}");
-            }
+
             foreach (DataRow row in waterDataTable.Rows)
             {
                 waterComboBox.Items.Add(row[0]);
             }
-            //dataAccessLayer.InsertRowTest();
+            beanComboBox.DataSource = beansDataTable;
+            beansDataTable.Columns.Add("FullString",
+                typeof(string),
+                "EAN + ' ' + roast");
+            beanComboBox.DisplayMember = "FullString";
 
+            waterComboBox.DataSource = waterDataTable;
+            waterComboBox.DisplayMember = "Size";
+            waterComboBox.BindingContext = this.BindingContext;
+            
+
+            beanComboBox.BindingContext = this.BindingContext;
 
         }
         catch (SqlException ex)
@@ -135,17 +143,17 @@ public partial class Form1 : Form
     {
         try
         {
-            var grindSize = int.TryParse(coffeeTab_grindSizeTextBox.Text, out int grindSizeResult);
-            var beanWeight = int.TryParse(coffeeTab_beanWeightTextBox.Text, out int beanWeightResult);
-            var water = waterComboBox.SelectedItem as string;  
-            var bean = beanComboBox.SelectedItem as string;
-            var beanEan = (bean.Split(',')[0]).Split(": ")[1];
-            var coffee = new object[] {beanEan, water, grindSize, beanWeight };
+            int.TryParse(coffeeTab_grindSizeTextBox.Text, out int grindSizeResult); //bör lägga till liten koll så man skriver in en int!
+            int.TryParse(coffeeTab_beanWeightTextBox.Text, out int beanWeightResult);
+            var water = waterComboBox.SelectedItem as DataRowView;
+            var bean = beanComboBox.SelectedItem as DataRowView;
+            var coffee = new object[] {bean[0], water[0], grindSizeResult, beanWeightResult };     
             dataAccessLayer.InsertRow(coffee, "Coffee");
+            
             coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
 
 
-            /* vi måste fixa en snyggare lösning på att spliten ovan */
+
 
 
         }
