@@ -10,20 +10,12 @@ public partial class Form1 : Form
 
     public Form1()
     {
-        InitializeComponent();
-       
-
-        // Test from Filip! Latest test 22-01-24.
-        //hejj
-        //hejhej
-      
+        InitializeComponent();          
         try
         {
-            //Beans beans = new Beans("Light", "235");
-
-            List<string> list = new List<string>();
-            list.Add("1");
-            list.Add("2");
+       
+        
+            //Populating DataGridViews
             DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
             beansDataGridView.DataSource = beansDataTable;
             beansDataGridView.Columns[0].ReadOnly = true;
@@ -33,22 +25,18 @@ public partial class Form1 : Form
             coffeeDataGridView.DataSource = coffeeDataTable;
 
 
-            foreach (DataRow row in waterDataTable.Rows)
-            {
-                waterComboBox.Items.Add(row[0]);
-            }
+            //Populating comboboxes 
             beanComboBox.DataSource = beansDataTable;
             beansDataTable.Columns.Add("FullString",
                 typeof(string),
                 "EAN + ' ' + roast");
             beanComboBox.DisplayMember = "FullString";
-
+            beanComboBox.BindingContext = this.BindingContext;
+            
             waterComboBox.DataSource = waterDataTable;
             waterComboBox.DisplayMember = "Size";
             waterComboBox.BindingContext = this.BindingContext;
             
-
-            beanComboBox.BindingContext = this.BindingContext;
 
         }
         catch (SqlException ex)
