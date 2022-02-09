@@ -68,12 +68,16 @@ public class CreateAdapter
 
         //Create the UpdateCommand
 
-        foreach (DataRow row in metaData.Tables[0].Rows)
+
+        foreach (DataRow row in keyData.Tables[0].Rows)
         {
-            update += row.ItemArray[3] + " = @" + row.ItemArray[3] +  ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
+            where += row.ItemArray[0] + " = @" + row.ItemArray[0] + ",";
         }
-        Debug.Write(update);
+
         update = update.Remove(update.Length - 1, 1);
+        
+       
+        
 
         foreach (DataRow row in keyData.Tables[0].Rows)
         {
