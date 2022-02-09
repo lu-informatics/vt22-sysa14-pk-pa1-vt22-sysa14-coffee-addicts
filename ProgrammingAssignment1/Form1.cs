@@ -124,6 +124,7 @@ public partial class Form1 : Form
             var roast = row.Cells[1].Value;
             var bean = new object[] { ean, roast };
             dataAccessLayer.UpdateRow(bean, "Beans");
+
         }catch(SqlException ex)
         {
             label1.Text = ex.Message;

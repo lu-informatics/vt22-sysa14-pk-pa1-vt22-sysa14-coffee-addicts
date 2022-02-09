@@ -69,15 +69,12 @@ public class CreateAdapter
         //Create the UpdateCommand
 
 
-        foreach (DataRow row in keyData.Tables[0].Rows)
+        foreach(DataRow row in metaData.Tables[0].Rows)
         {
-            where += row.ItemArray[0] + " = @" + row.ItemArray[0] + ",";
+            update += row.ItemArray[3] + " = @" + row.ItemArray[3] + ","; //ItemArray lägger var värde från MetaDatan in i en array, [3] är COLUMN_NAME
         }
-
+        Debug.Write(update);
         update = update.Remove(update.Length - 1, 1);
-        
-       
-        
 
         foreach (DataRow row in keyData.Tables[0].Rows)
         {
@@ -86,6 +83,8 @@ public class CreateAdapter
         where = where.Remove(where.Length - 1, 1);
         string query = update + where;
         command = new SqlCommand(query, connection);
+
+        Debug.WriteLine(query);
 
 
         //Adding the parameters based on the MetaData
