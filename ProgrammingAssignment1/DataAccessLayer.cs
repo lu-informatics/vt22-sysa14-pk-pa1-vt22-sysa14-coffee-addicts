@@ -95,7 +95,7 @@ public class DataAccessLayer
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterUpdateCommand(sqlConnection, tableName))
+            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterUpdateCommand2(sqlConnection, tableName))
             {
                 sqlConnection.Open();
                 int i = 0;

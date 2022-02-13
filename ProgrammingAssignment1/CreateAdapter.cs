@@ -157,6 +157,87 @@ public class CreateAdapter
     
     }
 
+    public static SqlDataAdapter CreateAdapterUpdateCommand2(SqlConnection connection, string tableName)
+    {
+        DataAccessLayer dataAccessLayer = new DataAccessLayer();
+
+        DataSet metaData = dataAccessLayer.GetMetaData(tableName);
+        DataSet keyData = dataAccessLayer.GetKeys(tableName);
+
+        SqlDataAdapter adapter = new SqlDataAdapter();
+        SqlCommand command = new SqlCommand();
+
+        string update = $"UPDATE {tableName} SET ";
+        string where = " WHERE ";
+
+        //Create the SQL Command!
+        foreach (DataRow row in metaData.Tables[0].Rows)
+        {
+            update += row.ItemArray[3] + " = @" + row.ItemArray[3] + ",";
+        }
+
+        update = update.Remove(update.Length - 1, 1); //remove last comma
+
+        foreach (DataRow row in keyData.Tables[0].Rows)
+        {
+            where += row.ItemArray[0] + " = @old" + row.ItemArray[0] + ",";
+        }
+        where = where.Remove(where.Length - 1, 1); //remove last comma
+       
+        string query = update + where;
+        command = new SqlCommand(query, connection);
+        Debug.WriteLine(query);
+
+
+
+        //Adding the parameters based on the MetaData
+        foreach (DataRow row in metaData.Tables[0].Rows)
+        {
+            SqlDbType dbType = new SqlDbType();
+            var length = row.ItemArray[8]; //[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
+            var type = row.ItemArray[7]; //   [7] = type,  
+            var name = row.ItemArray[3] as string; //[3] är COLUMN_NAME,
+
+            if (type.Equals("varchar"))
+            {
+                dbType = SqlDbType.VarChar;
+            }
+            else if (type.Equals("int"))
+            {
+                dbType = SqlDbType.Int;
+                length = 0;
+            }
+            command.Parameters.Add("@" + name, dbType, (int)length, name);
+        }
+        //Lägger till de gamla värdena för Primary Keys
+        for (int i = 0; i < keyData.Tables[0].Rows.Count; i++)
+        {
+            DataRow metaDataRow = metaData.Tables[0].Rows[i];
+            DataRow row = keyData.Tables[0].Rows[i];
+            SqlDbType dbType = new SqlDbType();
+            var length = metaDataRow.ItemArray[8];//[8] = length,  Length kanske inte fungerar när det är en int, den kanske returnerar Null isf?? Inte testat detta.
+            var type = metaDataRow.ItemArray[7]; //   [7] = type,  
+            var name = metaDataRow.ItemArray[3] as string; //[3] är COLUMN_NAME,
+            
+            if (type.Equals("varchar"))
+            {
+                dbType = SqlDbType.VarChar;
+            }
+            else if (type.Equals("int"))
+            {
+                dbType = SqlDbType.Int;
+                length = 0;
+            }
+            SqlParameter parameter2 = command.Parameters.Add($"old{row.ItemArray[0]}", dbType, (int)length, name);
+            parameter2.SourceVersion = DataRowVersion.Original; 
+
+        }
+
+        adapter.UpdateCommand = command;
+        return adapter;
+    }
+
+
 
 
 

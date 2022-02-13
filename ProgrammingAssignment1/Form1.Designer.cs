@@ -91,8 +91,8 @@ partial class Form1
             this.beansDataGridView.RowTemplate.Height = 25;
             this.beansDataGridView.Size = new System.Drawing.Size(946, 296);
             this.beansDataGridView.TabIndex = 1;
-            this.beansDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.beansDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnBeansCellEdit);
+        
             // 
             // nameBox
             // 
@@ -100,7 +100,7 @@ partial class Form1
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(240, 23);
             this.nameBox.TabIndex = 2;
-            this.nameBox.TextChanged += new System.EventHandler(this.errorBox_TextChanged);
+
             // 
             // tabControl1
             // 
@@ -162,7 +162,7 @@ partial class Form1
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(240, 23);
             this.searchTextBox.TabIndex = 11;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.TextChanged += new System.EventHandler(this.OnBeansSearchInput);
             // 
             // label6
             // 
@@ -391,7 +391,7 @@ partial class Form1
             this.button2.Text = "Add";
             this.button2.UseCompatibleTextRendering = true;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.OnAddCoffee);
             // 
             // label1
             // 
@@ -402,7 +402,6 @@ partial class Form1
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button3
             // 

@@ -1,5 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+
 namespace ProgrammingAssignment1;
 
 public partial class Form1 : Form
@@ -25,12 +27,11 @@ public partial class Form1 : Form
             list.Add("2");
             DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
             beansDataGridView.DataSource = beansDataTable;
-            beansDataGridView.Columns[0].ReadOnly = true;
+            //beansDataGridView.Columns[0].ReadOnly = true;
             DataTable waterDataTable = dataAccessLayer.GetTable("Water").Tables[0];
 
             DataTable coffeeDataTable = dataAccessLayer.GetTable("Coffee").Tables[0];
             coffeeDataGridView.DataSource = coffeeDataTable;
-
             foreach (DataRow row in beansDataTable.Rows)
             {
                 beanComboBox.Items.Add($"EAN: {row[0]}, Roast: {row[1]}");
@@ -39,9 +40,8 @@ public partial class Form1 : Form
             {
                 waterComboBox.Items.Add(row[0]);
             }
-            //dataAccessLayer.InsertRowTest();
 
-
+           
         }
         catch (SqlException ex)
         {
@@ -68,33 +68,7 @@ public partial class Form1 : Form
         
         
     }
-
-    public void beanCellEdit(object sender, EventArgs e)
-    {
-
-    }
-
-    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-    {
-        
-    }
-
-    private void label1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void groupBox1_Enter(object sender, EventArgs e)
-    {
-
-    }
-
-    private void errorBox_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void searchTextBox_TextChanged(object sender, EventArgs e)
+    private void OnBeansSearchInput(object sender, EventArgs e)
     {
         (beansDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"EAN LIKE '%{searchTextBox.Text}%' OR roast LIKE '%{searchTextBox.Text}%' " );
     }
@@ -115,22 +89,7 @@ public partial class Form1 : Form
 
     }
 
-    private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-    {
-        try
-        {
-            var row = beansDataGridView.CurrentRow;
-            var ean = row.Cells[0].Value;
-            var roast = row.Cells[1].Value;
-            var bean = new object[] { ean, roast };
-            dataAccessLayer.UpdateRow(bean, "Beans");
-        }catch(SqlException ex)
-        {
-            label1.Text = ex.Message;
-        }
-    }
-
-    private void button2_Click(object sender, EventArgs e)
+    private void OnAddCoffee(object sender, EventArgs e)
     {
         try
         {
@@ -152,5 +111,42 @@ public partial class Form1 : Form
         {
             label1.Text = ex.Message;
         }
+    }
+
+    private void OnBeansCellEdit(object sender, DataGridViewCellValidatingEventArgs e)
+    {
+
+        try
+        {
+            var oldValue = beansDataGridView[e.ColumnIndex, e.RowIndex].Value;
+            var newValue = e.FormattedValue;
+
+           
+
+            if (!(newValue.Equals( oldValue))) //Only happens on new cell value!
+            {
+                var bean = new object[3];
+                var oldRow = beansDataGridView.Rows[e.RowIndex];
+                bean[2] = oldRow.Cells[0].Value; //adds the old Primary Key
+                bean[e.ColumnIndex] = newValue; //adds the new cellvalue at the correct index as we have the datagridview in the same order as our database
+                if (e.ColumnIndex != 1) //adds the non updated cellvalue to the bean array, as to not remove the nonchanged value.
+                {
+                    bean[1] = oldRow.Cells[1].Value;
+                }
+                else
+                {
+                    bean[0] = oldRow.Cells[0].Value;
+                }
+
+                dataAccessLayer.UpdateRow(bean, "Beans");
+                label1.Text = "Row was updated";
+            }
+
+        }catch (Exception ex)
+        {
+            label1.Text=ex.Message;
+        }
+        
+
     }
 }
