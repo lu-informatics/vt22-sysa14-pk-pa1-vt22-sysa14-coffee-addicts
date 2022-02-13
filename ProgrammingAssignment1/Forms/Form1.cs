@@ -63,9 +63,7 @@ public partial class Form1 : Form
         catch(SqlException ex)
         {
             label1.Text = ex.Message;
-        }
-        
-        
+        }          
     }
     private void OnBeansSearchInput(object sender, EventArgs e)
     {
@@ -98,13 +96,8 @@ public partial class Form1 : Form
             var beanEan = (beanComboBox.SelectedItem as DataRowView)[0];
             var coffee = new object[] {beanEan, waterSize, grindSizeResult, beanWeightResult };     
             dataAccessLayer.InsertRow(coffee, "Coffee");
-            
+         
             coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
-
-
-
-
-
         }
         catch (Exception ex)
         {
