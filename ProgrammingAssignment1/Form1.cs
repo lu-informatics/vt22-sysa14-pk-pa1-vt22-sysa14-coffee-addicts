@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+
 namespace ProgrammingAssignment1;
 
 public partial class Form1 : Form
@@ -30,6 +31,7 @@ public partial class Form1 : Form
             beansDataTable.Columns.Add("FullString",
                 typeof(string),
                 "EAN + ' ' + roast");
+            beansDataGridView.Columns["FullString"].Visible = false;
             beanComboBox.DisplayMember = "FullString";
             beanComboBox.BindingContext = this.BindingContext;
             
@@ -38,6 +40,7 @@ public partial class Form1 : Form
             waterComboBox.BindingContext = this.BindingContext;
             
 
+           
         }
         catch (SqlException ex)
         {
@@ -116,9 +119,6 @@ public partial class Form1 : Form
         {
             var oldValue = beansDataGridView[e.ColumnIndex, e.RowIndex].Value;
             var newValue = e.FormattedValue;
-
-           
-
             if (!(newValue.Equals( oldValue))) //Only happens on new cell value!
             {
                 var bean = new object[3];
@@ -136,6 +136,7 @@ public partial class Form1 : Form
 
                 dataAccessLayer.UpdateRow(bean, "Beans");
                 label1.Text = "Row was updated";
+                coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
             }
 
         }catch (Exception ex)
