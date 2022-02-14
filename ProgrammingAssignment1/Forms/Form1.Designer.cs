@@ -62,6 +62,10 @@ partial class Form1
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -91,8 +95,7 @@ partial class Form1
             this.beansDataGridView.RowTemplate.Height = 25;
             this.beansDataGridView.Size = new System.Drawing.Size(946, 296);
             this.beansDataGridView.TabIndex = 1;
-            this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnBeansCellEdit);
-        
+            this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             // 
             // nameBox
             // 
@@ -100,7 +103,6 @@ partial class Form1
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(240, 23);
             this.nameBox.TabIndex = 2;
-
             // 
             // tabControl1
             // 
@@ -368,11 +370,17 @@ partial class Form1
             this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.coffeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
             this.coffeeDataGridView.Location = new System.Drawing.Point(3, 45);
             this.coffeeDataGridView.Name = "coffeeDataGridView";
             this.coffeeDataGridView.RowTemplate.Height = 25;
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
+            this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.coffeeDataGridView_CellValidating);
             // 
             // coffeeTab_grindSizeTextBox
             // 
@@ -412,6 +420,26 @@ partial class Form1
             this.button3.TabIndex = 4;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
             // 
             // Form1
             // 
@@ -472,4 +500,8 @@ partial class Form1
     private TextBox coffeeTab_grindSizeTextBox;
     private Button button2;
     private ComboBox beanComboBox;
+    private DataGridViewTextBoxColumn Column1;
+    private DataGridViewTextBoxColumn Column2;
+    private DataGridViewTextBoxColumn Column3;
+    private DataGridViewTextBoxColumn Column4;
 }

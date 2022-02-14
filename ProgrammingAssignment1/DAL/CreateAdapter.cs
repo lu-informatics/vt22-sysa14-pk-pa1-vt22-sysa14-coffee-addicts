@@ -231,6 +231,7 @@ public class CreateAdapter
             parameter2.SourceVersion = DataRowVersion.Original; 
 
         }
+       
 
         adapter.UpdateCommand = command;
         return adapter;
