@@ -14,31 +14,19 @@ public partial class Form1 : Form
         InitializeComponent();          
         try
         {
-       
-            //DataGridViewColumn column = new DataGridViewTextBoxColumn();
-            //column.DataPropertyName = "EAN";
-            var column2 = new DataGridViewComboBoxColumn();
-            column2.DataPropertyName = "EAN";
 
-            column2.HeaderText = "EAN";
-            
-            //beansDataGridView.Columns.Add(column);
+            DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
+            var column2 = new DataGridViewComboBoxColumn();
+            column2.DataPropertyName = beansDataTable.Columns[0].ColumnName;
+
+            column2.HeaderText = beansDataTable.Columns[0].ColumnName;
             beansDataGridView.Columns.Add(column2);
             
             
             
-            //Populating DataGridViews
-            DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
-            var comboList = new List<object>();
-            var comboList2 = new List<object>();
-            foreach(DataRow row in beansDataTable.Rows)
-            {
-                comboList.Add(row[0]);
-
-            }
-
-            column2.DataSource = comboList;
-
+            //Populating DataGridViews          
+            column2.DataSource = beansDataTable;
+            column2.DisplayMember = beansDataTable.Columns[0].ColumnName;            
             beansDataGridView.DataSource = beansDataTable;
             
 
@@ -81,20 +69,20 @@ public partial class Form1 : Form
     private void OnInsertButton(object sender, EventArgs e)
     {
         try {
-            string ean = eanBox.Text;
-            string name = nameBox.Text;
-            var bean = new string[] { name, ean };
+            string ean = beansEANTextBox.Text;
+            string roast = beansRoastTextBox.Text;
+            var bean = new string[] { roast, ean };
             dataAccessLayer.InsertRow(bean, "Beans");
             beansDataGridView.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
         }
         catch(SqlException ex)
         {
-            label1.Text = ex.Message;
+            lblUserMessage.Text = ex.Message;
         }          
     }
     private void OnBeansSearchInput(object sender, EventArgs e)
     {
-        (beansDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"EAN LIKE '%{searchTextBox.Text}%' OR roast LIKE '%{searchTextBox.Text}%' " );
+        (beansDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"EAN LIKE '%{beansSearchBox.Text}%' OR roast LIKE '%{beansSearchBox.Text}%' " );
     }
 
     private void OnDeleteButtonBeans_Click(object sender, EventArgs e)
@@ -108,7 +96,7 @@ public partial class Form1 : Form
         }
         catch(SqlException ex)
         {
-            label1.Text=ex.Message;
+            lblUserMessage.Text=ex.Message;
         }
 
     }
@@ -117,8 +105,8 @@ public partial class Form1 : Form
     {
         try
         {
-            int.TryParse(coffeeTab_grindSizeTextBox.Text, out int grindSizeResult); //bör lägga till liten koll så man skriver in en int!
-            int.TryParse(coffeeTab_beanWeightTextBox.Text, out int beanWeightResult);
+            int.TryParse(beanGrindSizeTextBox.Text, out int grindSizeResult); //bör lägga till liten koll så man skriver in en int!
+            int.TryParse(beanWeightTextBox.Text, out int beanWeightResult);
             var waterSize = (waterComboBox.SelectedItem as DataRowView)[0];
             var beanEan = (beanComboBox.SelectedItem as DataRowView)[0];
             var coffee = new object[] {beanEan, waterSize, grindSizeResult, beanWeightResult };     
@@ -128,7 +116,7 @@ public partial class Form1 : Form
         }
         catch (Exception ex)
         {
-            label1.Text = ex.Message;
+            lblUserMessage.Text = ex.Message;
         }
     }
 
@@ -172,12 +160,9 @@ public partial class Form1 : Form
         }
         catch (Exception ex)
         {
-            label1.Text = ex.Message;
+            lblUserMessage.Text = ex.Message;
         }
     }
 
-    private void coffeeDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-    {
-
-    }
+   
 }

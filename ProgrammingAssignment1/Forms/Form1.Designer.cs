@@ -28,62 +28,367 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-            this.insertButton = new System.Windows.Forms.Button();
-            this.beansDataGridView = new System.Windows.Forms.DataGridView();
-            this.nameBox = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.eanBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.deleteButtonBeans = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblUserMessage = new System.Windows.Forms.Label();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.coffeeTab = new System.Windows.Forms.TabPage();
+            this.coffeeSearchBox = new System.Windows.Forms.TextBox();
+            this.coffeeDeleteBtn = new System.Windows.Forms.Button();
             this.beanComboBox = new System.Windows.Forms.ComboBox();
             this.waterComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.beanWeightTextBox = new System.Windows.Forms.TextBox();
+            this.beanGrindSizeTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.beanLabel = new System.Windows.Forms.Label();
-            this.waterLabel = new System.Windows.Forms.Label();
-            this.coffeeTab_beanWeightTextBox = new System.Windows.Forms.TextBox();
-            this.weightLabel = new System.Windows.Forms.Label();
+            this.coffeeBeanLabel = new System.Windows.Forms.Label();
+            this.coffeeWaterLabel = new System.Windows.Forms.Label();
+            this.coffeeBeanWeightLabel = new System.Windows.Forms.Label();
             this.grindSizeLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.coffeeDataGridView = new System.Windows.Forms.DataGridView();
-            this.coffeeTab_grindSizeTextBox = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.coffeeInsertBtn = new System.Windows.Forms.Button();
+            this.beansTab = new System.Windows.Forms.TabPage();
+            this.beansSearchBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.beansRoastTextBox = new System.Windows.Forms.TextBox();
+            this.beansEANTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.beansDataGridView = new System.Windows.Forms.DataGridView();
+            this.beansInsertBtn = new System.Windows.Forms.Button();
+            this.beansDeleteBtn = new System.Windows.Forms.Button();
+            this.tabController = new System.Windows.Forms.TabControl();
+            this.beverageTab = new System.Windows.Forms.TabPage();
+            this.beverageSearchBox = new System.Windows.Forms.TextBox();
+            this.beverageCoffeeComboBox = new System.Windows.Forms.ComboBox();
+            this.beverageMilkComboBox = new System.Windows.Forms.ComboBox();
+            this.beverageModifierComboBox = new System.Windows.Forms.ComboBox();
+            this.beverageDeleteBtn = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.beverageNameTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.beverageDataGridView = new System.Windows.Forms.DataGridView();
+            this.beverageAddBtn = new System.Windows.Forms.Button();
+            this.milkTab = new System.Windows.Forms.TabPage();
+            this.milkSearchBox = new System.Windows.Forms.TextBox();
+            this.milkDeleteBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.milkBrandTextBox = new System.Windows.Forms.TextBox();
+            this.milkTypeTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.milkDataGridView = new System.Windows.Forms.DataGridView();
+            this.milkAddBtn = new System.Windows.Forms.Button();
+            this.modifierTab = new System.Windows.Forms.TabPage();
+            this.modifierSearchBox = new System.Windows.Forms.TextBox();
+            this.modifierDeleteBtn = new System.Windows.Forms.Button();
+            this.modifierFoamTimeNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.modifierTemperatureNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.modifierNameTextBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.modifierDataGridView = new System.Windows.Forms.DataGridView();
+            this.modifierInsertBtn = new System.Windows.Forms.Button();
+            this.waterTab = new System.Windows.Forms.TabPage();
+            this.waterSearchBox = new System.Windows.Forms.TextBox();
+            this.waterVolumeMlNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.waterSizeTextBox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.waterDataGridView = new System.Windows.Forms.DataGridView();
+            this.waterInsertBtn = new System.Windows.Forms.Button();
+            this.waterDeleteBtn = new System.Windows.Forms.Button();
+            this.coffeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).BeginInit();
+            this.beansTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).BeginInit();
+            this.tabController.SuspendLayout();
+            this.beverageTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beverageDataGridView)).BeginInit();
+            this.milkTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.milkDataGridView)).BeginInit();
+            this.modifierTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierFoamTimeNumUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierTemperatureNumUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierDataGridView)).BeginInit();
+            this.waterTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waterVolumeMlNumUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waterDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // insertButton
+            // lblUserMessage
             // 
-            this.insertButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.insertButton.Location = new System.Drawing.Point(436, 463);
-            this.insertButton.Name = "insertButton";
-            this.insertButton.Size = new System.Drawing.Size(80, 23);
-            this.insertButton.TabIndex = 0;
-            this.insertButton.Text = "Add";
-            this.insertButton.UseCompatibleTextRendering = true;
-            this.insertButton.UseVisualStyleBackColor = true;
-            this.insertButton.Click += new System.EventHandler(this.OnInsertButton);
+            this.lblUserMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUserMessage.AutoSize = true;
+            this.lblUserMessage.Location = new System.Drawing.Point(16, 537);
+            this.lblUserMessage.Name = "lblUserMessage";
+            this.lblUserMessage.Size = new System.Drawing.Size(0, 15);
+            this.lblUserMessage.TabIndex = 3;
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReturn.Location = new System.Drawing.Point(885, 533);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(80, 23);
+            this.btnReturn.TabIndex = 4;
+            this.btnReturn.Text = "Return";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            // 
+            // coffeeTab
+            // 
+            this.coffeeTab.Controls.Add(this.coffeeSearchBox);
+            this.coffeeTab.Controls.Add(this.coffeeDeleteBtn);
+            this.coffeeTab.Controls.Add(this.beanComboBox);
+            this.coffeeTab.Controls.Add(this.waterComboBox);
+            this.coffeeTab.Controls.Add(this.label8);
+            this.coffeeTab.Controls.Add(this.beanWeightTextBox);
+            this.coffeeTab.Controls.Add(this.beanGrindSizeTextBox);
+            this.coffeeTab.Controls.Add(this.label9);
+            this.coffeeTab.Controls.Add(this.coffeeBeanLabel);
+            this.coffeeTab.Controls.Add(this.coffeeWaterLabel);
+            this.coffeeTab.Controls.Add(this.coffeeBeanWeightLabel);
+            this.coffeeTab.Controls.Add(this.grindSizeLabel);
+            this.coffeeTab.Controls.Add(this.coffeeDataGridView);
+            this.coffeeTab.Controls.Add(this.coffeeInsertBtn);
+            this.coffeeTab.Location = new System.Drawing.Point(4, 24);
+            this.coffeeTab.Name = "coffeeTab";
+            this.coffeeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.coffeeTab.Size = new System.Drawing.Size(952, 489);
+            this.coffeeTab.TabIndex = 1;
+            this.coffeeTab.Text = "Coffee";
+            this.coffeeTab.UseVisualStyleBackColor = true;
+ 
+            // 
+            // coffeeSearchBox
+            // 
+            this.coffeeSearchBox.Location = new System.Drawing.Point(126, 13);
+            this.coffeeSearchBox.Name = "coffeeSearchBox";
+            this.coffeeSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.coffeeSearchBox.TabIndex = 26;
+      
+            // 
+            // coffeeDeleteBtn
+            // 
+            this.coffeeDeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.coffeeDeleteBtn.Location = new System.Drawing.Point(794, 13);
+            this.coffeeDeleteBtn.Name = "coffeeDeleteBtn";
+            this.coffeeDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.coffeeDeleteBtn.TabIndex = 14;
+            this.coffeeDeleteBtn.Text = "Delete";
+            this.coffeeDeleteBtn.UseVisualStyleBackColor = true;
+          
+            // 
+            // beanComboBox
+            // 
+            this.beanComboBox.FormattingEnabled = true;
+            this.beanComboBox.Location = new System.Drawing.Point(549, 413);
+            this.beanComboBox.Name = "beanComboBox";
+            this.beanComboBox.Size = new System.Drawing.Size(275, 23);
+            this.beanComboBox.TabIndex = 29;
+      
+            // 
+            // waterComboBox
+            // 
+            this.waterComboBox.FormattingEnabled = true;
+            this.waterComboBox.Location = new System.Drawing.Point(549, 371);
+            this.waterComboBox.Name = "waterComboBox";
+            this.waterComboBox.Size = new System.Drawing.Size(275, 23);
+            this.waterComboBox.TabIndex = 28;
+         
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(78, 17);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 15);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Search";
+     
+            // 
+            // beanWeightTextBox
+            // 
+            this.beanWeightTextBox.Location = new System.Drawing.Point(126, 410);
+            this.beanWeightTextBox.Name = "beanWeightTextBox";
+            this.beanWeightTextBox.Size = new System.Drawing.Size(240, 23);
+            this.beanWeightTextBox.TabIndex = 20;
+         
+            // 
+            // beanGrindSizeTextBox
+            // 
+            this.beanGrindSizeTextBox.Location = new System.Drawing.Point(126, 371);
+            this.beanGrindSizeTextBox.Name = "beanGrindSizeTextBox";
+            this.beanGrindSizeTextBox.Size = new System.Drawing.Size(240, 23);
+            this.beanGrindSizeTextBox.TabIndex = 17;
+           
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(456, 17);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 15);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "COFFEE";
+      
+            // 
+            // coffeeBeanLabel
+            // 
+            this.coffeeBeanLabel.AutoSize = true;
+            this.coffeeBeanLabel.Location = new System.Drawing.Point(452, 413);
+            this.coffeeBeanLabel.Name = "coffeeBeanLabel";
+            this.coffeeBeanLabel.Size = new System.Drawing.Size(33, 15);
+            this.coffeeBeanLabel.TabIndex = 23;
+            this.coffeeBeanLabel.Text = "Bean";
+          
+            // 
+            // coffeeWaterLabel
+            // 
+            this.coffeeWaterLabel.AutoSize = true;
+            this.coffeeWaterLabel.Location = new System.Drawing.Point(452, 374);
+            this.coffeeWaterLabel.Name = "coffeeWaterLabel";
+            this.coffeeWaterLabel.Size = new System.Drawing.Size(38, 15);
+            this.coffeeWaterLabel.TabIndex = 21;
+            this.coffeeWaterLabel.Text = "Water";
+            
+            // 
+            // coffeeBeanWeightLabel
+            // 
+            this.coffeeBeanWeightLabel.AutoSize = true;
+            this.coffeeBeanWeightLabel.Location = new System.Drawing.Point(43, 413);
+            this.coffeeBeanWeightLabel.Name = "coffeeBeanWeightLabel";
+            this.coffeeBeanWeightLabel.Size = new System.Drawing.Size(74, 15);
+            this.coffeeBeanWeightLabel.TabIndex = 19;
+            this.coffeeBeanWeightLabel.Text = "Bean Weight";
+      
+            // 
+            // grindSizeLabel
+            // 
+            this.grindSizeLabel.AutoSize = true;
+            this.grindSizeLabel.Location = new System.Drawing.Point(43, 374);
+            this.grindSizeLabel.Name = "grindSizeLabel";
+            this.grindSizeLabel.Size = new System.Drawing.Size(59, 15);
+            this.grindSizeLabel.TabIndex = 18;
+            this.grindSizeLabel.Text = "Grind Size";
+
+            // 
+            // coffeeDataGridView
+            // 
+            this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.coffeeDataGridView.Location = new System.Drawing.Point(3, 52);
+            this.coffeeDataGridView.Name = "coffeeDataGridView";
+            this.coffeeDataGridView.RowTemplate.Height = 25;
+            this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
+            this.coffeeDataGridView.TabIndex = 16;
+
+            
+            // 
+            // coffeeInsertBtn
+            // 
+            this.coffeeInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.coffeeInsertBtn.Location = new System.Drawing.Point(436, 457);
+            this.coffeeInsertBtn.Name = "coffeeInsertBtn";
+            this.coffeeInsertBtn.Size = new System.Drawing.Size(80, 23);
+            this.coffeeInsertBtn.TabIndex = 15;
+            this.coffeeInsertBtn.Text = "Add";
+            this.coffeeInsertBtn.UseCompatibleTextRendering = true;
+            this.coffeeInsertBtn.UseVisualStyleBackColor = true;
+            this.coffeeInsertBtn.Click += new System.EventHandler(this.OnAddCoffee);
+            // 
+            // beansTab
+            // 
+            this.beansTab.Controls.Add(this.beansSearchBox);
+            this.beansTab.Controls.Add(this.label7);
+            this.beansTab.Controls.Add(this.beansRoastTextBox);
+            this.beansTab.Controls.Add(this.beansEANTextBox);
+            this.beansTab.Controls.Add(this.label6);
+            this.beansTab.Controls.Add(this.label4);
+            this.beansTab.Controls.Add(this.label2);
+            this.beansTab.Controls.Add(this.beansDataGridView);
+            this.beansTab.Controls.Add(this.beansInsertBtn);
+            this.beansTab.Controls.Add(this.beansDeleteBtn);
+            this.beansTab.Location = new System.Drawing.Point(4, 24);
+            this.beansTab.Name = "beansTab";
+            this.beansTab.Size = new System.Drawing.Size(952, 489);
+            this.beansTab.TabIndex = 0;
+            this.beansTab.Text = "Beans";
+            this.beansTab.UseVisualStyleBackColor = true;
+            // 
+            // beansSearchBox
+            // 
+            this.beansSearchBox.Location = new System.Drawing.Point(126, 16);
+            this.beansSearchBox.Name = "beansSearchBox";
+            this.beansSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.beansSearchBox.TabIndex = 11;
+            this.beansSearchBox.TextChanged += new System.EventHandler(this.OnBeansSearchInput);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(78, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Search";
+            // 
+            // beansRoastTextBox
+            // 
+            this.beansRoastTextBox.Location = new System.Drawing.Point(538, 377);
+            this.beansRoastTextBox.Name = "beansRoastTextBox";
+            this.beansRoastTextBox.Size = new System.Drawing.Size(240, 23);
+            this.beansRoastTextBox.TabIndex = 7;
+            // 
+            // beansEANTextBox
+            // 
+            this.beansEANTextBox.Location = new System.Drawing.Point(126, 377);
+            this.beansEANTextBox.Name = "beansEANTextBox";
+            this.beansEANTextBox.Size = new System.Drawing.Size(240, 23);
+            this.beansEANTextBox.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(460, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 15);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "BEANS";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(452, 380);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Roast";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 380);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "EAN";
             // 
             // beansDataGridView
             // 
@@ -97,349 +402,549 @@ partial class Form1
             this.beansDataGridView.TabIndex = 1;
             this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             // 
-            // nameBox
+            // beansInsertBtn
             // 
-            this.nameBox.Location = new System.Drawing.Point(126, 377);
-            this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(240, 23);
-            this.nameBox.TabIndex = 2;
+            this.beansInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.beansInsertBtn.Location = new System.Drawing.Point(436, 463);
+            this.beansInsertBtn.Name = "beansInsertBtn";
+            this.beansInsertBtn.Size = new System.Drawing.Size(80, 23);
+            this.beansInsertBtn.TabIndex = 0;
+            this.beansInsertBtn.Text = "Add";
+            this.beansInsertBtn.UseCompatibleTextRendering = true;
+            this.beansInsertBtn.UseVisualStyleBackColor = true;
+            this.beansInsertBtn.Click += new System.EventHandler(this.OnInsertButton);
             // 
-            // tabControl1
+            // beansDeleteBtn
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.beansDeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beansDeleteBtn.Location = new System.Drawing.Point(794, 15);
+            this.beansDeleteBtn.Name = "beansDeleteBtn";
+            this.beansDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.beansDeleteBtn.TabIndex = 0;
+            this.beansDeleteBtn.Text = "Delete";
+            this.beansDeleteBtn.UseVisualStyleBackColor = true;
+            this.beansDeleteBtn.Click += new System.EventHandler(this.OnDeleteButtonBeans_Click);
+            // 
+            // tabController
+            // 
+            this.tabController.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(960, 517);
-            this.tabControl1.TabIndex = 3;
+            this.tabController.Controls.Add(this.beansTab);
+            this.tabController.Controls.Add(this.beverageTab);
+            this.tabController.Controls.Add(this.coffeeTab);
+            this.tabController.Controls.Add(this.milkTab);
+            this.tabController.Controls.Add(this.modifierTab);
+            this.tabController.Controls.Add(this.waterTab);
+            this.tabController.Location = new System.Drawing.Point(12, 12);
+            this.tabController.Name = "tabController";
+            this.tabController.SelectedIndex = 0;
+            this.tabController.Size = new System.Drawing.Size(960, 517);
+            this.tabController.TabIndex = 3;
+           
             // 
-            // tabPage1
+            // beverageTab
             // 
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.searchTextBox);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.eanBox);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.deleteButtonBeans);
-            this.tabPage1.Controls.Add(this.beansDataGridView);
-            this.tabPage1.Controls.Add(this.nameBox);
-            this.tabPage1.Controls.Add(this.insertButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(952, 489);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.beverageTab.Controls.Add(this.beverageSearchBox);
+            this.beverageTab.Controls.Add(this.beverageCoffeeComboBox);
+            this.beverageTab.Controls.Add(this.beverageMilkComboBox);
+            this.beverageTab.Controls.Add(this.beverageModifierComboBox);
+            this.beverageTab.Controls.Add(this.beverageDeleteBtn);
+            this.beverageTab.Controls.Add(this.label10);
+            this.beverageTab.Controls.Add(this.beverageNameTextBox);
+            this.beverageTab.Controls.Add(this.label11);
+            this.beverageTab.Controls.Add(this.label12);
+            this.beverageTab.Controls.Add(this.label13);
+            this.beverageTab.Controls.Add(this.label14);
+            this.beverageTab.Controls.Add(this.label15);
+            this.beverageTab.Controls.Add(this.beverageDataGridView);
+            this.beverageTab.Controls.Add(this.beverageAddBtn);
+            this.beverageTab.Location = new System.Drawing.Point(4, 24);
+            this.beverageTab.Name = "beverageTab";
+            this.beverageTab.Size = new System.Drawing.Size(952, 489);
+            this.beverageTab.TabIndex = 2;
+            this.beverageTab.Text = "Beverage";
+            this.beverageTab.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // beverageSearchBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(531, 351);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 13;
+            this.beverageSearchBox.Location = new System.Drawing.Point(126, 16);
+            this.beverageSearchBox.Name = "beverageSearchBox";
+            this.beverageSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.beverageSearchBox.TabIndex = 11;
             // 
-            // label7
+            // beverageCoffeeComboBox
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(78, 19);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Search";
+            this.beverageCoffeeComboBox.FormattingEnabled = true;
+            this.beverageCoffeeComboBox.Location = new System.Drawing.Point(126, 416);
+            this.beverageCoffeeComboBox.Name = "beverageCoffeeComboBox";
+            this.beverageCoffeeComboBox.Size = new System.Drawing.Size(275, 23);
+            this.beverageCoffeeComboBox.TabIndex = 18;
             // 
-            // searchTextBox
+            // beverageMilkComboBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(126, 16);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(240, 23);
-            this.searchTextBox.TabIndex = 11;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.OnBeansSearchInput);
+            this.beverageMilkComboBox.FormattingEnabled = true;
+            this.beverageMilkComboBox.Location = new System.Drawing.Point(549, 419);
+            this.beverageMilkComboBox.Name = "beverageMilkComboBox";
+            this.beverageMilkComboBox.Size = new System.Drawing.Size(275, 23);
+            this.beverageMilkComboBox.TabIndex = 17;
             // 
-            // label6
+            // beverageModifierComboBox
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.beverageModifierComboBox.FormattingEnabled = true;
+            this.beverageModifierComboBox.Location = new System.Drawing.Point(549, 377);
+            this.beverageModifierComboBox.Name = "beverageModifierComboBox";
+            this.beverageModifierComboBox.Size = new System.Drawing.Size(275, 23);
+            this.beverageModifierComboBox.TabIndex = 16;
+            // 
+            // beverageDeleteBtn
+            // 
+            this.beverageDeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beverageDeleteBtn.Location = new System.Drawing.Point(814, 15);
+            this.beverageDeleteBtn.Name = "beverageDeleteBtn";
+            this.beverageDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.beverageDeleteBtn.TabIndex = 15;
+            this.beverageDeleteBtn.Text = "Delete";
+            this.beverageDeleteBtn.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(78, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 15);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Search";
+            // 
+            // beverageNameTextBox
+            // 
+            this.beverageNameTextBox.Location = new System.Drawing.Point(126, 377);
+            this.beverageNameTextBox.Name = "beverageNameTextBox";
+            this.beverageNameTextBox.Size = new System.Drawing.Size(275, 23);
+            this.beverageNameTextBox.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(460, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 15);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Title";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(460, 19);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(66, 15);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "BEVERAGE";
             // 
-            // textBox3
+            // label12
             // 
-            this.textBox3.Location = new System.Drawing.Point(538, 416);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(240, 23);
-            this.textBox3.TabIndex = 9;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(452, 419);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 15);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Milk";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(452, 380);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(52, 15);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Modifier";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(43, 419);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(42, 15);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Coffee";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(43, 380);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 15);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "Name";
+            // 
+            // beverageDataGridView
+            // 
+            this.beverageDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.beverageDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.beverageDataGridView.Location = new System.Drawing.Point(3, 51);
+            this.beverageDataGridView.Name = "beverageDataGridView";
+            this.beverageDataGridView.RowTemplate.Height = 25;
+            this.beverageDataGridView.Size = new System.Drawing.Size(946, 292);
+            this.beverageDataGridView.TabIndex = 1;
+            // 
+            // beverageAddBtn
+            // 
+            this.beverageAddBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.beverageAddBtn.Location = new System.Drawing.Point(436, 463);
+            this.beverageAddBtn.Name = "beverageAddBtn";
+            this.beverageAddBtn.Size = new System.Drawing.Size(80, 23);
+            this.beverageAddBtn.TabIndex = 0;
+            this.beverageAddBtn.Text = "Add";
+            this.beverageAddBtn.UseCompatibleTextRendering = true;
+            this.beverageAddBtn.UseVisualStyleBackColor = true;
+            // 
+            // milkTab
+            // 
+            this.milkTab.Controls.Add(this.milkSearchBox);
+            this.milkTab.Controls.Add(this.milkDeleteBtn);
+            this.milkTab.Controls.Add(this.label1);
+            this.milkTab.Controls.Add(this.milkBrandTextBox);
+            this.milkTab.Controls.Add(this.milkTypeTextBox);
+            this.milkTab.Controls.Add(this.label3);
+            this.milkTab.Controls.Add(this.label5);
+            this.milkTab.Controls.Add(this.label16);
+            this.milkTab.Controls.Add(this.milkDataGridView);
+            this.milkTab.Controls.Add(this.milkAddBtn);
+            this.milkTab.Location = new System.Drawing.Point(4, 24);
+            this.milkTab.Name = "milkTab";
+            this.milkTab.Size = new System.Drawing.Size(952, 489);
+            this.milkTab.TabIndex = 3;
+            this.milkTab.Text = "Milk";
+            this.milkTab.UseVisualStyleBackColor = true;
+            // 
+            // milkSearchBox
+            // 
+            this.milkSearchBox.Location = new System.Drawing.Point(126, 16);
+            this.milkSearchBox.Name = "milkSearchBox";
+            this.milkSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.milkSearchBox.TabIndex = 11;
+            // 
+            // milkDeleteBtn
+            // 
+            this.milkDeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.milkDeleteBtn.Location = new System.Drawing.Point(814, 15);
+            this.milkDeleteBtn.Name = "milkDeleteBtn";
+            this.milkDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.milkDeleteBtn.TabIndex = 16;
+            this.milkDeleteBtn.Text = "Delete";
+            this.milkDeleteBtn.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(78, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Search";
+            // 
+            // milkBrandTextBox
+            // 
+            this.milkBrandTextBox.Location = new System.Drawing.Point(538, 377);
+            this.milkBrandTextBox.Name = "milkBrandTextBox";
+            this.milkBrandTextBox.Size = new System.Drawing.Size(240, 23);
+            this.milkBrandTextBox.TabIndex = 7;
+            // 
+            // milkTypeTextBox
+            // 
+            this.milkTypeTextBox.Location = new System.Drawing.Point(126, 377);
+            this.milkTypeTextBox.Name = "milkTypeTextBox";
+            this.milkTypeTextBox.Size = new System.Drawing.Size(240, 23);
+            this.milkTypeTextBox.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(460, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 15);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "MILK";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(452, 419);
+            this.label5.Location = new System.Drawing.Point(452, 380);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 15);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "label5";
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Brand";
             // 
-            // textBox2
+            // label16
             // 
-            this.textBox2.Location = new System.Drawing.Point(538, 377);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 23);
-            this.textBox2.TabIndex = 7;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(43, 380);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(31, 15);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Type";
             // 
-            // label4
+            // milkDataGridView
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(452, 380);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
-            // 
-            // eanBox
-            // 
-            this.eanBox.Location = new System.Drawing.Point(126, 416);
-            this.eanBox.Name = "eanBox";
-            this.eanBox.Size = new System.Drawing.Size(240, 23);
-            this.eanBox.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 419);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 380);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
-            // 
-            // deleteButtonBeans
-            // 
-            this.deleteButtonBeans.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButtonBeans.Location = new System.Drawing.Point(794, 15);
-            this.deleteButtonBeans.Name = "deleteButtonBeans";
-            this.deleteButtonBeans.Size = new System.Drawing.Size(80, 23);
-            this.deleteButtonBeans.TabIndex = 0;
-            this.deleteButtonBeans.Text = "Delete";
-            this.deleteButtonBeans.UseVisualStyleBackColor = true;
-            this.deleteButtonBeans.Click += new System.EventHandler(this.OnDeleteButtonBeans_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.beanComboBox);
-            this.tabPage2.Controls.Add(this.waterComboBox);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.beanLabel);
-            this.tabPage2.Controls.Add(this.waterLabel);
-            this.tabPage2.Controls.Add(this.coffeeTab_beanWeightTextBox);
-            this.tabPage2.Controls.Add(this.weightLabel);
-            this.tabPage2.Controls.Add(this.grindSizeLabel);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.coffeeDataGridView);
-            this.tabPage2.Controls.Add(this.coffeeTab_grindSizeTextBox);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(952, 489);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // beanComboBox
-            // 
-            this.beanComboBox.FormattingEnabled = true;
-            this.beanComboBox.Location = new System.Drawing.Point(549, 413);
-            this.beanComboBox.Name = "beanComboBox";
-            this.beanComboBox.Size = new System.Drawing.Size(275, 23);
-            this.beanComboBox.TabIndex = 29;
-            // 
-            // waterComboBox
-            // 
-            this.waterComboBox.FormattingEnabled = true;
-            this.waterComboBox.Location = new System.Drawing.Point(549, 371);
-            this.waterComboBox.Name = "waterComboBox";
-            this.waterComboBox.Size = new System.Drawing.Size(275, 23);
-            this.waterComboBox.TabIndex = 28;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(78, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 15);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Search";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(126, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 23);
-            this.textBox1.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.milkDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(460, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 15);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Title";
+            this.milkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.milkDataGridView.Location = new System.Drawing.Point(3, 51);
+            this.milkDataGridView.Name = "milkDataGridView";
+            this.milkDataGridView.RowTemplate.Height = 25;
+            this.milkDataGridView.Size = new System.Drawing.Size(946, 292);
+            this.milkDataGridView.TabIndex = 1;
             // 
-            // beanLabel
+            // milkAddBtn
             // 
-            this.beanLabel.AutoSize = true;
-            this.beanLabel.Location = new System.Drawing.Point(452, 413);
-            this.beanLabel.Name = "beanLabel";
-            this.beanLabel.Size = new System.Drawing.Size(33, 15);
-            this.beanLabel.TabIndex = 23;
-            this.beanLabel.Text = "Bean";
+            this.milkAddBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.milkAddBtn.Location = new System.Drawing.Point(436, 463);
+            this.milkAddBtn.Name = "milkAddBtn";
+            this.milkAddBtn.Size = new System.Drawing.Size(80, 23);
+            this.milkAddBtn.TabIndex = 0;
+            this.milkAddBtn.Text = "Add";
+            this.milkAddBtn.UseCompatibleTextRendering = true;
+            this.milkAddBtn.UseVisualStyleBackColor = true;
             // 
-            // waterLabel
+            // modifierTab
             // 
-            this.waterLabel.AutoSize = true;
-            this.waterLabel.Location = new System.Drawing.Point(452, 374);
-            this.waterLabel.Name = "waterLabel";
-            this.waterLabel.Size = new System.Drawing.Size(38, 15);
-            this.waterLabel.TabIndex = 21;
-            this.waterLabel.Text = "Water";
+            this.modifierTab.Controls.Add(this.modifierSearchBox);
+            this.modifierTab.Controls.Add(this.modifierDeleteBtn);
+            this.modifierTab.Controls.Add(this.modifierFoamTimeNumUpDown);
+            this.modifierTab.Controls.Add(this.modifierTemperatureNumUpDown);
+            this.modifierTab.Controls.Add(this.label21);
+            this.modifierTab.Controls.Add(this.label17);
+            this.modifierTab.Controls.Add(this.modifierNameTextBox);
+            this.modifierTab.Controls.Add(this.label18);
+            this.modifierTab.Controls.Add(this.label19);
+            this.modifierTab.Controls.Add(this.label20);
+            this.modifierTab.Controls.Add(this.modifierDataGridView);
+            this.modifierTab.Controls.Add(this.modifierInsertBtn);
+            this.modifierTab.Location = new System.Drawing.Point(4, 24);
+            this.modifierTab.Name = "modifierTab";
+            this.modifierTab.Size = new System.Drawing.Size(952, 489);
+            this.modifierTab.TabIndex = 4;
+            this.modifierTab.Text = "Modifier";
+            this.modifierTab.UseVisualStyleBackColor = true;
             // 
-            // coffeeTab_beanWeightTextBox
+            // modifierSearchBox
             // 
-            this.coffeeTab_beanWeightTextBox.Location = new System.Drawing.Point(126, 410);
-            this.coffeeTab_beanWeightTextBox.Name = "coffeeTab_beanWeightTextBox";
-            this.coffeeTab_beanWeightTextBox.Size = new System.Drawing.Size(240, 23);
-            this.coffeeTab_beanWeightTextBox.TabIndex = 20;
+            this.modifierSearchBox.Location = new System.Drawing.Point(126, 16);
+            this.modifierSearchBox.Name = "modifierSearchBox";
+            this.modifierSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.modifierSearchBox.TabIndex = 11;
             // 
-            // weightLabel
+            // modifierDeleteBtn
             // 
-            this.weightLabel.AutoSize = true;
-            this.weightLabel.Location = new System.Drawing.Point(43, 413);
-            this.weightLabel.Name = "weightLabel";
-            this.weightLabel.Size = new System.Drawing.Size(74, 15);
-            this.weightLabel.TabIndex = 19;
-            this.weightLabel.Text = "Bean Weight";
+            this.modifierDeleteBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.modifierDeleteBtn.Location = new System.Drawing.Point(847, 11);
+            this.modifierDeleteBtn.Name = "modifierDeleteBtn";
+            this.modifierDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.modifierDeleteBtn.TabIndex = 17;
+            this.modifierDeleteBtn.Text = "Delete";
+            this.modifierDeleteBtn.UseCompatibleTextRendering = true;
+            this.modifierDeleteBtn.UseVisualStyleBackColor = true;
             // 
-            // grindSizeLabel
+            // modifierFoamTimeNumUpDown
             // 
-            this.grindSizeLabel.AutoSize = true;
-            this.grindSizeLabel.Location = new System.Drawing.Point(43, 374);
-            this.grindSizeLabel.Name = "grindSizeLabel";
-            this.grindSizeLabel.Size = new System.Drawing.Size(59, 15);
-            this.grindSizeLabel.TabIndex = 18;
-            this.grindSizeLabel.Text = "Grind Size";
+            this.modifierFoamTimeNumUpDown.Location = new System.Drawing.Point(538, 433);
+            this.modifierFoamTimeNumUpDown.Name = "modifierFoamTimeNumUpDown";
+            this.modifierFoamTimeNumUpDown.Size = new System.Drawing.Size(120, 23);
+            this.modifierFoamTimeNumUpDown.TabIndex = 16;
             // 
-            // button1
+            // modifierTemperatureNumUpDown
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(794, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.modifierTemperatureNumUpDown.Location = new System.Drawing.Point(538, 377);
+            this.modifierTemperatureNumUpDown.Name = "modifierTemperatureNumUpDown";
+            this.modifierTemperatureNumUpDown.Size = new System.Drawing.Size(120, 23);
+            this.modifierTemperatureNumUpDown.TabIndex = 15;
             // 
-            // coffeeDataGridView
+            // label21
             // 
-            this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(460, 435);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(66, 15);
+            this.label21.TabIndex = 14;
+            this.label21.Text = "Foam Time";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(78, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(42, 15);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Search";
+            // 
+            // modifierNameTextBox
+            // 
+            this.modifierNameTextBox.Location = new System.Drawing.Point(126, 377);
+            this.modifierNameTextBox.Name = "modifierNameTextBox";
+            this.modifierNameTextBox.Size = new System.Drawing.Size(240, 23);
+            this.modifierNameTextBox.TabIndex = 2;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.coffeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.coffeeDataGridView.Location = new System.Drawing.Point(3, 45);
-            this.coffeeDataGridView.Name = "coffeeDataGridView";
-            this.coffeeDataGridView.RowTemplate.Height = 25;
-            this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
-            this.coffeeDataGridView.TabIndex = 16;
-            this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.coffeeDataGridView_CellValidating);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(460, 19);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(64, 15);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "MODIFIER";
             // 
-            // coffeeTab_grindSizeTextBox
+            // label19
             // 
-            this.coffeeTab_grindSizeTextBox.Location = new System.Drawing.Point(126, 371);
-            this.coffeeTab_grindSizeTextBox.Name = "coffeeTab_grindSizeTextBox";
-            this.coffeeTab_grindSizeTextBox.Size = new System.Drawing.Size(240, 23);
-            this.coffeeTab_grindSizeTextBox.TabIndex = 17;
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(452, 380);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(73, 15);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "Temperature";
             // 
-            // button2
+            // label20
             // 
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Location = new System.Drawing.Point(436, 457);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Add";
-            this.button2.UseCompatibleTextRendering = true;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.OnAddCoffee);
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(43, 380);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(39, 15);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Name";
             // 
-            // label1
+            // modifierDataGridView
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 537);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.modifierDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modifierDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.modifierDataGridView.Location = new System.Drawing.Point(3, 51);
+            this.modifierDataGridView.Name = "modifierDataGridView";
+            this.modifierDataGridView.RowTemplate.Height = 25;
+            this.modifierDataGridView.Size = new System.Drawing.Size(946, 292);
+            this.modifierDataGridView.TabIndex = 1;
             // 
-            // button3
+            // modifierInsertBtn
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(885, 533);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.modifierInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.modifierInsertBtn.Location = new System.Drawing.Point(436, 463);
+            this.modifierInsertBtn.Name = "modifierInsertBtn";
+            this.modifierInsertBtn.Size = new System.Drawing.Size(80, 23);
+            this.modifierInsertBtn.TabIndex = 0;
+            this.modifierInsertBtn.Text = "Add";
+            this.modifierInsertBtn.UseCompatibleTextRendering = true;
+            this.modifierInsertBtn.UseVisualStyleBackColor = true;
             // 
-            // Column1
+            // waterTab
             // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
+            this.waterTab.Controls.Add(this.waterSearchBox);
+            this.waterTab.Controls.Add(this.waterVolumeMlNumUpDown);
+            this.waterTab.Controls.Add(this.label22);
+            this.waterTab.Controls.Add(this.waterSizeTextBox);
+            this.waterTab.Controls.Add(this.label23);
+            this.waterTab.Controls.Add(this.label24);
+            this.waterTab.Controls.Add(this.label25);
+            this.waterTab.Controls.Add(this.waterDataGridView);
+            this.waterTab.Controls.Add(this.waterInsertBtn);
+            this.waterTab.Controls.Add(this.waterDeleteBtn);
+            this.waterTab.Location = new System.Drawing.Point(4, 24);
+            this.waterTab.Name = "waterTab";
+            this.waterTab.Size = new System.Drawing.Size(952, 489);
+            this.waterTab.TabIndex = 5;
+            this.waterTab.Text = "Water";
+            this.waterTab.UseVisualStyleBackColor = true;
             // 
-            // Column2
+            // waterSearchBox
             // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
+            this.waterSearchBox.Location = new System.Drawing.Point(126, 16);
+            this.waterSearchBox.Name = "waterSearchBox";
+            this.waterSearchBox.Size = new System.Drawing.Size(240, 23);
+            this.waterSearchBox.TabIndex = 11;
             // 
-            // Column3
+            // waterVolumeMlNumUpDown
             // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
+            this.waterVolumeMlNumUpDown.Location = new System.Drawing.Point(555, 377);
+            this.waterVolumeMlNumUpDown.Name = "waterVolumeMlNumUpDown";
+            this.waterVolumeMlNumUpDown.Size = new System.Drawing.Size(120, 23);
+            this.waterVolumeMlNumUpDown.TabIndex = 16;
             // 
-            // Column4
+            // label22
             // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(78, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(42, 15);
+            this.label22.TabIndex = 12;
+            this.label22.Text = "Search";
+            // 
+            // waterSizeTextBox
+            // 
+            this.waterSizeTextBox.Location = new System.Drawing.Point(126, 377);
+            this.waterSizeTextBox.Name = "waterSizeTextBox";
+            this.waterSizeTextBox.Size = new System.Drawing.Size(240, 23);
+            this.waterSizeTextBox.TabIndex = 2;
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label23.Location = new System.Drawing.Point(460, 19);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(47, 15);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "WATER";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(452, 380);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(75, 15);
+            this.label24.TabIndex = 6;
+            this.label24.Text = "Volume (ML)";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(43, 380);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(27, 15);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Size";
+            // 
+            // waterDataGridView
+            // 
+            this.waterDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.waterDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.waterDataGridView.Location = new System.Drawing.Point(3, 51);
+            this.waterDataGridView.Name = "waterDataGridView";
+            this.waterDataGridView.RowTemplate.Height = 25;
+            this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
+            this.waterDataGridView.TabIndex = 1;
+            // 
+            // waterInsertBtn
+            // 
+            this.waterInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.waterInsertBtn.Location = new System.Drawing.Point(436, 463);
+            this.waterInsertBtn.Name = "waterInsertBtn";
+            this.waterInsertBtn.Size = new System.Drawing.Size(80, 23);
+            this.waterInsertBtn.TabIndex = 0;
+            this.waterInsertBtn.Text = "Add";
+            this.waterInsertBtn.UseCompatibleTextRendering = true;
+            this.waterInsertBtn.UseVisualStyleBackColor = true;
+            // 
+            // waterDeleteBtn
+            // 
+            this.waterDeleteBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.waterDeleteBtn.Location = new System.Drawing.Point(860, 16);
+            this.waterDeleteBtn.Name = "waterDeleteBtn";
+            this.waterDeleteBtn.Size = new System.Drawing.Size(80, 23);
+            this.waterDeleteBtn.TabIndex = 17;
+            this.waterDeleteBtn.Text = "Delete";
+            this.waterDeleteBtn.UseCompatibleTextRendering = true;
+            this.waterDeleteBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -447,61 +952,116 @@ partial class Form1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.lblUserMessage);
+            this.Controls.Add(this.tabController);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.coffeeTab.ResumeLayout(false);
+            this.coffeeTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).EndInit();
+            this.beansTab.ResumeLayout(false);
+            this.beansTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).EndInit();
+            this.tabController.ResumeLayout(false);
+            this.beverageTab.ResumeLayout(false);
+            this.beverageTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beverageDataGridView)).EndInit();
+            this.milkTab.ResumeLayout(false);
+            this.milkTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.milkDataGridView)).EndInit();
+            this.modifierTab.ResumeLayout(false);
+            this.modifierTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierFoamTimeNumUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierTemperatureNumUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modifierDataGridView)).EndInit();
+            this.waterTab.ResumeLayout(false);
+            this.waterTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waterVolumeMlNumUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waterDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
     }
 
     #endregion
-
-    private Button insertButton;
-    private DataGridView beansDataGridView;
-    private TextBox nameBox;
-    private TabControl tabControl1;
-    private TabPage tabPage1;
-    private Button deleteButtonBeans;
-    private TabPage tabPage2;
-    private Label label1;
-    private TextBox textBox3;
-    private Label label5;
-    private TextBox textBox2;
-    private Label label4;
-    private TextBox eanBox;
-    private Label label3;
-    private Label label2;
-    private Label label6;
-    private Button button3;
-    private Label label7;
-    private TextBox searchTextBox;
-    private ComboBox comboBox1;
+    private Label lblUserMessage;
+    private Button btnReturn;
+    private TabPage coffeeTab;
+    private ComboBox beanComboBox;
     private ComboBox waterComboBox;
     private Label label8;
-    private TextBox textBox1;
+    private TextBox coffeeSearchBox;
+    private TextBox beanWeightTextBox;
+    private TextBox beanGrindSizeTextBox;
     private Label label9;
-    private Label beanLabel;
-    private Label waterLabel;
-    private TextBox coffeeTab_beanWeightTextBox;
-    private Label weightLabel;
+    private Label coffeeBeanLabel;
+    private Label coffeeWaterLabel;
+    private Label coffeeBeanWeightLabel;
     private Label grindSizeLabel;
-    private Button button1;
+    private Button coffeeDeleteBtn;
     private DataGridView coffeeDataGridView;
-    private TextBox coffeeTab_grindSizeTextBox;
-    private Button button2;
-    private ComboBox beanComboBox;
-    private DataGridViewTextBoxColumn Column1;
-    private DataGridViewTextBoxColumn Column2;
-    private DataGridViewTextBoxColumn Column3;
-    private DataGridViewTextBoxColumn Column4;
+    private Button coffeeInsertBtn;
+    private TabPage beansTab;
+    private Label label7;
+    private TextBox beansSearchBox;
+    private TextBox beansRoastTextBox;
+    private TextBox beansEANTextBox;
+    private Label label6;
+    private Label label4;
+    private Label label2;
+    private Button beansDeleteBtn;
+    private DataGridView beansDataGridView;
+    private Button beansInsertBtn;
+    private TabControl tabController;
+    private TabPage beverageTab;
+    private Label label10;
+    private TextBox beverageSearchBox;
+    private TextBox beverageNameTextBox;
+    private Label label11;
+    private Label label12;
+    private Label label13;
+    private Label label14;
+    private Label label15;
+    private DataGridView beverageDataGridView;
+    private Button beverageAddBtn;
+    private Button beverageDeleteBtn;
+    private ComboBox beverageMilkComboBox;
+    private ComboBox beverageModifierComboBox;
+    private ComboBox beverageCoffeeComboBox;
+    private TabPage milkTab;
+    private TextBox milkSearchBox;
+    private Button milkDeleteBtn;
+    private Label label1;
+    private TextBox milkBrandTextBox;
+    private TextBox milkTypeTextBox;
+    private Label label3;
+    private Label label5;
+    private Label label16;
+    private DataGridView milkDataGridView;
+    private Button milkAddBtn;
+    private TabPage modifierTab;
+    private Label label21;
+    private TextBox modifierSearchBox;
+    private Label label17;
+    private TextBox modifierNameTextBox;
+    private Label label18;
+    private Label label19;
+    private Label label20;
+    private DataGridView modifierDataGridView;
+    private Button modifierInsertBtn;
+    private NumericUpDown modifierTemperatureNumUpDown;
+    private NumericUpDown modifierFoamTimeNumUpDown;
+    private Button modifierDeleteBtn;
+    private TabPage waterTab;
+    private TextBox waterSearchBox;
+    private NumericUpDown waterVolumeMlNumUpDown;
+    private Label label22;
+    private TextBox waterSizeTextBox;
+    private Label label23;
+    private Label label24;
+    private Label label25;
+    private DataGridView waterDataGridView;
+    private Button waterInsertBtn;
+    private Button waterDeleteBtn;
 }
