@@ -7,90 +7,138 @@ namespace ProgrammingAssignment1;
 public partial class Form1 : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
-    
 
+    private DataTable beansDataTable;
+    private DataTable waterDataTable;
+    private DataTable coffeeDataTable;
+    private DataTable foamDataTable;
+    private DataTable milkDataTable;
+    private DataTable beverageDataTable;
     public Form1()
     {
-        InitializeComponent();          
+        InitializeComponent();
+        UpdateAll();
+
+        
+        
+    }
+
+    private void UpdateTables()
+    {
+        beansDataTable = dataAccessLayer.GetTable("Beans");
+        waterDataTable = dataAccessLayer.GetTable("Water");
+        coffeeDataTable = dataAccessLayer.GetTable("CoffeeView");
+        foamDataTable = dataAccessLayer.GetTable("Foam");
+        milkDataTable = dataAccessLayer.GetTable("Milk");
+        beverageDataTable = dataAccessLayer.GetTable("BeverageView");
+
+
+        beansDataGridView.DataSource = beansDataTable;
+        waterDataGridView.DataSource = waterDataTable;
+        milkDataGridView.DataSource = milkDataTable;
+        foamDataGridView.DataSource = foamDataTable;
+        beverageDataGridView.DataSource = beverageDataTable;
+        coffeeDataGridView.DataSource = coffeeDataTable;
+
+
+    }
+    private void UpdateAll()
+    {
         try
         {
 
-            DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
-            //var column2 = new DataGridViewComboBoxColumn();
-            //column2.DataPropertyName = beansDataTable.Columns[0].ColumnName;
+            beansDataTable = dataAccessLayer.GetTable("Beans");
+            waterDataTable = dataAccessLayer.GetTable("Water");
+            coffeeDataTable = dataAccessLayer.GetTable("CoffeeView");
+            foamDataTable = dataAccessLayer.GetTable("Foam");
+            milkDataTable = dataAccessLayer.GetTable("Milk");
+            beverageDataTable = dataAccessLayer.GetTable("BeverageView");
 
-            //column2.HeaderText = beansDataTable.Columns[0].ColumnName;
-            //beansDataGridView.Columns.Add(column2);
-            
-            
-            
-            ////Populating DataGridViews          
-            //column2.DataSource = beansDataTable;
-            //column2.DisplayMember = beansDataTable.Columns[0].ColumnName;            
-            beansDataGridView.DataSource = beansDataTable;
-            
+            beverageCoffeeComboBox.ValueMember = "name";
+            beverageFoamTypeColumn.ValueMember = "type";
+            beverageMilkComboBox.ValueMember = "variety";
+            coffeeBeanEANColumn.ValueMember = "EAN";
+            coffeeWaterSizeColumn.ValueMember = "Size";
 
-            //column.Data
-            //beansDataGridView.Columns[0].ReadOnly = true;
-            DataTable waterDataTable = dataAccessLayer.GetTable("Water").Tables[0];
+            beverageCoffeeComboBox.DisplayMember = "name";
+            beverageFoamTypeColumn.DisplayMember = "type";
+            beverageMilkComboBox.DisplayMember = "variety";
+            coffeeBeanEANColumn.DisplayMember = "EAN";
+            coffeeWaterSizeColumn.DisplayMember = "Size";
 
 
-            DataTable coffeeDataTable = dataAccessLayer.GetTable("CoffeeView").Tables[0];
-            
 
-            //var coffeeEANColumn = new DataGridViewComboBoxColumn();
-            //coffeeEANColumn.DataPropertyName = "EAN";
-            //coffeeEANColumn.HeaderText = "EAN";
-            //coffeeDataGridView.Columns.Add(coffeeEANColumn);
-            //coffeeEANColumn.DataSource = beansDataTable;
-            //coffeeEANColumn.DisplayMember = "EAN";
-
-            //var waterSizeColumn = new DataGridViewComboBoxColumn();
-            //waterSizeColumn.DataPropertyName = "size";
-            //waterSizeColumn.HeaderText = "Size";
-            //coffeeDataGridView.Columns.Add(waterSizeColumn);
-            //waterSizeColumn.DataSource = waterDataTable;
-            //waterSizeColumn.DisplayMember = "size";
             coffeeBeanEANColumn.DataSource = beansDataTable;
             coffeeWaterSizeColumn.DataSource = waterDataTable;
-            coffeeBeanEANColumn.DisplayMember = "EAN";
-            coffeeWaterSizeColumn.DisplayMember ="Size";
-            
+            beverageCoffeeComboBox.DataSource = coffeeDataTable;
+            beverageFoamTypeColumn.DataSource = foamDataTable;
+            beverageMilkComboBox.DataSource = milkDataTable;
 
+            beverageCoffeeComboBox.BindingContext = this.BindingContext;
+            beverageFoamComboBox.BindingContext = this.BindingContext;
+            beverageMilkComboBox.BindingContext = this.BindingContext;
 
+            beansDataGridView.DataSource = beansDataTable;
+            waterDataGridView.DataSource = waterDataTable;
+            milkDataGridView.DataSource = milkDataTable;
+            foamDataGridView.DataSource = foamDataTable;
+            beverageDataGridView.DataSource = beverageDataTable;
             coffeeDataGridView.DataSource = coffeeDataTable;
+
 
 
             beanComboBox.DataSource = beansDataTable;
             beansDataTable.Columns.Add("FullString",
                 typeof(string),
                 "EAN + ' | ' + roast");
+
             beansDataGridView.Columns["FullString"].Visible = false;
-            beanComboBox.DisplayMember = "FullString";
+           
+            beanComboBox.DisplayMember = "EAN";
             beanComboBox.BindingContext = this.BindingContext;
+
             waterComboBox.DataSource = waterDataTable;
             waterComboBox.DisplayMember = "Size";
             waterComboBox.BindingContext = this.BindingContext;
 
-            
+            beverageCoffeeComboBox.DataSource = coffeeDataTable;
+            beverageCoffeeComboBox.DisplayMember = "name";
+            beverageCoffeeComboBox.BindingContext = this.BindingContext;
+
+            beverageFoamComboBox.DataSource = foamDataTable;
+            beverageFoamComboBox.DisplayMember = "type";
+            beverageFoamComboBox.BindingContext = this.BindingContext;
+
+            beverageMilkComboBox.DataSource = milkDataTable;
+            beverageMilkComboBox.DisplayMember = "variety";
+            beverageMilkComboBox.BindingContext = this.BindingContext;
+
+
+
+
+
+
         }
         catch (SqlException ex)
         {
-            MessageBox.Show(ex.Message);
-        }
+            lblUserMessage.Text = (ex.Message);
 
-        
-        
+        }
+    }
+    private void dataGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
+    {
+        e.Cancel = true;
+        UpdateAll();
     }
 
-    private void OnInsertButton(object sender, EventArgs e)
+    private void OnAddBeansButton(object sender, EventArgs e)
     {
         try {
             string ean = beansEANTextBox.Text;
             string roast = beansRoastTextBox.Text;
             var bean = new string[] { ean, roast };
             dataAccessLayer.InsertRow(bean, "Beans");
-            beansDataGridView.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
+           
         }
         catch(SqlException ex)
         {
@@ -109,7 +157,7 @@ public partial class Form1 : Form
             var ean = beansDataGridView.CurrentRow.Cells[0].Value;
             var primaryKey = new object[] { ean };
             dataAccessLayer.DeleteRow(primaryKey, "Beans");
-            beansDataGridView.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
+            
         }
         catch(SqlException ex)
         {
@@ -131,8 +179,8 @@ public partial class Form1 : Form
             int beanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
             var coffee = new object[] {name,beanEan, beanWeight, grindSize, waterSize };     
             dataAccessLayer.InsertRow(coffee, "Coffee");
-         
-            coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
+
+            
         }
         catch (Exception ex)
         {
@@ -142,9 +190,10 @@ public partial class Form1 : Form
 
     private void OnCellEdit(object sender, DataGridViewCellValidatingEventArgs e)
     {
-        
-           
 
+        UpdateCellValue(beansDataGridView, e, "Beans");
+       
+        
     }
 
     public void UpdateCellValue(DataGridView gridView, DataGridViewCellValidatingEventArgs e, string tableName)
@@ -176,7 +225,10 @@ public partial class Form1 : Form
                     parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
                 }
                 dataAccessLayer.UpdateRow(parameterArray, tableName);
+                
+                
             }
+
 
         }
         catch (Exception ex)
@@ -185,14 +237,58 @@ public partial class Form1 : Form
         }
     }
 
-    private void waterInsertBtn_Click(object sender, EventArgs e)
+    private void OnAddWaterButton(object sender, EventArgs e)
     {
         string size = waterSizeTextBox.Text;
         int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
         var water = new object[] { size, volume };
         dataAccessLayer.InsertRow(water, "water");
-        waterDataGridView.DataSource = dataAccessLayer.GetTable("water").Tables[0];
+      
 
+    }
 
+    private void OnAddMilkButton(object sender, EventArgs e)
+    {
+        string variety = milkVarietyTextBox.Text;
+        string brand = milkBrandTextBox.Text;
+        var milk = new object[] { variety, brand };
+        dataAccessLayer.InsertRow(milk, "milk");
+        
+
+    }
+
+    private void UpdateValidated(object sender, DataGridViewCellEventArgs e)
+    {
+     
+    }
+
+    private void beansTab_Click(object sender, EventArgs e)
+    {
+        UpdateAll();
+    }
+
+    private void beverageTab_Click(object sender, EventArgs e)
+    {
+        UpdateAll();
+    }
+
+    private void coffeeTab_Click(object sender, EventArgs e)
+    {
+        //UpdateAll();
+    }
+
+    private void milkTab_Click(object sender, EventArgs e)
+    {
+        UpdateAll();
+    }
+
+    private void foamTab_Click(object sender, EventArgs e)
+    {
+        UpdateAll();
+    }
+
+    private void waterTab_Click(object sender, EventArgs e)
+    {
+        UpdateAll();
     }
 }

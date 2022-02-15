@@ -56,7 +56,7 @@ public class DataAccessLayer
         }
     }
 
-    public DataSet GetTable(string tableName)
+    public DataTable GetTable(string tableName)
     {
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -70,7 +70,7 @@ public class DataAccessLayer
                         adapter.SelectCommand = sqlCommand;
                         adapter.Fill(dataSet);
                     }
-                    return dataSet;
+                    return dataSet.Tables[0];
                 }
             }
         }
