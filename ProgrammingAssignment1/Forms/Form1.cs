@@ -16,17 +16,17 @@ public partial class Form1 : Form
         {
 
             DataTable beansDataTable = dataAccessLayer.GetTable("Beans").Tables[0];
-            var column2 = new DataGridViewComboBoxColumn();
-            column2.DataPropertyName = beansDataTable.Columns[0].ColumnName;
+            //var column2 = new DataGridViewComboBoxColumn();
+            //column2.DataPropertyName = beansDataTable.Columns[0].ColumnName;
 
-            column2.HeaderText = beansDataTable.Columns[0].ColumnName;
-            beansDataGridView.Columns.Add(column2);
+            //column2.HeaderText = beansDataTable.Columns[0].ColumnName;
+            //beansDataGridView.Columns.Add(column2);
             
             
             
-            //Populating DataGridViews          
-            column2.DataSource = beansDataTable;
-            column2.DisplayMember = beansDataTable.Columns[0].ColumnName;            
+            ////Populating DataGridViews          
+            //column2.DataSource = beansDataTable;
+            //column2.DisplayMember = beansDataTable.Columns[0].ColumnName;            
             beansDataGridView.DataSource = beansDataTable;
             
 
@@ -35,13 +35,32 @@ public partial class Form1 : Form
             DataTable waterDataTable = dataAccessLayer.GetTable("Water").Tables[0];
 
 
-            DataTable coffeeDataTable = dataAccessLayer.GetTable("Coffee").Tables[0];
+            DataTable coffeeDataTable = dataAccessLayer.GetTable("CoffeeView").Tables[0];
+            
+
+            //var coffeeEANColumn = new DataGridViewComboBoxColumn();
+            //coffeeEANColumn.DataPropertyName = "EAN";
+            //coffeeEANColumn.HeaderText = "EAN";
+            //coffeeDataGridView.Columns.Add(coffeeEANColumn);
+            //coffeeEANColumn.DataSource = beansDataTable;
+            //coffeeEANColumn.DisplayMember = "EAN";
+
+            //var waterSizeColumn = new DataGridViewComboBoxColumn();
+            //waterSizeColumn.DataPropertyName = "size";
+            //waterSizeColumn.HeaderText = "Size";
+            //coffeeDataGridView.Columns.Add(waterSizeColumn);
+            //waterSizeColumn.DataSource = waterDataTable;
+            //waterSizeColumn.DisplayMember = "size";
+            coffeeBeanEANColumn.DataSource = beansDataTable;
+            coffeeWaterSizeColumn.DataSource = waterDataTable;
+            coffeeBeanEANColumn.DisplayMember = "EAN";
+            coffeeWaterSizeColumn.DisplayMember ="Size";
+            
+
+
             coffeeDataGridView.DataSource = coffeeDataTable;
 
-           
-            /*
 
-            //Populating comboboxes 
             beanComboBox.DataSource = beansDataTable;
             beansDataTable.Columns.Add("FullString",
                 typeof(string),
@@ -49,13 +68,11 @@ public partial class Form1 : Form
             beansDataGridView.Columns["FullString"].Visible = false;
             beanComboBox.DisplayMember = "FullString";
             beanComboBox.BindingContext = this.BindingContext;
-            
             waterComboBox.DataSource = waterDataTable;
             waterComboBox.DisplayMember = "Size";
             waterComboBox.BindingContext = this.BindingContext;
+
             
-            */
-           
         }
         catch (SqlException ex)
         {
@@ -71,7 +88,7 @@ public partial class Form1 : Form
         try {
             string ean = beansEANTextBox.Text;
             string roast = beansRoastTextBox.Text;
-            var bean = new string[] { roast, ean };
+            var bean = new string[] { ean, roast };
             dataAccessLayer.InsertRow(bean, "Beans");
             beansDataGridView.DataSource = dataAccessLayer.GetTable("Beans").Tables[0];
         }
@@ -105,11 +122,14 @@ public partial class Form1 : Form
     {
         try
         {
-            int.TryParse(beanGrindSizeTextBox.Text, out int grindSizeResult); //bör lägga till liten koll så man skriver in en int!
-            int.TryParse(beanWeightTextBox.Text, out int beanWeightResult);
+             //bör lägga till liten koll så man skriver in en int!
+           
+            var name = coffeeNameTextBox.Text;
             var waterSize = (waterComboBox.SelectedItem as DataRowView)[0];
             var beanEan = (beanComboBox.SelectedItem as DataRowView)[0];
-            var coffee = new object[] {beanEan, waterSize, grindSizeResult, beanWeightResult };     
+            int grindSize = Convert.ToInt32(Math.Round(coffeeGrindSizeNumUpDown.Value, 0));
+            int beanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
+            var coffee = new object[] {name,beanEan, beanWeight, grindSize, waterSize };     
             dataAccessLayer.InsertRow(coffee, "Coffee");
          
             coffeeDataGridView.DataSource = dataAccessLayer.GetTable("Coffee").Tables[0];
@@ -155,6 +175,7 @@ public partial class Form1 : Form
                 {
                     parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
                 }
+                dataAccessLayer.UpdateRow(parameterArray, tableName);
             }
 
         }
@@ -164,5 +185,14 @@ public partial class Form1 : Form
         }
     }
 
-   
+    private void waterInsertBtn_Click(object sender, EventArgs e)
+    {
+        string size = waterSizeTextBox.Text;
+        int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
+        var water = new object[] { size, volume };
+        dataAccessLayer.InsertRow(water, "water");
+        waterDataGridView.DataSource = dataAccessLayer.GetTable("water").Tables[0];
+
+
+    }
 }

@@ -6,6 +6,7 @@ public class DataAccessLayer
 
     public DataAccessLayer()
     {
+        /*
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         builder.DataSource = "localhost";
         builder.InitialCatalog = "COFFEEADDICTS";
@@ -14,6 +15,8 @@ public class DataAccessLayer
         builder.Password = "1234";
 
         connectionString = builder.ConnectionString;
+        */
+        connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
     }
 
     public DataSet GetKeys(string tableName)

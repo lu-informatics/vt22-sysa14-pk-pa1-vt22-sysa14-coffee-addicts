@@ -32,12 +32,14 @@ partial class Form1
             this.btnReturn = new System.Windows.Forms.Button();
             this.coffeeTab = new System.Windows.Forms.TabPage();
             this.coffeeSearchBox = new System.Windows.Forms.TextBox();
+            this.coffeeGrindSizeNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.coffeeBeanWeightNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.coffeeNameTextBox = new System.Windows.Forms.TextBox();
             this.coffeeDeleteBtn = new System.Windows.Forms.Button();
             this.beanComboBox = new System.Windows.Forms.ComboBox();
             this.waterComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.beanWeightTextBox = new System.Windows.Forms.TextBox();
-            this.beanGrindSizeTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.coffeeBeanLabel = new System.Windows.Forms.Label();
             this.coffeeWaterLabel = new System.Windows.Forms.Label();
@@ -107,7 +109,14 @@ partial class Form1
             this.waterDataGridView = new System.Windows.Forms.DataGridView();
             this.waterInsertBtn = new System.Windows.Forms.Button();
             this.waterDeleteBtn = new System.Windows.Forms.Button();
+            this.coffeeNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coffeeBeanEANColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.coffeeBeanWeightGramColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coffeeGrindSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coffeeWaterSizeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.coffeeTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.coffeeGrindSizeNumUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coffeeBeanWeightNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).BeginInit();
             this.beansTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).BeginInit();
@@ -147,12 +156,14 @@ partial class Form1
             // coffeeTab
             // 
             this.coffeeTab.Controls.Add(this.coffeeSearchBox);
+            this.coffeeTab.Controls.Add(this.coffeeGrindSizeNumUpDown);
+            this.coffeeTab.Controls.Add(this.coffeeBeanWeightNumUpDown);
+            this.coffeeTab.Controls.Add(this.label26);
+            this.coffeeTab.Controls.Add(this.coffeeNameTextBox);
             this.coffeeTab.Controls.Add(this.coffeeDeleteBtn);
             this.coffeeTab.Controls.Add(this.beanComboBox);
             this.coffeeTab.Controls.Add(this.waterComboBox);
             this.coffeeTab.Controls.Add(this.label8);
-            this.coffeeTab.Controls.Add(this.beanWeightTextBox);
-            this.coffeeTab.Controls.Add(this.beanGrindSizeTextBox);
             this.coffeeTab.Controls.Add(this.label9);
             this.coffeeTab.Controls.Add(this.coffeeBeanLabel);
             this.coffeeTab.Controls.Add(this.coffeeWaterLabel);
@@ -167,7 +178,6 @@ partial class Form1
             this.coffeeTab.TabIndex = 1;
             this.coffeeTab.Text = "Coffee";
             this.coffeeTab.UseVisualStyleBackColor = true;
- 
             // 
             // coffeeSearchBox
             // 
@@ -175,7 +185,66 @@ partial class Form1
             this.coffeeSearchBox.Name = "coffeeSearchBox";
             this.coffeeSearchBox.Size = new System.Drawing.Size(240, 23);
             this.coffeeSearchBox.TabIndex = 26;
-      
+            // 
+            // coffeeGrindSizeNumUpDown
+            // 
+            this.coffeeGrindSizeNumUpDown.Location = new System.Drawing.Point(126, 411);
+            this.coffeeGrindSizeNumUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.coffeeGrindSizeNumUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.coffeeGrindSizeNumUpDown.Name = "coffeeGrindSizeNumUpDown";
+            this.coffeeGrindSizeNumUpDown.Size = new System.Drawing.Size(120, 23);
+            this.coffeeGrindSizeNumUpDown.TabIndex = 33;
+            this.coffeeGrindSizeNumUpDown.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // coffeeBeanWeightNumUpDown
+            // 
+            this.coffeeBeanWeightNumUpDown.Location = new System.Drawing.Point(126, 450);
+            this.coffeeBeanWeightNumUpDown.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.coffeeBeanWeightNumUpDown.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.coffeeBeanWeightNumUpDown.Name = "coffeeBeanWeightNumUpDown";
+            this.coffeeBeanWeightNumUpDown.Size = new System.Drawing.Size(120, 23);
+            this.coffeeBeanWeightNumUpDown.TabIndex = 32;
+            this.coffeeBeanWeightNumUpDown.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(43, 369);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(39, 15);
+            this.label26.TabIndex = 31;
+            this.label26.Text = "Name";
+            // 
+            // coffeeNameTextBox
+            // 
+            this.coffeeNameTextBox.Location = new System.Drawing.Point(126, 366);
+            this.coffeeNameTextBox.Name = "coffeeNameTextBox";
+            this.coffeeNameTextBox.Size = new System.Drawing.Size(240, 23);
+            this.coffeeNameTextBox.TabIndex = 30;
             // 
             // coffeeDeleteBtn
             // 
@@ -186,7 +255,6 @@ partial class Form1
             this.coffeeDeleteBtn.TabIndex = 14;
             this.coffeeDeleteBtn.Text = "Delete";
             this.coffeeDeleteBtn.UseVisualStyleBackColor = true;
-          
             // 
             // beanComboBox
             // 
@@ -195,7 +263,6 @@ partial class Form1
             this.beanComboBox.Name = "beanComboBox";
             this.beanComboBox.Size = new System.Drawing.Size(275, 23);
             this.beanComboBox.TabIndex = 29;
-      
             // 
             // waterComboBox
             // 
@@ -204,7 +271,6 @@ partial class Form1
             this.waterComboBox.Name = "waterComboBox";
             this.waterComboBox.Size = new System.Drawing.Size(275, 23);
             this.waterComboBox.TabIndex = 28;
-         
             // 
             // label8
             // 
@@ -214,23 +280,6 @@ partial class Form1
             this.label8.Size = new System.Drawing.Size(42, 15);
             this.label8.TabIndex = 27;
             this.label8.Text = "Search";
-     
-            // 
-            // beanWeightTextBox
-            // 
-            this.beanWeightTextBox.Location = new System.Drawing.Point(126, 410);
-            this.beanWeightTextBox.Name = "beanWeightTextBox";
-            this.beanWeightTextBox.Size = new System.Drawing.Size(240, 23);
-            this.beanWeightTextBox.TabIndex = 20;
-         
-            // 
-            // beanGrindSizeTextBox
-            // 
-            this.beanGrindSizeTextBox.Location = new System.Drawing.Point(126, 371);
-            this.beanGrindSizeTextBox.Name = "beanGrindSizeTextBox";
-            this.beanGrindSizeTextBox.Size = new System.Drawing.Size(240, 23);
-            this.beanGrindSizeTextBox.TabIndex = 17;
-           
             // 
             // label9
             // 
@@ -243,7 +292,6 @@ partial class Form1
             this.label9.Size = new System.Drawing.Size(47, 15);
             this.label9.TabIndex = 25;
             this.label9.Text = "COFFEE";
-      
             // 
             // coffeeBeanLabel
             // 
@@ -253,7 +301,6 @@ partial class Form1
             this.coffeeBeanLabel.Size = new System.Drawing.Size(33, 15);
             this.coffeeBeanLabel.TabIndex = 23;
             this.coffeeBeanLabel.Text = "Bean";
-          
             // 
             // coffeeWaterLabel
             // 
@@ -263,40 +310,41 @@ partial class Form1
             this.coffeeWaterLabel.Size = new System.Drawing.Size(38, 15);
             this.coffeeWaterLabel.TabIndex = 21;
             this.coffeeWaterLabel.Text = "Water";
-            
             // 
             // coffeeBeanWeightLabel
             // 
             this.coffeeBeanWeightLabel.AutoSize = true;
-            this.coffeeBeanWeightLabel.Location = new System.Drawing.Point(43, 413);
+            this.coffeeBeanWeightLabel.Location = new System.Drawing.Point(43, 452);
             this.coffeeBeanWeightLabel.Name = "coffeeBeanWeightLabel";
             this.coffeeBeanWeightLabel.Size = new System.Drawing.Size(74, 15);
             this.coffeeBeanWeightLabel.TabIndex = 19;
             this.coffeeBeanWeightLabel.Text = "Bean Weight";
-      
             // 
             // grindSizeLabel
             // 
             this.grindSizeLabel.AutoSize = true;
-            this.grindSizeLabel.Location = new System.Drawing.Point(43, 374);
+            this.grindSizeLabel.Location = new System.Drawing.Point(43, 413);
             this.grindSizeLabel.Name = "grindSizeLabel";
             this.grindSizeLabel.Size = new System.Drawing.Size(59, 15);
             this.grindSizeLabel.TabIndex = 18;
             this.grindSizeLabel.Text = "Grind Size";
-
             // 
             // coffeeDataGridView
             // 
             this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.coffeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.coffeeNameColumn,
+            this.coffeeBeanEANColumn,
+            this.coffeeBeanWeightGramColumn,
+            this.coffeeGrindSizeColumn,
+            this.coffeeWaterSizeColumn});
             this.coffeeDataGridView.Location = new System.Drawing.Point(3, 52);
             this.coffeeDataGridView.Name = "coffeeDataGridView";
             this.coffeeDataGridView.RowTemplate.Height = 25;
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
-
-            
             // 
             // coffeeInsertBtn
             // 
@@ -441,7 +489,6 @@ partial class Form1
             this.tabController.SelectedIndex = 0;
             this.tabController.Size = new System.Drawing.Size(960, 517);
             this.tabController.TabIndex = 3;
-           
             // 
             // beverageTab
             // 
@@ -863,9 +910,24 @@ partial class Form1
             // waterVolumeMlNumUpDown
             // 
             this.waterVolumeMlNumUpDown.Location = new System.Drawing.Point(555, 377);
+            this.waterVolumeMlNumUpDown.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.waterVolumeMlNumUpDown.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             this.waterVolumeMlNumUpDown.Name = "waterVolumeMlNumUpDown";
             this.waterVolumeMlNumUpDown.Size = new System.Drawing.Size(120, 23);
             this.waterVolumeMlNumUpDown.TabIndex = 16;
+            this.waterVolumeMlNumUpDown.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             // 
             // label22
             // 
@@ -934,6 +996,7 @@ partial class Form1
             this.waterInsertBtn.Text = "Add";
             this.waterInsertBtn.UseCompatibleTextRendering = true;
             this.waterInsertBtn.UseVisualStyleBackColor = true;
+            this.waterInsertBtn.Click += new System.EventHandler(this.waterInsertBtn_Click);
             // 
             // waterDeleteBtn
             // 
@@ -945,6 +1008,40 @@ partial class Form1
             this.waterDeleteBtn.Text = "Delete";
             this.waterDeleteBtn.UseCompatibleTextRendering = true;
             this.waterDeleteBtn.UseVisualStyleBackColor = true;
+            // 
+            // coffeeNameColumn
+            // 
+            this.coffeeNameColumn.DataPropertyName = "name";
+            this.coffeeNameColumn.HeaderText = "Name";
+            this.coffeeNameColumn.Name = "coffeeNameColumn";
+            // 
+            // coffeeBeanEANColumn
+            // 
+            this.coffeeBeanEANColumn.DataPropertyName = "EAN";
+            this.coffeeBeanEANColumn.HeaderText = "Beans EAN";
+            this.coffeeBeanEANColumn.Name = "coffeeBeanEANColumn";
+            this.coffeeBeanEANColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.coffeeBeanEANColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // coffeeBeanWeightGramColumn
+            // 
+            this.coffeeBeanWeightGramColumn.DataPropertyName = "beanWeightGram";
+            this.coffeeBeanWeightGramColumn.HeaderText = "Bean Weight";
+            this.coffeeBeanWeightGramColumn.Name = "coffeeBeanWeightGramColumn";
+            // 
+            // coffeeGrindSizeColumn
+            // 
+            this.coffeeGrindSizeColumn.DataPropertyName = "grindSize";
+            this.coffeeGrindSizeColumn.HeaderText = "Grind Size";
+            this.coffeeGrindSizeColumn.Name = "coffeeGrindSizeColumn";
+            // 
+            // coffeeWaterSizeColumn
+            // 
+            this.coffeeWaterSizeColumn.DataPropertyName = "size";
+            this.coffeeWaterSizeColumn.HeaderText = "Water Size";
+            this.coffeeWaterSizeColumn.Name = "coffeeWaterSizeColumn";
+            this.coffeeWaterSizeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.coffeeWaterSizeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Form1
             // 
@@ -959,6 +1056,8 @@ partial class Form1
             this.Text = "Form1";
             this.coffeeTab.ResumeLayout(false);
             this.coffeeTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.coffeeGrindSizeNumUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coffeeBeanWeightNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).EndInit();
             this.beansTab.ResumeLayout(false);
             this.beansTab.PerformLayout();
@@ -992,8 +1091,6 @@ partial class Form1
     private ComboBox waterComboBox;
     private Label label8;
     private TextBox coffeeSearchBox;
-    private TextBox beanWeightTextBox;
-    private TextBox beanGrindSizeTextBox;
     private Label label9;
     private Label coffeeBeanLabel;
     private Label coffeeWaterLabel;
@@ -1064,4 +1161,13 @@ partial class Form1
     private DataGridView waterDataGridView;
     private Button waterInsertBtn;
     private Button waterDeleteBtn;
+    private Label label26;
+    private TextBox coffeeNameTextBox;
+    private NumericUpDown coffeeGrindSizeNumUpDown;
+    private NumericUpDown coffeeBeanWeightNumUpDown;
+    private DataGridViewTextBoxColumn coffeeNameColumn;
+    private DataGridViewComboBoxColumn coffeeBeanEANColumn;
+    private DataGridViewTextBoxColumn coffeeBeanWeightGramColumn;
+    private DataGridViewTextBoxColumn coffeeGrindSizeColumn;
+    private DataGridViewComboBoxColumn coffeeWaterSizeColumn;
 }
