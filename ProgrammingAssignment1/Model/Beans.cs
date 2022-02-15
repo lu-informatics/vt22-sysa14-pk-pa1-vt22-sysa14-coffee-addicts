@@ -1,11 +1,12 @@
 public class Beans
 {
-    private string roast;
     private string EAN;
+    private string roast;
+    
 
     public Beans() { }
 
-    public Beans(string roast, string ean)
+    public Beans(string ean, string roast)
     {
         Roast = roast;
         EAN1 = ean;

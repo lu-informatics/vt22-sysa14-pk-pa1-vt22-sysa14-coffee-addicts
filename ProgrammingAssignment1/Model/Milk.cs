@@ -1,18 +1,14 @@
 public class Milk
 {
-    private string type;
-    private string name;
+    private string variety;
     private string brand;
 
-    public Milk() { }
-    public Milk(string type, string name, string brand)
+    public Milk(string variety, string brand)
     {
-        Type = type;
-        Name = name;
-        Brand = brand;
+        this.Variety = variety;
+        this.Brand = brand;
     }
 
-    public string Type { get => type; set => type = value; }
-    public string Name { get => name; set => name = value; }
+    public string Variety { get => variety; set => variety = value; }
     public string Brand { get => brand; set => brand = value; }
 }

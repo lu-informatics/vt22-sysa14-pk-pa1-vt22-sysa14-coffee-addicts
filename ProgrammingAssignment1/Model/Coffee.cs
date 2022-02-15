@@ -1,10 +1,10 @@
 public class Coffee
 {
-    private string name;
-    private int grindSize;
+    private string name;    
     private string beansEAN;
-    private string waterSize;
     private int beanWeightGram;
+    private int grindSize;
+    private string waterSize;
 
     public Coffee() { }
 
