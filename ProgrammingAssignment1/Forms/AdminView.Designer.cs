@@ -1,6 +1,6 @@
 ﻿namespace ProgrammingAssignment1;
 
-partial class Form1
+partial class AdminView
 {
     /// <summary>
     ///  Required designer variable.
@@ -338,6 +338,8 @@ partial class Form1
             // 
             // coffeeDataGridView
             // 
+            this.coffeeDataGridView.AllowUserToAddRows = false;
+            this.coffeeDataGridView.AllowUserToDeleteRows = false;
             this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -484,6 +486,8 @@ partial class Form1
             // 
             // beansDataGridView
             // 
+            this.beansDataGridView.AllowUserToAddRows = false;
+            this.beansDataGridView.AllowUserToDeleteRows = false;
             this.beansDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.beansDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -665,6 +669,8 @@ partial class Form1
             // 
             // beverageDataGridView
             // 
+            this.beverageDataGridView.AllowUserToAddRows = false;
+            this.beverageDataGridView.AllowUserToDeleteRows = false;
             this.beverageDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.beverageDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -811,6 +817,8 @@ partial class Form1
             // 
             // milkDataGridView
             // 
+            this.milkDataGridView.AllowUserToAddRows = false;
+            this.milkDataGridView.AllowUserToDeleteRows = false;
             this.milkDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.milkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -878,6 +886,11 @@ partial class Form1
             // foamTimeNumUpDown
             // 
             this.foamTimeNumUpDown.Location = new System.Drawing.Point(538, 433);
+            this.foamTimeNumUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.foamTimeNumUpDown.Name = "foamTimeNumUpDown";
             this.foamTimeNumUpDown.Size = new System.Drawing.Size(120, 23);
             this.foamTimeNumUpDown.TabIndex = 16;
@@ -885,9 +898,24 @@ partial class Form1
             // foamTemperatureNumUpDown
             // 
             this.foamTemperatureNumUpDown.Location = new System.Drawing.Point(538, 377);
+            this.foamTemperatureNumUpDown.Maximum = new decimal(new int[] {
+            95,
+            0,
+            0,
+            0});
+            this.foamTemperatureNumUpDown.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             this.foamTemperatureNumUpDown.Name = "foamTemperatureNumUpDown";
             this.foamTemperatureNumUpDown.Size = new System.Drawing.Size(120, 23);
             this.foamTemperatureNumUpDown.TabIndex = 15;
+            this.foamTemperatureNumUpDown.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // label21
             // 
@@ -946,10 +974,12 @@ partial class Form1
             // 
             // foamDataGridView
             // 
+            this.foamDataGridView.AllowUserToAddRows = false;
+            this.foamDataGridView.AllowUserToDeleteRows = false;
             this.foamDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.foamDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.foamDataGridView.Location = new System.Drawing.Point(3, 51);
+            this.foamDataGridView.Location = new System.Drawing.Point(10, 45);
             this.foamDataGridView.Name = "foamDataGridView";
             this.foamDataGridView.RowTemplate.Height = 25;
             this.foamDataGridView.Size = new System.Drawing.Size(946, 292);
@@ -1066,6 +1096,8 @@ partial class Form1
             // 
             // waterDataGridView
             // 
+            this.waterDataGridView.AllowUserToAddRows = false;
+            this.waterDataGridView.AllowUserToDeleteRows = false;
             this.waterDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.waterDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

@@ -4,22 +4,20 @@ using System.Diagnostics;
 
 namespace ProgrammingAssignment1;
 
-public partial class Form1 : Form
+public partial class AdminView : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
-  
+
     private DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
 
-    public Form1()
+    public AdminView()
     {
         InitializeComponent();
 
         UpdateAll();
 
         Debug.WriteLine(dataAccessLayer.IsServerConnected());
-
-
 
     }
 
@@ -36,18 +34,18 @@ public partial class Form1 : Form
     }
     private void coffeeSearchBox_TextChanged(object sender, EventArgs e)
     {
-        (coffeeDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{coffeeSearchBox.Text}%' OR EAN LIKE '%{coffeeSearchBox.Text}%' OR beanWeightGram LIKE '%{coffeeSearchBox.Text}%' OR grindSize LIKE '%{coffeeSearchBox.Text}%' OR size LIKE '%{coffeeSearchBox.Text}%'");
+        (coffeeDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{coffeeSearchBox.Text}%' OR EAN LIKE '%{coffeeSearchBox.Text}%' OR Convert(beanWeightGram, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR Convert(grindSize, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR size LIKE '%{coffeeSearchBox.Text}%'");
 
     }
     private void OnWaterSearchInput(object sender, EventArgs e)
     {
-        (waterDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"Size LIKE '%{waterSearchBox.Text}%' OR volumeML LIKE '%{waterSearchBox.Text}%' ");
+        (waterDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"Size LIKE '%{waterSearchBox.Text}%' OR Convert(volumeML, 'System.String' LIKE '%{waterSearchBox.Text}%' ");
 
     }
 
     private void OnFoamSearchInput(object sender, EventArgs e)
     {
-        (foamDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{foamSearchBox.Text}%' OR temperature LIKE '%{foamSearchBox.Text}%' OR time LIKE '%{foamSearchBox.Text}%");
+        (foamDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"type LIKE '%{foamSearchBox.Text}%' OR Convert(temperature, 'System.String') LIKE '%{foamSearchBox.Text}%' OR Convert(time, 'System.String') LIKE '%{foamSearchBox.Text}%'");
 
     }
     private void OnBeansAddButton(object sender, EventArgs e)
@@ -197,7 +195,7 @@ public partial class Form1 : Form
                 }
                 dataAccessLayer.UpdateRow(parameterArray, tableName);
 
-                //UpdateAll();
+                UpdateTables();
             }
 
 
@@ -210,7 +208,7 @@ public partial class Form1 : Form
 
     private void UpdateAllOnCellChangedValue(object sender, DataGridViewCellEventArgs e) //DETTA LÖSTE DATA VALUE ERRORT, när jag lade in denna på CellValueChangedPropertyn
     {
-        UpdateAll();
+        //UpdateAll();
     }
     public void UpdateTables()
     {
@@ -239,7 +237,7 @@ public partial class Form1 : Form
         coffeeAddicts.Tables[5].Load(dataReader6);
 
 
-      
+
     }
     public void UpdateAll()
     {
@@ -262,20 +260,7 @@ public partial class Form1 : Form
             coffeeWaterSizeColumn.DisplayMember = "size";
 
 
-
-            //coffeeBeanEANColumn.ValueType = typeof(string);
-
-
-
-
-            //beansDataTable.Columns.Add("FullString",
-            //    typeof(string),
-            //    "EAN + ' | ' + roast");
-            //beansDataGridView.Columns["FullString"].Visible = false;
-            //beanComboBox.DisplayMember = "FullString";
-            beanComboBox.DisplayMember = "EAN";
-            beanComboBox.BindingContext = this.BindingContext;
-
+           
 
             waterComboBox.DisplayMember = "Size";
             waterComboBox.BindingContext = this.BindingContext;
@@ -292,16 +277,6 @@ public partial class Form1 : Form
 
 
 
-
-
-            //beansDataTable = dataAccessLayer.GetTable("Beans");
-            //waterDataTable = dataAccessLayer.GetTable("Water");
-            //coffeeDataTable = dataAccessLayer.GetTable("CoffeeView");
-            //foamDataTable = dataAccessLayer.GetTable("Foam");
-            //milkDataTable = dataAccessLayer.GetTable("Milk");
-            //beverageDataTable = dataAccessLayer.GetTable("BeverageView");
-
-            
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Beans"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Water"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Milk"));
@@ -316,18 +291,26 @@ public partial class Form1 : Form
             coffeeAddicts.Tables[5].TableName = "Beverage";
 
 
+            coffeeAddicts.Tables[0].Columns.Add("FullString",
+            typeof(string),
+            "EAN + ' | ' + roast");
+            beanComboBox.DisplayMember = "FullString";
+
+            //beanComboBox.DisplayMember = "EAN";
+            beanComboBox.BindingContext = this.BindingContext;
+
 
 
             coffeeBeanEANColumn.DataSource = coffeeAddicts.Tables[0];
             coffeeWaterSizeColumn.DataSource = coffeeAddicts.Tables[1];
-            beverageCoffeeNameColumn.DataSource = coffeeAddicts.Tables[4];
-            beverageFoamTypeColumn.DataSource = coffeeAddicts.Tables[3];
             beverageMilkVarietyColumn.DataSource = coffeeAddicts.Tables[2];
+            beverageFoamTypeColumn.DataSource = coffeeAddicts.Tables[3];
+            beverageCoffeeNameColumn.DataSource = coffeeAddicts.Tables[4];
 
             beanComboBox.DataSource = coffeeAddicts.Tables[0];
             waterComboBox.DataSource = coffeeAddicts.Tables[1];
-            beverageFoamComboBox.DataSource = coffeeAddicts.Tables[3];
             beverageMilkComboBox.DataSource = coffeeAddicts.Tables[2];
+            beverageFoamComboBox.DataSource = coffeeAddicts.Tables[3];
             beverageCoffeeComboBox.DataSource = coffeeAddicts.Tables[4];
 
 
@@ -337,8 +320,9 @@ public partial class Form1 : Form
             foamDataGridView.DataSource = coffeeAddicts.Tables[3];
             coffeeDataGridView.DataSource = coffeeAddicts.Tables[4];
             beverageDataGridView.DataSource = coffeeAddicts.Tables[5];
+            
+            beansDataGridView.Columns[2].Visible = false;
 
-            Debug.WriteLine(coffeeDataGridView.Columns[4].ToString());
         }
         catch (SqlException ex)
         {
