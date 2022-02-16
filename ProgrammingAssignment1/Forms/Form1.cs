@@ -8,13 +8,8 @@ public partial class Form1 : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
-    private DataTable beansDataTable;
-    private DataTable waterDataTable;
-    private DataTable coffeeDataTable;
-    private DataTable foamDataTable;
-    private DataTable milkDataTable;
-    private DataTable beverageDataTable;
-
+  
+    private DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
 
     public Form1()
     {
@@ -23,7 +18,7 @@ public partial class Form1 : Form
         UpdateAll();
 
         Debug.WriteLine(dataAccessLayer.IsServerConnected());
-        Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
+
 
 
     }
@@ -63,7 +58,7 @@ public partial class Form1 : Form
             string roast = beansRoastTextBox.Text;
             var bean = new string[] { ean, roast };
             dataAccessLayer.InsertRow(bean, "Beans");
-            //UpdateAll();
+            UpdateTables();
         }
         catch (SqlException ex)
         {
@@ -79,7 +74,7 @@ public partial class Form1 : Form
             var ean = beansDataGridView.CurrentRow.Cells[0].Value;
             var primaryKey = new object[] { ean };
             dataAccessLayer.DeleteRow(primaryKey, "Beans");
-            UpdateAll();
+            UpdateTables();
 
         }
         catch (SqlException ex)
@@ -102,7 +97,7 @@ public partial class Form1 : Form
             int beanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
             var coffee = new object[] { name, beanEan, beanWeight, grindSize, waterSize };
             dataAccessLayer.InsertRow(coffee, "Coffee");
-            UpdateAll();
+            UpdateTables();
             Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
 
         }
@@ -121,6 +116,7 @@ public partial class Form1 : Form
         var foam = new object[] { name, temperature, time };
         dataAccessLayer.InsertRow(foam, "Foam");
         //UpdateAll();
+        UpdateTables();
     }
 
     private void OnFoamDeleteButton(object sender, EventArgs e)
@@ -128,6 +124,7 @@ public partial class Form1 : Form
         var name = foamDataGridView.CurrentRow.Cells[0].Value;
         var primaryKeys = new object[] { name };
         dataAccessLayer.DeleteRow(primaryKeys, "Foam");
+        UpdateTables();
     }
 
 
@@ -140,7 +137,7 @@ public partial class Form1 : Form
         int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
         var water = new object[] { size, volume };
         dataAccessLayer.InsertRow(water, "water");
-        UpdateAll();
+        UpdateTables();
         Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
 
     }
@@ -150,7 +147,7 @@ public partial class Form1 : Form
         var size = waterDataGridView.CurrentRow.Cells[0].Value;
         var primaryKey = new object[] { size };
         dataAccessLayer.DeleteRow(primaryKey, "Water");
-        UpdateAll();
+        UpdateTables();
     }
     private void OnAddMilkButton(object sender, EventArgs e)
     {
@@ -158,7 +155,7 @@ public partial class Form1 : Form
         string brand = milkBrandTextBox.Text;
         var milk = new object[] { variety, brand };
         dataAccessLayer.InsertRow(milk, "milk");
-        //UpdateAll();
+        UpdateTables();
 
 
     }
@@ -167,7 +164,7 @@ public partial class Form1 : Form
         var variety = milkDataGridView.CurrentRow.Cells[0].Value;
         var primaryKeys = new object[] { variety };
         dataAccessLayer.DeleteRow(primaryKeys, "Milk");
-        UpdateAll();
+        UpdateTables();
     }
 
     public void UpdateCellValue(DataGridView gridView, DataGridViewCellValidatingEventArgs e, string tableName)
@@ -214,6 +211,35 @@ public partial class Form1 : Form
     private void UpdateAllOnCellChangedValue(object sender, DataGridViewCellEventArgs e) //DETTA LÖSTE DATA VALUE ERRORT, när jag lade in denna på CellValueChangedPropertyn
     {
         UpdateAll();
+    }
+    public void UpdateTables()
+    {
+        coffeeAddicts.Tables[0].Clear();
+        coffeeAddicts.Tables[1].Clear();
+        coffeeAddicts.Tables[2].Clear();
+        coffeeAddicts.Tables[3].Clear();
+        coffeeAddicts.Tables[4].Clear();
+        coffeeAddicts.Tables[5].Clear();
+        DataTableReader dataReader1 = new DataTableReader(dataAccessLayer.GetTable("Beans"));
+        DataTableReader dataReader2 = new DataTableReader(dataAccessLayer.GetTable("water"));
+
+        DataTableReader dataReader3 = new DataTableReader(dataAccessLayer.GetTable("milk"));
+        DataTableReader dataReader4 = new DataTableReader(dataAccessLayer.GetTable("Foam"));
+        DataTableReader dataReader5 = new DataTableReader(dataAccessLayer.GetTable("CoffeeView"));
+        DataTableReader dataReader6 = new DataTableReader(dataAccessLayer.GetTable("BeverageView"));
+
+
+
+
+        coffeeAddicts.Tables[0].Load(dataReader1);
+        coffeeAddicts.Tables[1].Load(dataReader2);
+        coffeeAddicts.Tables[2].Load(dataReader3);
+        coffeeAddicts.Tables[3].Load(dataReader4);
+        coffeeAddicts.Tables[4].Load(dataReader5);
+        coffeeAddicts.Tables[5].Load(dataReader6);
+
+
+      
     }
     public void UpdateAll()
     {
@@ -275,14 +301,20 @@ public partial class Form1 : Form
             //milkDataTable = dataAccessLayer.GetTable("Milk");
             //beverageDataTable = dataAccessLayer.GetTable("BeverageView");
 
-            DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
+            
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Beans"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Water"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Milk"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Foam"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("CoffeeView"));
-
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("BeverageView"));
+            coffeeAddicts.Tables[0].TableName = "Beans";
+            coffeeAddicts.Tables[1].TableName = "Water";
+            coffeeAddicts.Tables[2].TableName = "Milk";
+            coffeeAddicts.Tables[3].TableName = "Foam";
+            coffeeAddicts.Tables[4].TableName = "Coffee";
+            coffeeAddicts.Tables[5].TableName = "Beverage";
+
 
 
 
@@ -331,7 +363,7 @@ public partial class Form1 : Form
         var primaryKey = coffeeDataGridView.CurrentRow.Cells[0].Value;
         var primaryKeys = new object[] { primaryKey };
         dataAccessLayer.DeleteRow(primaryKeys, "Coffee");
-        UpdateAll();
+        UpdateTables();
     }
 
     private void OnBeverageAddButton(object sender, EventArgs e)
@@ -345,7 +377,7 @@ public partial class Form1 : Form
 
             var beverage = new object[] { bevName, coffeeName, foamType, milkVariety };
             dataAccessLayer.InsertRow(beverage, "beverage");
-            UpdateAll();
+            UpdateTables();
         }
         catch (Exception ex)
         {
@@ -357,22 +389,25 @@ public partial class Form1 : Form
 
     private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
     {
-        //DataGridView dgv = (DataGridView)sender;
-        //if (e.Exception is ArgumentException)
-        //{
-        //    object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-        //    if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
-        //    {
-        //        ((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
-        //        //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
-        //        e.ThrowException = false;
-        //    }
-        //}
-        //else
-        //{
-        //   lblUserMessage.Text = (e.Exception.Message);
-        //    e.Cancel = true;
-        //}
+        DataGridView dgv = (DataGridView)sender;
+        if (e.Exception is ArgumentException)
+        {
+            object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
+            {
+                dgv.Columns[4].DataPropertyName = "size";
+                //dgv.Columns[4] = DataGridViewComboBoxColumn;
+                //((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
+
+                //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
+                e.ThrowException = false;
+            }
+        }
+        else
+        {
+            lblUserMessage.Text = (e.Exception.Message);
+            e.Cancel = true;
+        }
         e.Cancel = true;
     }
 
