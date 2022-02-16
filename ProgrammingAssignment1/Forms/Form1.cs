@@ -21,7 +21,7 @@ public partial class Form1 : Form
         InitializeComponent();
 
         UpdateAll();
-
+       
         Debug.WriteLine(dataAccessLayer.IsServerConnected());
         Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
 
@@ -63,7 +63,7 @@ public partial class Form1 : Form
             string roast = beansRoastTextBox.Text;
             var bean = new string[] { ean, roast };
             dataAccessLayer.InsertRow(bean, "Beans");
-            //UpdateAll();
+            UpdateAll();
         }
         catch (SqlException ex)
         {
@@ -120,7 +120,7 @@ public partial class Form1 : Form
 
         var foam = new object[] { name, temperature, time };
         dataAccessLayer.InsertRow(foam, "Foam");
-        //UpdateAll();
+        UpdateAll();
     }
 
     private void OnFoamDeleteButton(object sender, EventArgs e)
@@ -128,6 +128,7 @@ public partial class Form1 : Form
         var name = foamDataGridView.CurrentRow.Cells[0].Value;
         var primaryKeys = new object[] { name };
         dataAccessLayer.DeleteRow(primaryKeys, "Foam");
+        UpdateAll();
     }
 
 
@@ -158,7 +159,7 @@ public partial class Form1 : Form
         string brand = milkBrandTextBox.Text;
         var milk = new object[] { variety, brand };
         dataAccessLayer.InsertRow(milk, "milk");
-        //UpdateAll();
+        UpdateAll();
 
 
     }
@@ -221,32 +222,9 @@ public partial class Form1 : Form
         {
 
 
-            beverageCoffeeNameColumn.ValueMember = "name";
-            beverageFoamTypeColumn.ValueMember = "type";
-            beverageMilkVarietyColumn.ValueMember = "variety";
-            coffeeBeanEANColumn.ValueMember = "EAN";
-            coffeeWaterSizeColumn.ValueMember = "size";
+           
 
 
-
-            beverageCoffeeNameColumn.DisplayMember = "name";
-            beverageFoamTypeColumn.DisplayMember = "type";
-            beverageMilkVarietyColumn.DisplayMember = "variety";
-            coffeeBeanEANColumn.DisplayMember = "EAN";
-            coffeeWaterSizeColumn.DisplayMember = "size";
-
-
-
-            //coffeeBeanEANColumn.ValueType = typeof(string);
-
-
-
-
-            //beansDataTable.Columns.Add("FullString",
-            //    typeof(string),
-            //    "EAN + ' | ' + roast");
-            //beansDataGridView.Columns["FullString"].Visible = false;
-            //beanComboBox.DisplayMember = "FullString";
             beanComboBox.DisplayMember = "EAN";
             beanComboBox.BindingContext = this.BindingContext;
 
@@ -268,29 +246,14 @@ public partial class Form1 : Form
 
 
 
-            //beansDataTable = dataAccessLayer.GetTable("Beans");
-            //waterDataTable = dataAccessLayer.GetTable("Water");
-            //coffeeDataTable = dataAccessLayer.GetTable("CoffeeView");
-            //foamDataTable = dataAccessLayer.GetTable("Foam");
-            //milkDataTable = dataAccessLayer.GetTable("Milk");
-            //beverageDataTable = dataAccessLayer.GetTable("BeverageView");
-
+           
             DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Beans"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Water"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Milk"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Foam"));
-            coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("CoffeeView"));
-
-            coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("BeverageView"));
-
-
-
-            coffeeBeanEANColumn.DataSource = coffeeAddicts.Tables[0];
-            coffeeWaterSizeColumn.DataSource = coffeeAddicts.Tables[1];
-            beverageCoffeeNameColumn.DataSource = coffeeAddicts.Tables[4];
-            beverageFoamTypeColumn.DataSource = coffeeAddicts.Tables[3];
-            beverageMilkVarietyColumn.DataSource = coffeeAddicts.Tables[2];
+            coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Coffee"));
+            coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Beverage"));          
 
             beanComboBox.DataSource = coffeeAddicts.Tables[0];
             waterComboBox.DataSource = coffeeAddicts.Tables[1];
@@ -355,28 +318,60 @@ public partial class Form1 : Form
 
     }
 
-    private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-    {
-        //DataGridView dgv = (DataGridView)sender;
-        //if (e.Exception is ArgumentException)
-        //{
-        //    object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-        //    if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
-        //    {
-        //        ((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
-        //        //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
-        //        e.ThrowException = false;
-        //    }
-        //}
-        //else
-        //{
-        //   lblUserMessage.Text = (e.Exception.Message);
-        //    e.Cancel = true;
-        //}
-        e.Cancel = true;
-    }
+
 
     private void btnReturn_Click(object sender, EventArgs e)
     {
+    }
+
+    private void coffeeDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+    {
+        var row = coffeeDataGridView.CurrentRow;
+        coffeeNameTextBox.Text = row.Cells[0].Value as string;
+        beanComboBox.Text = row.Cells[1].Value as string;
+        waterComboBox.Text = row.Cells[4].Value as string;
+        coffeeBeanWeightNumUpDown.Value = (int)row.Cells[2].Value;
+        coffeeGrindSizeNumUpDown.Value = (int)row.Cells[3].Value;
+    }
+
+    private void OnCoffeeUpdateButton(object sender, EventArgs e)
+    {
+        var row = coffeeDataGridView.CurrentRow;
+        var oldPk = row.Cells[0].Value;
+        var newPk = coffeeNameTextBox.Text;
+        var newBean = beanComboBox.Text;
+        int newGrindSize = Convert.ToInt32(Math.Round(coffeeGrindSizeNumUpDown.Value, 0));
+        int newBeanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
+        var newWaterSize = waterComboBox.Text;
+        var updatedCoffee = new object[] {newPk,newBean,newBeanWeight,newGrindSize,newWaterSize,oldPk};
+        dataAccessLayer.UpdateRow(updatedCoffee, "Coffee");
+        UpdateAll();
+    }
+
+    private void OnBeverageUpdateButton(object sender, EventArgs e)
+    {
+        var row  = beverageDataGridView.CurrentRow;
+        var oldPk = row.Cells[0].Value;
+        var newPK = beverageNameTextBox.Text;
+        var newCoffee = beverageCoffeeComboBox.Text;
+        var newFoam = beverageFoamComboBox.Text;
+        var newMilk = beverageMilkComboBox.Text;
+        var newBeverage = new object[] { newPK, newCoffee, newFoam, newMilk, oldPk };
+        dataAccessLayer.UpdateRow(newBeverage, "Beverage");
+        UpdateAll();
+    }
+
+    private void beverageDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+    {
+        var row = beverageDataGridView.CurrentRow;
+        beverageNameTextBox.Text = row.Cells[0].Value as string;
+        beverageCoffeeComboBox.Text = row.Cells[1].Value as string;
+        beverageFoamComboBox.Text = row.Cells[2].Value as string;
+        beverageMilkComboBox.Text = row.Cells[3].Value as string;
+    }
+
+    private void waterDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+    {
+
     }
 }

@@ -31,6 +31,7 @@ partial class Form1
             this.lblUserMessage = new System.Windows.Forms.Label();
             this.btnReturn = new System.Windows.Forms.Button();
             this.coffeeTab = new System.Windows.Forms.TabPage();
+            this.coffeeUpdateButton = new System.Windows.Forms.Button();
             this.coffeeSearchBox = new System.Windows.Forms.TextBox();
             this.coffeeGrindSizeNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.coffeeBeanWeightNumUpDown = new System.Windows.Forms.NumericUpDown();
@@ -46,11 +47,6 @@ partial class Form1
             this.coffeeBeanWeightLabel = new System.Windows.Forms.Label();
             this.grindSizeLabel = new System.Windows.Forms.Label();
             this.coffeeDataGridView = new System.Windows.Forms.DataGridView();
-            this.coffeeNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coffeeBeanEANColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.coffeeBeanWeightGramColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coffeeGrindSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coffeeWaterSizeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.coffeeInsertBtn = new System.Windows.Forms.Button();
             this.beansTab = new System.Windows.Forms.TabPage();
             this.beansSearchBox = new System.Windows.Forms.TextBox();
@@ -65,6 +61,7 @@ partial class Form1
             this.beansDeleteBtn = new System.Windows.Forms.Button();
             this.tabController = new System.Windows.Forms.TabControl();
             this.beverageTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.beverageSearchBox = new System.Windows.Forms.TextBox();
             this.beverageCoffeeComboBox = new System.Windows.Forms.ComboBox();
             this.beverageMilkComboBox = new System.Windows.Forms.ComboBox();
@@ -78,10 +75,6 @@ partial class Form1
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.beverageDataGridView = new System.Windows.Forms.DataGridView();
-            this.beverageBevNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.beverageCoffeeNameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.beverageFoamTypeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.beverageMilkVarietyColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.beverageAddBtn = new System.Windows.Forms.Button();
             this.milkTab = new System.Windows.Forms.TabPage();
             this.milkSearchBox = new System.Windows.Forms.TextBox();
@@ -160,6 +153,7 @@ partial class Form1
             // 
             // coffeeTab
             // 
+            this.coffeeTab.Controls.Add(this.coffeeUpdateButton);
             this.coffeeTab.Controls.Add(this.coffeeSearchBox);
             this.coffeeTab.Controls.Add(this.coffeeGrindSizeNumUpDown);
             this.coffeeTab.Controls.Add(this.coffeeBeanWeightNumUpDown);
@@ -183,6 +177,18 @@ partial class Form1
             this.coffeeTab.TabIndex = 1;
             this.coffeeTab.Text = "Coffee";
             this.coffeeTab.UseVisualStyleBackColor = true;
+            // 
+            // coffeeUpdateButton
+            // 
+            this.coffeeUpdateButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.coffeeUpdateButton.Location = new System.Drawing.Point(619, 457);
+            this.coffeeUpdateButton.Name = "coffeeUpdateButton";
+            this.coffeeUpdateButton.Size = new System.Drawing.Size(80, 23);
+            this.coffeeUpdateButton.TabIndex = 34;
+            this.coffeeUpdateButton.Text = "Update";
+            this.coffeeUpdateButton.UseCompatibleTextRendering = true;
+            this.coffeeUpdateButton.UseVisualStyleBackColor = true;
+            this.coffeeUpdateButton.Click += new System.EventHandler(this.OnCoffeeUpdateButton);
             // 
             // coffeeSearchBox
             // 
@@ -341,54 +347,15 @@ partial class Form1
             this.coffeeDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.coffeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.coffeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.coffeeNameColumn,
-            this.coffeeBeanEANColumn,
-            this.coffeeBeanWeightGramColumn,
-            this.coffeeGrindSizeColumn,
-            this.coffeeWaterSizeColumn});
             this.coffeeDataGridView.Location = new System.Drawing.Point(3, 52);
             this.coffeeDataGridView.Name = "coffeeDataGridView";
+            this.coffeeDataGridView.ReadOnly = true;
             this.coffeeDataGridView.RowTemplate.Height = 25;
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
+            this.coffeeDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.coffeeDataGridView_CellClick);
             this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             this.coffeeDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
-            this.coffeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
-            // 
-            // coffeeNameColumn
-            // 
-            this.coffeeNameColumn.DataPropertyName = "name";
-            this.coffeeNameColumn.HeaderText = "Name";
-            this.coffeeNameColumn.Name = "coffeeNameColumn";
-            // 
-            // coffeeBeanEANColumn
-            // 
-            this.coffeeBeanEANColumn.DataPropertyName = "EAN";
-            this.coffeeBeanEANColumn.HeaderText = "Beans EAN";
-            this.coffeeBeanEANColumn.Name = "coffeeBeanEANColumn";
-            this.coffeeBeanEANColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.coffeeBeanEANColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // coffeeBeanWeightGramColumn
-            // 
-            this.coffeeBeanWeightGramColumn.DataPropertyName = "beanWeightGram";
-            this.coffeeBeanWeightGramColumn.HeaderText = "Bean Weight";
-            this.coffeeBeanWeightGramColumn.Name = "coffeeBeanWeightGramColumn";
-            // 
-            // coffeeGrindSizeColumn
-            // 
-            this.coffeeGrindSizeColumn.DataPropertyName = "grindSize";
-            this.coffeeGrindSizeColumn.HeaderText = "Grind Size";
-            this.coffeeGrindSizeColumn.Name = "coffeeGrindSizeColumn";
-            // 
-            // coffeeWaterSizeColumn
-            // 
-            this.coffeeWaterSizeColumn.DataPropertyName = "size";
-            this.coffeeWaterSizeColumn.HeaderText = "Water Size";
-            this.coffeeWaterSizeColumn.Name = "coffeeWaterSizeColumn";
-            this.coffeeWaterSizeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.coffeeWaterSizeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // coffeeInsertBtn
             // 
@@ -537,6 +504,7 @@ partial class Form1
             // 
             // beverageTab
             // 
+            this.beverageTab.Controls.Add(this.button1);
             this.beverageTab.Controls.Add(this.beverageSearchBox);
             this.beverageTab.Controls.Add(this.beverageCoffeeComboBox);
             this.beverageTab.Controls.Add(this.beverageMilkComboBox);
@@ -557,6 +525,18 @@ partial class Form1
             this.beverageTab.TabIndex = 2;
             this.beverageTab.Text = "Beverage";
             this.beverageTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.Location = new System.Drawing.Point(649, 463);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Update";
+            this.button1.UseCompatibleTextRendering = true;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnBeverageUpdateButton);
             // 
             // beverageSearchBox
             // 
@@ -641,9 +621,9 @@ partial class Form1
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(452, 380);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 15);
+            this.label13.Size = new System.Drawing.Size(37, 15);
             this.label13.TabIndex = 6;
-            this.label13.Text = "Modifier";
+            this.label13.Text = "Foam";
             // 
             // label14
             // 
@@ -668,43 +648,15 @@ partial class Form1
             this.beverageDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.beverageDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.beverageDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.beverageBevNameColumn,
-            this.beverageCoffeeNameColumn,
-            this.beverageFoamTypeColumn,
-            this.beverageMilkVarietyColumn});
             this.beverageDataGridView.Location = new System.Drawing.Point(3, 51);
             this.beverageDataGridView.Name = "beverageDataGridView";
+            this.beverageDataGridView.ReadOnly = true;
             this.beverageDataGridView.RowTemplate.Height = 25;
             this.beverageDataGridView.Size = new System.Drawing.Size(946, 292);
             this.beverageDataGridView.TabIndex = 1;
+            this.beverageDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.beverageDataGridView_CellClick);
             this.beverageDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             this.beverageDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
-            this.beverageDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
-            // 
-            // beverageBevNameColumn
-            // 
-            this.beverageBevNameColumn.DataPropertyName = "bevName";
-            this.beverageBevNameColumn.HeaderText = "Beverage Name";
-            this.beverageBevNameColumn.Name = "beverageBevNameColumn";
-            // 
-            // beverageCoffeeNameColumn
-            // 
-            this.beverageCoffeeNameColumn.DataPropertyName = "name";
-            this.beverageCoffeeNameColumn.HeaderText = "Coffee Name";
-            this.beverageCoffeeNameColumn.Name = "beverageCoffeeNameColumn";
-            // 
-            // beverageFoamTypeColumn
-            // 
-            this.beverageFoamTypeColumn.DataPropertyName = "type";
-            this.beverageFoamTypeColumn.HeaderText = "Foam Type";
-            this.beverageFoamTypeColumn.Name = "beverageFoamTypeColumn";
-            // 
-            // beverageMilkVarietyColumn
-            // 
-            this.beverageMilkVarietyColumn.DataPropertyName = "variety";
-            this.beverageMilkVarietyColumn.HeaderText = "Milk Variety";
-            this.beverageMilkVarietyColumn.Name = "beverageMilkVarietyColumn";
             // 
             // beverageAddBtn
             // 
@@ -878,6 +830,11 @@ partial class Form1
             // foamTimeNumUpDown
             // 
             this.foamTimeNumUpDown.Location = new System.Drawing.Point(538, 433);
+            this.foamTimeNumUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.foamTimeNumUpDown.Name = "foamTimeNumUpDown";
             this.foamTimeNumUpDown.Size = new System.Drawing.Size(120, 23);
             this.foamTimeNumUpDown.TabIndex = 16;
@@ -885,9 +842,24 @@ partial class Form1
             // foamTemperatureNumUpDown
             // 
             this.foamTemperatureNumUpDown.Location = new System.Drawing.Point(538, 377);
+            this.foamTemperatureNumUpDown.Maximum = new decimal(new int[] {
+            95,
+            0,
+            0,
+            0});
+            this.foamTemperatureNumUpDown.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             this.foamTemperatureNumUpDown.Name = "foamTemperatureNumUpDown";
             this.foamTemperatureNumUpDown.Size = new System.Drawing.Size(120, 23);
             this.foamTemperatureNumUpDown.TabIndex = 15;
+            this.foamTemperatureNumUpDown.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // label21
             // 
@@ -1074,6 +1046,7 @@ partial class Form1
             this.waterDataGridView.RowTemplate.Height = 25;
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
+            this.waterDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.waterDataGridView_CellEndEdit);
             this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
@@ -1223,13 +1196,6 @@ partial class Form1
     private TextBox coffeeNameTextBox;
     private NumericUpDown coffeeGrindSizeNumUpDown;
     private NumericUpDown coffeeBeanWeightNumUpDown;
-    private DataGridViewTextBoxColumn coffeeNameColumn;
-    private DataGridViewComboBoxColumn coffeeBeanEANColumn;
-    private DataGridViewTextBoxColumn coffeeBeanWeightGramColumn;
-    private DataGridViewTextBoxColumn coffeeGrindSizeColumn;
-    private DataGridViewComboBoxColumn coffeeWaterSizeColumn;
-    private DataGridViewTextBoxColumn beverageBevNameColumn;
-    private DataGridViewComboBoxColumn beverageCoffeeNameColumn;
-    private DataGridViewComboBoxColumn beverageFoamTypeColumn;
-    private DataGridViewComboBoxColumn beverageMilkVarietyColumn;
+    private Button coffeeUpdateButton;
+    private Button button1;
 }
