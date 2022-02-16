@@ -63,14 +63,14 @@ public class DataAccessLayer
             {
                 using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM {tableName}", sqlConnection))
                 {
-                    DataSet dataSet = new DataSet();
+                    DataTable dataSet = new DataTable();
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
                         adapter.Fill(dataSet);
                     }
-                    return dataSet.Tables[0];
+                    return dataSet;
                 }
             }
         }
@@ -98,7 +98,7 @@ public class DataAccessLayer
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterUpdateCommand2(sqlConnection, tableName))
+            using (SqlDataAdapter adapter = CreateAdapter.CreateAdapterUpdateCommand(sqlConnection, tableName))
             {
                 sqlConnection.Open();
                 int i = 0;

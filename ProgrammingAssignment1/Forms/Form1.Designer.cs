@@ -28,7 +28,6 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-            this.components = new System.ComponentModel.Container();
             this.lblUserMessage = new System.Windows.Forms.Label();
             this.btnReturn = new System.Windows.Forms.Button();
             this.coffeeTab = new System.Windows.Forms.TabPage();
@@ -53,8 +52,6 @@ partial class Form1
             this.coffeeGrindSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coffeeWaterSizeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.coffeeInsertBtn = new System.Windows.Forms.Button();
-            this.beansBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.beansBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.beansTab = new System.Windows.Forms.TabPage();
             this.beansSearchBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -97,19 +94,19 @@ partial class Form1
             this.label16 = new System.Windows.Forms.Label();
             this.milkDataGridView = new System.Windows.Forms.DataGridView();
             this.milkAddBtn = new System.Windows.Forms.Button();
-            this.modifierTab = new System.Windows.Forms.TabPage();
+            this.foamTab = new System.Windows.Forms.TabPage();
             this.foamSearchBox = new System.Windows.Forms.TextBox();
             this.foamDeleteBtn = new System.Windows.Forms.Button();
             this.foamTimeNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.foamTemperatureNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.modifierNameTextBox = new System.Windows.Forms.TextBox();
+            this.foamNameTextBox = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.foamDataGridView = new System.Windows.Forms.DataGridView();
-            this.modifierInsertBtn = new System.Windows.Forms.Button();
+            this.foamInsertBtn = new System.Windows.Forms.Button();
             this.waterTab = new System.Windows.Forms.TabPage();
             this.waterSearchBox = new System.Windows.Forms.TextBox();
             this.waterVolumeMlNumUpDown = new System.Windows.Forms.NumericUpDown();
@@ -125,8 +122,6 @@ partial class Form1
             ((System.ComponentModel.ISupportInitialize)(this.coffeeGrindSizeNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeBeanWeightNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.beansBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.beansBindingSource1)).BeginInit();
             this.beansTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).BeginInit();
             this.tabController.SuspendLayout();
@@ -134,7 +129,7 @@ partial class Form1
             ((System.ComponentModel.ISupportInitialize)(this.beverageDataGridView)).BeginInit();
             this.milkTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.milkDataGridView)).BeginInit();
-            this.modifierTab.SuspendLayout();
+            this.foamTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.foamTimeNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.foamTemperatureNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.foamDataGridView)).BeginInit();
@@ -161,6 +156,7 @@ partial class Form1
             this.btnReturn.TabIndex = 4;
             this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // coffeeTab
             // 
@@ -187,7 +183,6 @@ partial class Form1
             this.coffeeTab.TabIndex = 1;
             this.coffeeTab.Text = "Coffee";
             this.coffeeTab.UseVisualStyleBackColor = true;
-            this.coffeeTab.Click += new System.EventHandler(this.coffeeTab_Click);
             // 
             // coffeeSearchBox
             // 
@@ -195,6 +190,7 @@ partial class Form1
             this.coffeeSearchBox.Name = "coffeeSearchBox";
             this.coffeeSearchBox.Size = new System.Drawing.Size(240, 23);
             this.coffeeSearchBox.TabIndex = 26;
+            this.coffeeSearchBox.TextChanged += new System.EventHandler(this.coffeeSearchBox_TextChanged);
             // 
             // coffeeGrindSizeNumUpDown
             // 
@@ -265,6 +261,7 @@ partial class Form1
             this.coffeeDeleteBtn.TabIndex = 14;
             this.coffeeDeleteBtn.Text = "Delete";
             this.coffeeDeleteBtn.UseVisualStyleBackColor = true;
+            this.coffeeDeleteBtn.Click += new System.EventHandler(this.OnCoffeeDeleteButton);
             // 
             // beanComboBox
             // 
@@ -355,7 +352,9 @@ partial class Form1
             this.coffeeDataGridView.RowTemplate.Height = 25;
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
-            this.coffeeDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateValidated);
+            this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.coffeeDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
+            this.coffeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
             // 
             // coffeeNameColumn
             // 
@@ -401,15 +400,7 @@ partial class Form1
             this.coffeeInsertBtn.Text = "Add";
             this.coffeeInsertBtn.UseCompatibleTextRendering = true;
             this.coffeeInsertBtn.UseVisualStyleBackColor = true;
-            this.coffeeInsertBtn.Click += new System.EventHandler(this.OnAddCoffee);
-            // 
-            // beansBindingSource
-            // 
-            this.beansBindingSource.DataSource = typeof(Beans);
-            // 
-            // beansBindingSource1
-            // 
-            this.beansBindingSource1.DataSource = typeof(Beans);
+            this.coffeeInsertBtn.Click += new System.EventHandler(this.OnCoffeeAddButton);
             // 
             // beansTab
             // 
@@ -502,7 +493,7 @@ partial class Form1
             this.beansDataGridView.Size = new System.Drawing.Size(946, 296);
             this.beansDataGridView.TabIndex = 1;
             this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.beansDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateValidated);
+            this.beansDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // beansInsertBtn
             // 
@@ -514,6 +505,7 @@ partial class Form1
             this.beansInsertBtn.Text = "Add";
             this.beansInsertBtn.UseCompatibleTextRendering = true;
             this.beansInsertBtn.UseVisualStyleBackColor = true;
+            this.beansInsertBtn.Click += new System.EventHandler(this.OnBeansAddButton);
             // 
             // beansDeleteBtn
             // 
@@ -524,7 +516,7 @@ partial class Form1
             this.beansDeleteBtn.TabIndex = 0;
             this.beansDeleteBtn.Text = "Delete";
             this.beansDeleteBtn.UseVisualStyleBackColor = true;
-            this.beansDeleteBtn.Click += new System.EventHandler(this.OnDeleteButtonBeans_Click);
+            this.beansDeleteBtn.Click += new System.EventHandler(this.OnBeansDeleteButton);
             // 
             // tabController
             // 
@@ -535,7 +527,7 @@ partial class Form1
             this.tabController.Controls.Add(this.beverageTab);
             this.tabController.Controls.Add(this.coffeeTab);
             this.tabController.Controls.Add(this.milkTab);
-            this.tabController.Controls.Add(this.modifierTab);
+            this.tabController.Controls.Add(this.foamTab);
             this.tabController.Controls.Add(this.waterTab);
             this.tabController.Location = new System.Drawing.Point(12, 12);
             this.tabController.Name = "tabController";
@@ -686,9 +678,13 @@ partial class Form1
             this.beverageDataGridView.RowTemplate.Height = 25;
             this.beverageDataGridView.Size = new System.Drawing.Size(946, 292);
             this.beverageDataGridView.TabIndex = 1;
+            this.beverageDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.beverageDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
+            this.beverageDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
             // 
             // beverageBevNameColumn
             // 
+            this.beverageBevNameColumn.DataPropertyName = "bevName";
             this.beverageBevNameColumn.HeaderText = "Beverage Name";
             this.beverageBevNameColumn.Name = "beverageBevNameColumn";
             // 
@@ -720,6 +716,7 @@ partial class Form1
             this.beverageAddBtn.Text = "Add";
             this.beverageAddBtn.UseCompatibleTextRendering = true;
             this.beverageAddBtn.UseVisualStyleBackColor = true;
+            this.beverageAddBtn.Click += new System.EventHandler(this.OnBeverageAddButton);
             // 
             // milkTab
             // 
@@ -746,6 +743,7 @@ partial class Form1
             this.milkSearchBox.Name = "milkSearchBox";
             this.milkSearchBox.Size = new System.Drawing.Size(240, 23);
             this.milkSearchBox.TabIndex = 11;
+            this.milkSearchBox.TextChanged += new System.EventHandler(this.OnMilkSearchInput);
             // 
             // milkDeleteBtn
             // 
@@ -756,6 +754,7 @@ partial class Form1
             this.milkDeleteBtn.TabIndex = 16;
             this.milkDeleteBtn.Text = "Delete";
             this.milkDeleteBtn.UseVisualStyleBackColor = true;
+            this.milkDeleteBtn.Click += new System.EventHandler(this.OnMilkDeleteButton);
             // 
             // label1
             // 
@@ -820,6 +819,8 @@ partial class Form1
             this.milkDataGridView.RowTemplate.Height = 25;
             this.milkDataGridView.Size = new System.Drawing.Size(946, 292);
             this.milkDataGridView.TabIndex = 1;
+            this.milkDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.milkDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // milkAddBtn
             // 
@@ -831,27 +832,28 @@ partial class Form1
             this.milkAddBtn.Text = "Add";
             this.milkAddBtn.UseCompatibleTextRendering = true;
             this.milkAddBtn.UseVisualStyleBackColor = true;
+            this.milkAddBtn.Click += new System.EventHandler(this.OnAddMilkButton);
             // 
-            // modifierTab
+            // foamTab
             // 
-            this.modifierTab.Controls.Add(this.foamSearchBox);
-            this.modifierTab.Controls.Add(this.foamDeleteBtn);
-            this.modifierTab.Controls.Add(this.foamTimeNumUpDown);
-            this.modifierTab.Controls.Add(this.foamTemperatureNumUpDown);
-            this.modifierTab.Controls.Add(this.label21);
-            this.modifierTab.Controls.Add(this.label17);
-            this.modifierTab.Controls.Add(this.modifierNameTextBox);
-            this.modifierTab.Controls.Add(this.label18);
-            this.modifierTab.Controls.Add(this.label19);
-            this.modifierTab.Controls.Add(this.label20);
-            this.modifierTab.Controls.Add(this.foamDataGridView);
-            this.modifierTab.Controls.Add(this.modifierInsertBtn);
-            this.modifierTab.Location = new System.Drawing.Point(4, 24);
-            this.modifierTab.Name = "modifierTab";
-            this.modifierTab.Size = new System.Drawing.Size(952, 489);
-            this.modifierTab.TabIndex = 4;
-            this.modifierTab.Text = "Modifier";
-            this.modifierTab.UseVisualStyleBackColor = true;
+            this.foamTab.Controls.Add(this.foamSearchBox);
+            this.foamTab.Controls.Add(this.foamDeleteBtn);
+            this.foamTab.Controls.Add(this.foamTimeNumUpDown);
+            this.foamTab.Controls.Add(this.foamTemperatureNumUpDown);
+            this.foamTab.Controls.Add(this.label21);
+            this.foamTab.Controls.Add(this.label17);
+            this.foamTab.Controls.Add(this.foamNameTextBox);
+            this.foamTab.Controls.Add(this.label18);
+            this.foamTab.Controls.Add(this.label19);
+            this.foamTab.Controls.Add(this.label20);
+            this.foamTab.Controls.Add(this.foamDataGridView);
+            this.foamTab.Controls.Add(this.foamInsertBtn);
+            this.foamTab.Location = new System.Drawing.Point(4, 24);
+            this.foamTab.Name = "foamTab";
+            this.foamTab.Size = new System.Drawing.Size(952, 489);
+            this.foamTab.TabIndex = 4;
+            this.foamTab.Text = "Foam";
+            this.foamTab.UseVisualStyleBackColor = true;
             // 
             // foamSearchBox
             // 
@@ -859,6 +861,7 @@ partial class Form1
             this.foamSearchBox.Name = "foamSearchBox";
             this.foamSearchBox.Size = new System.Drawing.Size(240, 23);
             this.foamSearchBox.TabIndex = 11;
+            this.foamSearchBox.TextChanged += new System.EventHandler(this.OnFoamSearchInput);
             // 
             // foamDeleteBtn
             // 
@@ -870,6 +873,7 @@ partial class Form1
             this.foamDeleteBtn.Text = "Delete";
             this.foamDeleteBtn.UseCompatibleTextRendering = true;
             this.foamDeleteBtn.UseVisualStyleBackColor = true;
+            this.foamDeleteBtn.Click += new System.EventHandler(this.OnFoamDeleteButton);
             // 
             // foamTimeNumUpDown
             // 
@@ -903,12 +907,12 @@ partial class Form1
             this.label17.TabIndex = 12;
             this.label17.Text = "Search";
             // 
-            // modifierNameTextBox
+            // foamNameTextBox
             // 
-            this.modifierNameTextBox.Location = new System.Drawing.Point(126, 377);
-            this.modifierNameTextBox.Name = "modifierNameTextBox";
-            this.modifierNameTextBox.Size = new System.Drawing.Size(240, 23);
-            this.modifierNameTextBox.TabIndex = 2;
+            this.foamNameTextBox.Location = new System.Drawing.Point(126, 377);
+            this.foamNameTextBox.Name = "foamNameTextBox";
+            this.foamNameTextBox.Size = new System.Drawing.Size(240, 23);
+            this.foamNameTextBox.TabIndex = 2;
             // 
             // label18
             // 
@@ -918,9 +922,9 @@ partial class Form1
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label18.Location = new System.Drawing.Point(460, 19);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(64, 15);
+            this.label18.Size = new System.Drawing.Size(41, 15);
             this.label18.TabIndex = 10;
-            this.label18.Text = "MODIFIER";
+            this.label18.Text = "FOAM";
             // 
             // label19
             // 
@@ -950,17 +954,20 @@ partial class Form1
             this.foamDataGridView.RowTemplate.Height = 25;
             this.foamDataGridView.Size = new System.Drawing.Size(946, 292);
             this.foamDataGridView.TabIndex = 1;
+            this.foamDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.foamDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
-            // modifierInsertBtn
+            // foamInsertBtn
             // 
-            this.modifierInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.modifierInsertBtn.Location = new System.Drawing.Point(436, 463);
-            this.modifierInsertBtn.Name = "modifierInsertBtn";
-            this.modifierInsertBtn.Size = new System.Drawing.Size(80, 23);
-            this.modifierInsertBtn.TabIndex = 0;
-            this.modifierInsertBtn.Text = "Add";
-            this.modifierInsertBtn.UseCompatibleTextRendering = true;
-            this.modifierInsertBtn.UseVisualStyleBackColor = true;
+            this.foamInsertBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.foamInsertBtn.Location = new System.Drawing.Point(436, 463);
+            this.foamInsertBtn.Name = "foamInsertBtn";
+            this.foamInsertBtn.Size = new System.Drawing.Size(80, 23);
+            this.foamInsertBtn.TabIndex = 0;
+            this.foamInsertBtn.Text = "Add";
+            this.foamInsertBtn.UseCompatibleTextRendering = true;
+            this.foamInsertBtn.UseVisualStyleBackColor = true;
+            this.foamInsertBtn.Click += new System.EventHandler(this.OnFoamAddButton);
             // 
             // waterTab
             // 
@@ -987,6 +994,7 @@ partial class Form1
             this.waterSearchBox.Name = "waterSearchBox";
             this.waterSearchBox.Size = new System.Drawing.Size(240, 23);
             this.waterSearchBox.TabIndex = 11;
+            this.waterSearchBox.TextChanged += new System.EventHandler(this.OnWaterSearchInput);
             // 
             // waterVolumeMlNumUpDown
             // 
@@ -1066,7 +1074,8 @@ partial class Form1
             this.waterDataGridView.RowTemplate.Height = 25;
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
-            this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateValidated);
+            this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // waterInsertBtn
             // 
@@ -1078,6 +1087,7 @@ partial class Form1
             this.waterInsertBtn.Text = "Add";
             this.waterInsertBtn.UseCompatibleTextRendering = true;
             this.waterInsertBtn.UseVisualStyleBackColor = true;
+            this.waterInsertBtn.Click += new System.EventHandler(this.OnAddWaterButton);
             // 
             // waterDeleteBtn
             // 
@@ -1089,6 +1099,7 @@ partial class Form1
             this.waterDeleteBtn.Text = "Delete";
             this.waterDeleteBtn.UseCompatibleTextRendering = true;
             this.waterDeleteBtn.UseVisualStyleBackColor = true;
+            this.waterDeleteBtn.Click += new System.EventHandler(this.OnWaterDeleteButton);
             // 
             // Form1
             // 
@@ -1106,8 +1117,6 @@ partial class Form1
             ((System.ComponentModel.ISupportInitialize)(this.coffeeGrindSizeNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeBeanWeightNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coffeeDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.beansBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.beansBindingSource1)).EndInit();
             this.beansTab.ResumeLayout(false);
             this.beansTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beansDataGridView)).EndInit();
@@ -1118,8 +1127,8 @@ partial class Form1
             this.milkTab.ResumeLayout(false);
             this.milkTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.milkDataGridView)).EndInit();
-            this.modifierTab.ResumeLayout(false);
-            this.modifierTab.PerformLayout();
+            this.foamTab.ResumeLayout(false);
+            this.foamTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.foamTimeNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.foamTemperatureNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.foamDataGridView)).EndInit();
@@ -1186,16 +1195,16 @@ partial class Form1
     private Label label16;
     private DataGridView milkDataGridView;
     private Button milkAddBtn;
-    private TabPage modifierTab;
+    private TabPage foamTab;
     private Label label21;
     private TextBox foamSearchBox;
     private Label label17;
-    private TextBox modifierNameTextBox;
+    private TextBox foamNameTextBox;
     private Label label18;
     private Label label19;
     private Label label20;
     private DataGridView foamDataGridView;
-    private Button modifierInsertBtn;
+    private Button foamInsertBtn;
     private NumericUpDown foamTemperatureNumUpDown;
     private NumericUpDown foamTimeNumUpDown;
     private Button foamDeleteBtn;
@@ -1214,8 +1223,6 @@ partial class Form1
     private TextBox coffeeNameTextBox;
     private NumericUpDown coffeeGrindSizeNumUpDown;
     private NumericUpDown coffeeBeanWeightNumUpDown;
-    private BindingSource beansBindingSource;
-    private BindingSource beansBindingSource1;
     private DataGridViewTextBoxColumn coffeeNameColumn;
     private DataGridViewComboBoxColumn coffeeBeanEANColumn;
     private DataGridViewTextBoxColumn coffeeBeanWeightGramColumn;
