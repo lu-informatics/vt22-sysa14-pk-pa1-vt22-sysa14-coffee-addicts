@@ -8,13 +8,14 @@ public partial class AdminView : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
-
     private DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
+
+    object oldValue;
 
     public AdminView()
     {
         InitializeComponent();
-
+        
         UpdateAll();
 
         Debug.WriteLine(dataAccessLayer.IsServerConnected());
@@ -165,39 +166,49 @@ public partial class AdminView : Form
         UpdateTables();
     }
 
-    public void UpdateCellValue(DataGridView gridView, DataGridViewCellValidatingEventArgs e, string tableName)
+    private void OnCellEdit(object sender, DataGridViewCellValidatingEventArgs e)
+    {
+        DataGridView dataGridView = sender as DataGridView;
+        string tableName = dataGridView.Name;
+        tableName = tableName.Remove(tableName.Length - 12, 12);
+        UpdateCellValue(dataGridView, e, tableName);
+    }
+    public void UpdateCellValue(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
         try
         {
-            var oldValue = gridView[e.ColumnIndex, e.RowIndex].Value;
+            var oldValue = dataGridView[e.ColumnIndex, e.RowIndex].Value;
             var newValue = e.FormattedValue;
-
-
 
             if (!(newValue.Equals(oldValue)) || newValue != oldValue) //Only happens on new cell value!
             {
-                var oldRow = gridView.Rows[e.RowIndex];
-                var metaDataCount = dataAccessLayer.GetMetaData(tableName).Tables[0].Rows.Count;
-                var keyDataCount = dataAccessLayer.GetKeys(tableName).Tables[0].Columns.Count;
-                int count = metaDataCount + keyDataCount;
-                var parameterArray = new object[count];
-                parameterArray[e.ColumnIndex] = newValue;
-                for (int i = 0; i < metaDataCount; i++)
+                if (IntInputValidation(dataGridView, e, tableName))
                 {
-                    if (i != e.ColumnIndex)
+                    var oldRow = dataGridView.Rows[e.RowIndex];
+                    var metaDataCount = dataAccessLayer.GetMetaData(tableName).Tables[0].Rows.Count;
+                    var keyDataCount = dataAccessLayer.GetKeys(tableName).Tables[0].Columns.Count;
+                    int count = metaDataCount + keyDataCount;
+                    var parameterArray = new object[count];
+                    parameterArray[e.ColumnIndex] = newValue;
+                    for (int i = 0; i < metaDataCount; i++)
+
                     {
-                        parameterArray[i] = oldRow.Cells[i].Value;
+                        if (i != e.ColumnIndex)
+                        {
+                            parameterArray[i] = oldRow.Cells[i].Value;
+                        }
                     }
-                }
-                for (int i = 0; i < keyDataCount; i++)
-                {
-                    parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
-                }
-                dataAccessLayer.UpdateRow(parameterArray, tableName);
+                    for (int i = 0; i < keyDataCount; i++)
+                    {
+                        parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
+                    }
+                    dataAccessLayer.UpdateRow(parameterArray, tableName);
 
-                UpdateTables();
+                    e.Cancel = true;
+                    UpdateTables();
+                    lblUserMessage.Text =$"Updated {oldValue} to {newValue}.";
+                }
             }
-
 
         }
         catch (Exception ex)
@@ -232,20 +243,17 @@ public partial class AdminView : Form
         coffeeAddicts.Tables[3].Load(dataReader4);
         coffeeAddicts.Tables[4].Load(dataReader5);
         coffeeAddicts.Tables[5].Load(dataReader6);
+
     }
     public void UpdateAll()
     {
         try
         {
-
-
             beverageCoffeeNameColumn.ValueMember = "name";
             beverageFoamTypeColumn.ValueMember = "type";
             beverageMilkVarietyColumn.ValueMember = "variety";
             coffeeBeanEANColumn.ValueMember = "EAN";
             coffeeWaterSizeColumn.ValueMember = "size";
-
-
 
             beverageCoffeeNameColumn.DisplayMember = "name";
             beverageFoamTypeColumn.DisplayMember = "type";
@@ -253,12 +261,8 @@ public partial class AdminView : Form
             coffeeBeanEANColumn.DisplayMember = "EAN";
             coffeeWaterSizeColumn.DisplayMember = "size";
 
-
-           
-
             waterComboBox.DisplayMember = "Size";
             waterComboBox.BindingContext = this.BindingContext;
-
 
             beverageCoffeeComboBox.DisplayMember = "name";
             beverageCoffeeComboBox.BindingContext = this.BindingContext;
@@ -269,21 +273,19 @@ public partial class AdminView : Form
             beverageMilkComboBox.DisplayMember = "variety";
             beverageMilkComboBox.BindingContext = this.BindingContext;
 
-
-
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Beans"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Water"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Milk"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("Foam"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("CoffeeView"));
             coffeeAddicts.Tables.Add(dataAccessLayer.GetTable("BeverageView"));
+
             coffeeAddicts.Tables[0].TableName = "Beans";
             coffeeAddicts.Tables[1].TableName = "Water";
             coffeeAddicts.Tables[2].TableName = "Milk";
             coffeeAddicts.Tables[3].TableName = "Foam";
             coffeeAddicts.Tables[4].TableName = "Coffee";
             coffeeAddicts.Tables[5].TableName = "Beverage";
-
 
             coffeeAddicts.Tables[0].Columns.Add("FullString",
             typeof(string),
@@ -292,8 +294,6 @@ public partial class AdminView : Form
 
             //beanComboBox.DisplayMember = "EAN";
             beanComboBox.BindingContext = this.BindingContext;
-
-
 
             coffeeBeanEANColumn.DataSource = coffeeAddicts.Tables[0];
             coffeeWaterSizeColumn.DataSource = coffeeAddicts.Tables[1];
@@ -306,7 +306,6 @@ public partial class AdminView : Form
             beverageMilkComboBox.DataSource = coffeeAddicts.Tables[2];
             beverageFoamComboBox.DataSource = coffeeAddicts.Tables[3];
             beverageCoffeeComboBox.DataSource = coffeeAddicts.Tables[4];
-
 
             beansDataGridView.DataSource = coffeeAddicts.Tables[0];
             waterDataGridView.DataSource = coffeeAddicts.Tables[1];
@@ -324,17 +323,6 @@ public partial class AdminView : Form
         }
     }
 
-
-
-
-
-    private void OnCellEdit(object sender, DataGridViewCellValidatingEventArgs e)
-    {
-        DataGridView dataGridView = sender as DataGridView;
-        string tableName = dataGridView.Name;
-        tableName = tableName.Remove(tableName.Length - 12, 12);
-        UpdateCellValue(dataGridView, e, tableName);
-    }
 
     private void OnCoffeeDeleteButton(object sender, EventArgs e)
     {
@@ -394,14 +382,81 @@ public partial class AdminView : Form
         MessageBox.Show("Front End Is Under Development!", "Front End");
     }
 
-    public bool IntInputCheck(DataGridView dataGridView, string tablename)
+    private bool IntInputValidation(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
-        bool check = false;
-        if (tablename.Equals("water"))
-        {
-            lblUserMessage.Text = ("Water!");
-        }
-        return check;
-    }
+        bool isValidated = true;
+        //if (!(tableName.Equals("Water") || tableName.Equals("Foam" ) || tableName.Equals("Coffee"))) 
+        //{
+        //    return isValidated;
+        //}
+        
+        int num = 1000;
+        
+        NumericUpDown fieldA = null;
+        NumericUpDown fieldB = null;
+        int fieldAcolumnIndex = 0;
+        int fieldBcolumnIndex = 0;
+        Debug.WriteLine(num);
 
+        switch (tableName)
+        {
+            case "water":
+                fieldA = waterVolumeMlNumUpDown;
+                fieldAcolumnIndex = 1;
+                break;
+
+            case "foam":
+                fieldA = foamTemperatureNumUpDown;
+                fieldB = foamTimeNumUpDown;
+                fieldAcolumnIndex = 1;
+                fieldBcolumnIndex = 2;
+                break;
+
+            case "coffee":
+                fieldA = coffeeBeanWeightNumUpDown;
+                fieldB = coffeeGrindSizeNumUpDown;
+                fieldAcolumnIndex = 2;
+                fieldBcolumnIndex = 3;
+                break;
+
+            default:
+                return true;
+        }
+
+        if (e.ColumnIndex == fieldAcolumnIndex )
+        {
+            try
+            {
+                num = Int32.Parse((string)e.FormattedValue);
+            }
+            catch (FormatException ex)
+            {
+                lblUserMessage.Text = (ex.Message);
+            }
+            if (num < fieldA.Minimum || num > fieldA.Maximum)
+            {
+                isValidated = false;
+                lblUserMessage.Text = ($"Please Enter a Number Between {fieldA.Minimum} and {fieldA.Maximum}.");
+            }
+        }
+        else if (e.ColumnIndex == fieldBcolumnIndex)
+        {
+            try
+            {
+                num = Int32.Parse((string)e.FormattedValue);
+            }
+            catch (FormatException ex)
+            {
+                lblUserMessage.Text = (ex.Message);
+            }
+            if (num < fieldB.Minimum || num > fieldB.Maximum)
+            {
+                isValidated = false;
+                lblUserMessage.Text = ($"Please Enter a Number Between {fieldB.Minimum} and {fieldB.Maximum}.");
+            }
+        }
+
+        UpdateTables();
+        return isValidated;
+    }
 }

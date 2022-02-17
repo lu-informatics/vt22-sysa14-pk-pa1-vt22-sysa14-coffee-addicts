@@ -355,7 +355,6 @@ partial class AdminView
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
             this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.coffeeDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             this.coffeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
             // 
             // coffeeNameColumn
@@ -497,7 +496,6 @@ partial class AdminView
             this.beansDataGridView.Size = new System.Drawing.Size(946, 296);
             this.beansDataGridView.TabIndex = 1;
             this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.beansDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // beansInsertBtn
             // 
@@ -685,7 +683,6 @@ partial class AdminView
             this.beverageDataGridView.Size = new System.Drawing.Size(946, 292);
             this.beverageDataGridView.TabIndex = 1;
             this.beverageDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.beverageDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             this.beverageDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
             // 
             // beverageBevNameColumn
@@ -828,7 +825,6 @@ partial class AdminView
             this.milkDataGridView.Size = new System.Drawing.Size(946, 292);
             this.milkDataGridView.TabIndex = 1;
             this.milkDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.milkDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // milkAddBtn
             // 
@@ -985,7 +981,6 @@ partial class AdminView
             this.foamDataGridView.Size = new System.Drawing.Size(946, 292);
             this.foamDataGridView.TabIndex = 1;
             this.foamDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.foamDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // foamInsertBtn
             // 
@@ -1107,7 +1102,6 @@ partial class AdminView
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
             this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
             // waterInsertBtn
             // 
