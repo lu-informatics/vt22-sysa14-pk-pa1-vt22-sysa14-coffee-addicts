@@ -149,7 +149,7 @@ partial class Form1
             this.btnReturn.TabIndex = 4;
             this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            this.btnReturn.Click += new System.EventHandler(this.OnReturnBtnClick);
             // 
             // coffeeTab
             // 
