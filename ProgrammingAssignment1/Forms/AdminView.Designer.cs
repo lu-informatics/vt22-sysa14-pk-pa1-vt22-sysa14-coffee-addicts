@@ -1106,7 +1106,6 @@ partial class AdminView
             this.waterDataGridView.RowTemplate.Height = 25;
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
-            this.waterDataGridView.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.waterDataGridView_CellValidated);
             this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 

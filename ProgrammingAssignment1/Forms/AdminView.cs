@@ -218,16 +218,13 @@ public partial class AdminView : Form
         coffeeAddicts.Tables[3].Clear();
         coffeeAddicts.Tables[4].Clear();
         coffeeAddicts.Tables[5].Clear();
+
         DataTableReader dataReader1 = new DataTableReader(dataAccessLayer.GetTable("Beans"));
         DataTableReader dataReader2 = new DataTableReader(dataAccessLayer.GetTable("water"));
-
         DataTableReader dataReader3 = new DataTableReader(dataAccessLayer.GetTable("milk"));
         DataTableReader dataReader4 = new DataTableReader(dataAccessLayer.GetTable("Foam"));
         DataTableReader dataReader5 = new DataTableReader(dataAccessLayer.GetTable("CoffeeView"));
         DataTableReader dataReader6 = new DataTableReader(dataAccessLayer.GetTable("BeverageView"));
-
-
-
 
         coffeeAddicts.Tables[0].Load(dataReader1);
         coffeeAddicts.Tables[1].Load(dataReader2);
@@ -235,9 +232,6 @@ public partial class AdminView : Form
         coffeeAddicts.Tables[3].Load(dataReader4);
         coffeeAddicts.Tables[4].Load(dataReader5);
         coffeeAddicts.Tables[5].Load(dataReader6);
-
-
-
     }
     public void UpdateAll()
     {
@@ -339,7 +333,6 @@ public partial class AdminView : Form
         DataGridView dataGridView = sender as DataGridView;
         string tableName = dataGridView.Name;
         tableName = tableName.Remove(tableName.Length - 12, 12);
-        //IntInputCheck(dataGridView, tableName);
         UpdateCellValue(dataGridView, e, tableName);
     }
 
@@ -411,11 +404,4 @@ public partial class AdminView : Form
         return check;
     }
 
-    private void waterDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
-    {
-        DataGridView dataGridView = sender as DataGridView;
-        string tableName = dataGridView.Name;
-        tableName = tableName.Remove(tableName.Length - 12, 12);
-        IntInputCheck(dataGridView, tableName);
-    }
 }
