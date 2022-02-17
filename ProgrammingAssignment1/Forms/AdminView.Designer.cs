@@ -1106,6 +1106,7 @@ partial class AdminView
             this.waterDataGridView.RowTemplate.Height = 25;
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
+            this.waterDataGridView.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.waterDataGridView_CellValidated);
             this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
             this.waterDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateAllOnCellChangedValue);
             // 
@@ -1133,7 +1134,7 @@ partial class AdminView
             this.waterDeleteBtn.UseVisualStyleBackColor = true;
             this.waterDeleteBtn.Click += new System.EventHandler(this.OnWaterDeleteButton);
             // 
-            // Form1
+            // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1142,7 +1143,7 @@ partial class AdminView
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.lblUserMessage);
             this.Controls.Add(this.tabController);
-            this.Name = "Form1";
+            this.Name = "AdminView";
             this.Text = "Form1";
             this.coffeeTab.ResumeLayout(false);
             this.coffeeTab.PerformLayout();

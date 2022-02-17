@@ -339,6 +339,7 @@ public partial class AdminView : Form
         DataGridView dataGridView = sender as DataGridView;
         string tableName = dataGridView.Name;
         tableName = tableName.Remove(tableName.Length - 12, 12);
+        //IntInputCheck(dataGridView, tableName);
         UpdateCellValue(dataGridView, e, tableName);
     }
 
@@ -397,5 +398,24 @@ public partial class AdminView : Form
 
     private void btnReturn_Click(object sender, EventArgs e)
     {
+        MessageBox.Show("Front End Is Under Development!", "Front End");
+    }
+
+    public bool IntInputCheck(DataGridView dataGridView, string tablename)
+    {
+        bool check = false;
+        if (tablename.Equals("water"))
+        {
+            lblUserMessage.Text = ("Water!");
+        }
+        return check;
+    }
+
+    private void waterDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
+    {
+        DataGridView dataGridView = sender as DataGridView;
+        string tableName = dataGridView.Name;
+        tableName = tableName.Remove(tableName.Length - 12, 12);
+        IntInputCheck(dataGridView, tableName);
     }
 }
