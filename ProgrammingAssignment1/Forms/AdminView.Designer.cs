@@ -156,7 +156,7 @@ partial class AdminView
             this.btnReturn.TabIndex = 4;
             this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            this.btnReturn.Click += new System.EventHandler(this.OnReturnButton);
             // 
             // coffeeTab
             // 
@@ -355,7 +355,7 @@ partial class AdminView
             this.coffeeDataGridView.Size = new System.Drawing.Size(946, 296);
             this.coffeeDataGridView.TabIndex = 16;
             this.coffeeDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.coffeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
+            this.coffeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // coffeeNameColumn
             // 
@@ -496,6 +496,7 @@ partial class AdminView
             this.beansDataGridView.Size = new System.Drawing.Size(946, 296);
             this.beansDataGridView.TabIndex = 1;
             this.beansDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.beansDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // beansInsertBtn
             // 
@@ -683,7 +684,7 @@ partial class AdminView
             this.beverageDataGridView.Size = new System.Drawing.Size(946, 292);
             this.beverageDataGridView.TabIndex = 1;
             this.beverageDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
-            this.beverageDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.beverageDataGridView_DataError);
+            this.beverageDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // beverageBevNameColumn
             // 
@@ -825,6 +826,7 @@ partial class AdminView
             this.milkDataGridView.Size = new System.Drawing.Size(946, 292);
             this.milkDataGridView.TabIndex = 1;
             this.milkDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.milkDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // milkAddBtn
             // 
@@ -981,6 +983,7 @@ partial class AdminView
             this.foamDataGridView.Size = new System.Drawing.Size(946, 292);
             this.foamDataGridView.TabIndex = 1;
             this.foamDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.foamDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // foamInsertBtn
             // 
@@ -1102,6 +1105,7 @@ partial class AdminView
             this.waterDataGridView.Size = new System.Drawing.Size(946, 292);
             this.waterDataGridView.TabIndex = 1;
             this.waterDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.OnCellEdit);
+            this.waterDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.foamDataGridView_DataError);
             // 
             // waterInsertBtn
             // 

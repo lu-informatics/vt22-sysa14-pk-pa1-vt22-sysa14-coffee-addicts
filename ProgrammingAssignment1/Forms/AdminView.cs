@@ -15,7 +15,7 @@ public partial class AdminView : Form
     public AdminView()
     {
         InitializeComponent();
-        
+
         UpdateAll();
 
         Debug.WriteLine(dataAccessLayer.IsServerConnected());
@@ -61,7 +61,7 @@ public partial class AdminView : Form
         }
         catch (SqlException ex)
         {
-            lblUserMessage.Text = ex.Message;
+            lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
 
@@ -70,15 +70,19 @@ public partial class AdminView : Form
     {
         try
         {
-            var ean = beansDataGridView.CurrentRow.Cells[0].Value;
-            var primaryKey = new object[] { ean };
-            dataAccessLayer.DeleteRow(primaryKey, "Beans");
-            UpdateTables();
+            if (beansDataGridView.CurrentRow != null)
+            {
+                var ean = beansDataGridView.CurrentRow.Cells[0].Value;
+                var primaryKey = new object[] { ean };
+                dataAccessLayer.DeleteRow(primaryKey, "Beans");
+                UpdateTables();
+            }
+
 
         }
         catch (SqlException ex)
         {
-            lblUserMessage.Text = ex.Message;
+            SqlErrorHandling(ex);
         }
 
     }
@@ -100,30 +104,45 @@ public partial class AdminView : Form
             Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
 
         }
-        catch (Exception ex)
+        catch (SqlException ex)
         {
-            lblUserMessage.Text = ex.Message;
+            lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
 
     private void OnFoamAddButton(object sender, EventArgs e)
     {
-        int temperature = Convert.ToInt32(Math.Round(foamTemperatureNumUpDown.Value, 0));
-        int time = Convert.ToInt32(Math.Round(foamTimeNumUpDown.Value, 0));
-        string name = foamNameTextBox.Text;
+        try
+        {
+            int temperature = Convert.ToInt32(Math.Round(foamTemperatureNumUpDown.Value, 0));
+            int time = Convert.ToInt32(Math.Round(foamTimeNumUpDown.Value, 0));
+            string name = foamNameTextBox.Text;
 
-        var foam = new object[] { name, temperature, time };
-        dataAccessLayer.InsertRow(foam, "Foam");
-        //UpdateAll();
-        UpdateTables();
+            var foam = new object[] { name, temperature, time };
+            dataAccessLayer.InsertRow(foam, "Foam");
+            //UpdateAll();
+            UpdateTables();
+        }
+        catch (SqlException ex)
+        {
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
 
     private void OnFoamDeleteButton(object sender, EventArgs e)
     {
-        var name = foamDataGridView.CurrentRow.Cells[0].Value;
-        var primaryKeys = new object[] { name };
-        dataAccessLayer.DeleteRow(primaryKeys, "Foam");
-        UpdateTables();
+        try
+        {
+            var name = foamDataGridView.CurrentRow.Cells[0].Value;
+            var primaryKeys = new object[] { name };
+            dataAccessLayer.DeleteRow(primaryKeys, "Foam");
+            UpdateTables();
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
 
 
@@ -132,46 +151,86 @@ public partial class AdminView : Form
 
     private void OnAddWaterButton(object sender, EventArgs e)
     {
-        string size = waterSizeTextBox.Text;
-        int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
-        var water = new object[] { size, volume };
-        dataAccessLayer.InsertRow(water, "water");
-        UpdateTables();
-        Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
+        try
+        {
+            string size = waterSizeTextBox.Text;
+            int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
+            var water = new object[] { size, volume };
+            dataAccessLayer.InsertRow(water, "water");
+            UpdateTables();
+            Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
 
     }
 
     private void OnWaterDeleteButton(object sender, EventArgs e)
     {
-        var size = waterDataGridView.CurrentRow.Cells[0].Value;
-        var primaryKey = new object[] { size };
-        dataAccessLayer.DeleteRow(primaryKey, "Water");
-        UpdateTables();
+        try
+        {
+            var size = waterDataGridView.CurrentRow.Cells[0].Value;
+            var primaryKey = new object[] { size };
+            dataAccessLayer.DeleteRow(primaryKey, "Water");
+            UpdateTables();
+        }
+        catch (SqlException  ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
     private void OnAddMilkButton(object sender, EventArgs e)
     {
-        string variety = milkVarietyTextBox.Text;
-        string brand = milkBrandTextBox.Text;
-        var milk = new object[] { variety, brand };
-        dataAccessLayer.InsertRow(milk, "milk");
-        UpdateTables();
+        try
+        {
+            string variety = milkVarietyTextBox.Text;
+            string brand = milkBrandTextBox.Text;
+            var milk = new object[] { variety, brand };
+            dataAccessLayer.InsertRow(milk, "milk");
+            UpdateTables();
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
 
 
     }
     private void OnMilkDeleteButton(object sender, EventArgs e)
     {
-        var variety = milkDataGridView.CurrentRow.Cells[0].Value;
-        var primaryKeys = new object[] { variety };
-        dataAccessLayer.DeleteRow(primaryKeys, "Milk");
-        UpdateTables();
+        try
+        {
+            var variety = milkDataGridView.CurrentRow.Cells[0].Value;
+            var primaryKeys = new object[] { variety };
+            dataAccessLayer.DeleteRow(primaryKeys, "Milk");
+            UpdateTables();
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
 
     private void OnCellEdit(object sender, DataGridViewCellValidatingEventArgs e)
     {
-        DataGridView dataGridView = sender as DataGridView;
-        string tableName = dataGridView.Name;
-        tableName = tableName.Remove(tableName.Length - 12, 12);
-        UpdateCellValue(dataGridView, e, tableName);
+        try
+        {
+            DataGridView dataGridView = sender as DataGridView;
+            string tableName = dataGridView.Name;
+            tableName = tableName.Remove(tableName.Length - 12, 12);
+            UpdateCellValue(dataGridView, e, tableName);
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
     public void UpdateCellValue(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
@@ -179,10 +238,10 @@ public partial class AdminView : Form
         {
             var oldValue = dataGridView[e.ColumnIndex, e.RowIndex].Value;
             var newValue = e.FormattedValue;
-
-            if (!(newValue.Equals(oldValue)) || newValue != oldValue) //Only happens on new cell value!
+            Debug.WriteLine(oldValue + "=" + newValue);
+            if (!newValue.Equals(oldValue) || newValue != oldValue) //Only happens on new cell value!
             {
-                if (IntInputValidation(dataGridView, e, tableName))
+                if (true)
                 {
                     var oldRow = dataGridView.Rows[e.RowIndex];
                     var metaDataCount = dataAccessLayer.GetMetaData(tableName).Tables[0].Rows.Count;
@@ -206,20 +265,19 @@ public partial class AdminView : Form
 
                     e.Cancel = true;
                     UpdateTables();
-                    lblUserMessage.Text =$"Updated {oldValue} to {newValue}.";
+                    lblUserMessage.Text = $"Updated {oldValue} to {newValue}.";
                 }
             }
 
+        }
+        catch(SqlException ex)
+        {
+            lblUserMessage.Text = SqlErrorHandling(ex);
         }
         catch (Exception ex)
         {
             lblUserMessage.Text = ex.Message;
         }
-    }
-
-    private void UpdateAllOnCellChangedValue(object sender, DataGridViewCellEventArgs e) //DETTA LÖSTE DATA VALUE ERRORT, när jag lade in denna på CellValueChangedPropertyn
-    {
-        //UpdateAll();
     }
     public void UpdateTables()
     {
@@ -313,23 +371,31 @@ public partial class AdminView : Form
             foamDataGridView.DataSource = coffeeAddicts.Tables[3];
             coffeeDataGridView.DataSource = coffeeAddicts.Tables[4];
             beverageDataGridView.DataSource = coffeeAddicts.Tables[5];
-            
+
             beansDataGridView.Columns[2].Visible = false;
 
         }
         catch (SqlException ex)
         {
-            MessageBox.Show(ex.Message);
+            lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
 
 
     private void OnCoffeeDeleteButton(object sender, EventArgs e)
     {
-        var primaryKey = coffeeDataGridView.CurrentRow.Cells[0].Value;
-        var primaryKeys = new object[] { primaryKey };
-        dataAccessLayer.DeleteRow(primaryKeys, "Coffee");
-        UpdateTables();
+        try
+        {
+            var primaryKey = coffeeDataGridView.CurrentRow.Cells[0].Value;
+            var primaryKeys = new object[] { primaryKey };
+            dataAccessLayer.DeleteRow(primaryKeys, "Coffee");
+            UpdateTables();
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
     }
 
     private void OnBeverageAddButton(object sender, EventArgs e)
@@ -345,39 +411,39 @@ public partial class AdminView : Form
             dataAccessLayer.InsertRow(beverage, "beverage");
             UpdateTables();
         }
-        catch (Exception ex)
+        catch (SqlException ex)
         {
-            lblUserMessage.Text = ex.Message;
+            lblUserMessage.Text = SqlErrorHandling(ex);
         }
 
 
     }
 
-    private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-    {
-        DataGridView dgv = (DataGridView)sender;
-        if (e.Exception is ArgumentException)
-        {
-            object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
-            {
-                dgv.Columns[4].DataPropertyName = "size";
-                //dgv.Columns[4] = DataGridViewComboBoxColumn;
-                //((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
+    //private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+    //{
+    //    DataGridView dgv = (DataGridView)sender;
+    //    if (e.Exception is ArgumentException)
+    //    {
+    //        object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+    //        if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
+    //        {
+    //            dgv.Columns[4].DataPropertyName = "size";
+    //            //dgv.Columns[4] = DataGridViewComboBoxColumn;
+    //            //((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
 
-                //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
-                e.ThrowException = false;
-            }
-        }
-        else
-        {
-            lblUserMessage.Text = (e.Exception.Message);
-            e.Cancel = true;
-        }
-        e.Cancel = true;
-    }
+    //            //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
+    //            e.ThrowException = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        lblUserMessage.Text = (e.Exception.Message);
+    //        e.Cancel = true;
+    //    }
+    //    e.Cancel = true;
+    //}
 
-    private void btnReturn_Click(object sender, EventArgs e)
+    private void OnReturnButton(object sender, EventArgs e)
     {
         MessageBox.Show("Front End Is Under Development!", "Front End");
     }
@@ -385,13 +451,8 @@ public partial class AdminView : Form
     private bool IntInputValidation(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
         bool isValidated = true;
-        //if (!(tableName.Equals("Water") || tableName.Equals("Foam" ) || tableName.Equals("Coffee"))) 
-        //{
-        //    return isValidated;
-        //}
-        
         int num = 1000;
-        
+
         NumericUpDown fieldA = null;
         NumericUpDown fieldB = null;
         int fieldAcolumnIndex = 0;
@@ -423,7 +484,7 @@ public partial class AdminView : Form
                 return true;
         }
 
-        if (e.ColumnIndex == fieldAcolumnIndex )
+        if (e.ColumnIndex == fieldAcolumnIndex)
         {
             try
             {
@@ -455,8 +516,46 @@ public partial class AdminView : Form
                 lblUserMessage.Text = ($"Please Enter a Number Between {fieldB.Minimum} and {fieldB.Maximum}.");
             }
         }
-
-        UpdateTables();
         return isValidated;
     }
+
+    private void foamDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+    {
+        try
+        {
+            
+            DataGridView dataGridView = sender as DataGridView;
+            e.Cancel = true;
+            UpdateTables();
+            dataGridView[e.ColumnIndex, e.RowIndex].ErrorText = "Wrong type of input";
+
+        }
+        catch (SqlException ex)
+        {
+
+            lblUserMessage.Text = SqlErrorHandling(ex);
+        }
+    }
+
+    public string SqlErrorHandling(SqlException error)
+    {
+        int code = error.Number;
+        string message = error.Message;
+
+        if (code == 0)
+        {
+            return "Connection couldn't be established";
+        }
+        else if (message.Contains("pk__beans"))
+        {
+            return "There already exists a bean with this EAN, try a new EAN.";
+        }else if (message.Contains(""))
+        {
+            return "";
+        }
+        else
+        { return message; }
+
+    }
 }
+
