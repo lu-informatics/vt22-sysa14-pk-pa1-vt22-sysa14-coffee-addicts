@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.IO;
+using System.Data;
+using System.Data.SqlClient;
+
 namespace ProgrammingAssignment2._1
 {
     /// <summary>
@@ -15,12 +18,14 @@ namespace ProgrammingAssignment2._1
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
     public class Servo : System.Web.Services.WebService
-    {
-
+    {   
+        
+        
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
+            
         }
         [WebMethod]
         public string FindFile(string fileName)
@@ -38,9 +43,13 @@ namespace ProgrammingAssignment2._1
                 return e.Message;
             }
 
-           
-           
+        }
 
+        [WebMethod]
+        public void GetTable()
+        {
+           
+            
         }
     }
 }

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebClient1\WebClient1.csproj" />
+    <ProjectReference Include="..\ProgrammingAssignment1\ProgrammingAssignment1.csproj" />
   </ItemGroup>
 
 </Project>
