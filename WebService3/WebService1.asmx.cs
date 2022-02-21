@@ -33,18 +33,28 @@ namespace WebService3
             DataTable table = dataAccessLayer.GetTable(tableName);
             return table;
         }
-
+        [WebMethod]
         public List<object[]> GetTableValuesAsList(string tableName)
         {
-            DataTable table = dataAccessLayer.GetTable(tableName);
-            List<object[]> list = new List<object[]>();
-            foreach (DataRow row in table.Rows)
+            try
             {
-                var array = row.ItemArray;
-                list.Add(array);
+                DataTable table = dataAccessLayer.GetTable(tableName);
+                List<object[]> list = new List<object[]>();
+                foreach (DataRow row in table.Rows)
+                {
+                    var array = row.ItemArray;
+                    list.Add(array);
+                }
+                return list;
             }
+            catch (SqlException e)
+            {
+                return null;
+            }catch (Exception e)
+            { return null; }
+           
 
-            return list;
+            
         }
     }
 }

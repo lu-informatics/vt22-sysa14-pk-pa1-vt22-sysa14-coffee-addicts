@@ -71,8 +71,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateAdapter.cs" />
-    <Compile Include="DataAccessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servo.asmx.cs">
       <DependentUpon>Servo.asmx</DependentUpon>
