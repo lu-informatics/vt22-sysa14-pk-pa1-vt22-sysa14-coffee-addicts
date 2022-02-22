@@ -40,7 +40,7 @@ namespace ProgrammingAssignment2._1
             catch (IOException e)
             {
 
-                return e.Message;
+                return "File could not be found.";
             }
 
         }
