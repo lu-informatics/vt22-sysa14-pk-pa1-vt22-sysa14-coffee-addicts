@@ -6,6 +6,16 @@ public class DataAccessLayer
 
     public DataAccessLayer()
     {
+        /*
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+        builder.DataSource = "localhost";
+        builder.InitialCatalog = "COFFEEADDICTS";
+        builder.IntegratedSecurity = false; //Needed?
+        builder.UserID = "user1";
+        builder.Password = "1234";
+
+        connectionString = builder.ConnectionString;
+        */
         connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
     }
 
@@ -13,7 +23,8 @@ public class DataAccessLayer
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
-            using (SqlCommand sqlCommand = new SqlCommand($"SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{tableName}'", sqlConnection))
+            using (SqlCommand sqlCommand = new SqlCommand($"SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{tableName}'"
+, sqlConnection))
             {
                 DataSet dataSet = new DataSet();
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
