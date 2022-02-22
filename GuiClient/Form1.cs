@@ -60,7 +60,7 @@ namespace GuiClient
         private void A3c2TableNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tableName = a3c2TableNameComboBox.Text;
-            ArrayOfXElement tableArray = coffeeAddictsClient.GetTable(tableName);
+            var tableArray = coffeeAddictsClient.GetTable(tableName);
             DataSet set = ToDataSet(tableArray);
             a3c2DataGridView.DataSource = set.Tables[0];
         }

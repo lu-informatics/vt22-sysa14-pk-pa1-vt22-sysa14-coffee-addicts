@@ -33,11 +33,13 @@ public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientP
     
     private System.Threading.SendOrPostCallback GetTableOperationCompleted;
     
+    private System.Threading.SendOrPostCallback GetTableNamesOperationCompleted;
+    
     private System.Threading.SendOrPostCallback GetTableValuesAsListOperationCompleted;
     
     /// <remarks/>
     public WebService1() {
-        this.Url = "http://localhost/WebService3/WebService1.asmx";
+        this.Url = "http://localhost/WebService3/CoffeeAddictsWebService.asmx";
     }
     
     /// <remarks/>
@@ -45,6 +47,9 @@ public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientP
     
     /// <remarks/>
     public event GetTableCompletedEventHandler GetTableCompleted;
+    
+    /// <remarks/>
+    public event GetTableNamesCompletedEventHandler GetTableNamesCompleted;
     
     /// <remarks/>
     public event GetTableValuesAsListCompletedEventHandler GetTableValuesAsListCompleted;
@@ -89,10 +94,10 @@ public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientP
     
     /// <remarks/>
     [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-    public System.Data.DataTable GetTable(string tableName) {
+    public System.Data.DataSet GetTable(string tableName) {
         object[] results = this.Invoke("GetTable", new object[] {
                     tableName});
-        return ((System.Data.DataTable)(results[0]));
+        return ((System.Data.DataSet)(results[0]));
     }
     
     /// <remarks/>
@@ -102,9 +107,9 @@ public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientP
     }
     
     /// <remarks/>
-    public System.Data.DataTable EndGetTable(System.IAsyncResult asyncResult) {
+    public System.Data.DataSet EndGetTable(System.IAsyncResult asyncResult) {
         object[] results = this.EndInvoke(asyncResult);
-        return ((System.Data.DataTable)(results[0]));
+        return ((System.Data.DataSet)(results[0]));
     }
     
     /// <remarks/>
@@ -125,6 +130,44 @@ public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientP
         if ((this.GetTableCompleted != null)) {
             System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
             this.GetTableCompleted(this, new GetTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTableNames", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public System.Data.DataSet GetTableNames() {
+        object[] results = this.Invoke("GetTableNames", new object[0]);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetTableNames(System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetTableNames", new object[0], callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet EndGetTableNames(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetTableNamesAsync() {
+        this.GetTableNamesAsync(null);
+    }
+    
+    /// <remarks/>
+    public void GetTableNamesAsync(object userState) {
+        if ((this.GetTableNamesOperationCompleted == null)) {
+            this.GetTableNamesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTableNamesOperationCompleted);
+        }
+        this.InvokeAsync("GetTableNames", new object[0], this.GetTableNamesOperationCompleted, userState);
+    }
+    
+    private void OnGetTableNamesOperationCompleted(object arg) {
+        if ((this.GetTableNamesCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetTableNamesCompleted(this, new GetTableNamesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
         }
     }
     
@@ -221,10 +264,36 @@ public partial class GetTableCompletedEventArgs : System.ComponentModel.AsyncCom
     }
     
     /// <remarks/>
-    public System.Data.DataTable Result {
+    public System.Data.DataSet Result {
         get {
             this.RaiseExceptionIfNecessary();
-            return ((System.Data.DataTable)(this.results[0]));
+            return ((System.Data.DataSet)(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetTableNamesCompletedEventHandler(object sender, GetTableNamesCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetTableNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetTableNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((System.Data.DataSet)(this.results[0]));
         }
     }
 }

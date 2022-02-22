@@ -1,4 +1,4 @@
-wsdl.exe /out:ServoService.cs http://localhost/WebService3/WebService1.asmx?WSDL
+wsdl.exe /out:ServoService.cs http://localhost/WebService3/CoffeeAddictsWebService.asmx?WSDL
 
 csc.exe /target:library /out:ServoService.dll ServoService.cs
 
