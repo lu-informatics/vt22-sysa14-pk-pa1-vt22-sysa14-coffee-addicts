@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace WebService3
 {
@@ -28,11 +29,31 @@ namespace WebService3
         }
 
         [WebMethod]
-        public DataTable GetTable(string tableName)
+        public DataSet GetTable(string tableName)
         {
             DataTable table = dataAccessLayer.GetTable(tableName);
-            return table;
+            DataSet ds = new DataSet();
+            ds.Tables.Add(table);
+
+            return ds;
         }
+
+        [WebMethod]
+        public DataSet GetTableNames()
+        {
+            try
+            {
+                return dataAccessLayer.GetTableNames();
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed in GetTableNames()");
+
+                return null;
+                
+            }
+        }
+
         [WebMethod]
         public List<object[]> GetTableValuesAsList(string tableName)
         {

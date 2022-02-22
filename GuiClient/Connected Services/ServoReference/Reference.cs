@@ -7,28 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServoService
+namespace ServoReference
 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServoService.ServoSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServoReference.ServoSoap")]
     public interface ServoSoap
     {
         
         // CODEGEN: Generating message contract since element name HelloWorldResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        ServoService.HelloWorldResponse HelloWorld(ServoService.HelloWorldRequest request);
+        ServoReference.HelloWorldResponse HelloWorld(ServoReference.HelloWorldRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        System.Threading.Tasks.Task<ServoService.HelloWorldResponse> HelloWorldAsync(ServoService.HelloWorldRequest request);
+        System.Threading.Tasks.Task<ServoReference.HelloWorldResponse> HelloWorldAsync(ServoReference.HelloWorldRequest request);
         
         // CODEGEN: Generating message contract since element name fileName from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FindFile", ReplyAction="*")]
-        ServoService.FindFileResponse FindFile(ServoService.FindFileRequest request);
+        ServoReference.FindFileResponse FindFile(ServoReference.FindFileRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FindFile", ReplyAction="*")]
-        System.Threading.Tasks.Task<ServoService.FindFileResponse> FindFileAsync(ServoService.FindFileRequest request);
+        System.Threading.Tasks.Task<ServoReference.FindFileResponse> FindFileAsync(ServoReference.FindFileRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetTable", ReplyAction="*")]
+        void GetTable();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetTable", ReplyAction="*")]
+        System.Threading.Tasks.Task GetTableAsync();
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -39,13 +45,13 @@ namespace ServoService
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://tempuri.org/", Order=0)]
-        public ServoService.HelloWorldRequestBody Body;
+        public ServoReference.HelloWorldRequestBody Body;
         
         public HelloWorldRequest()
         {
         }
         
-        public HelloWorldRequest(ServoService.HelloWorldRequestBody Body)
+        public HelloWorldRequest(ServoReference.HelloWorldRequestBody Body)
         {
             this.Body = Body;
         }
@@ -71,13 +77,13 @@ namespace ServoService
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ServoService.HelloWorldResponseBody Body;
+        public ServoReference.HelloWorldResponseBody Body;
         
         public HelloWorldResponse()
         {
         }
         
-        public HelloWorldResponse(ServoService.HelloWorldResponseBody Body)
+        public HelloWorldResponse(ServoReference.HelloWorldResponseBody Body)
         {
             this.Body = Body;
         }
@@ -111,13 +117,13 @@ namespace ServoService
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="FindFile", Namespace="http://tempuri.org/", Order=0)]
-        public ServoService.FindFileRequestBody Body;
+        public ServoReference.FindFileRequestBody Body;
         
         public FindFileRequest()
         {
         }
         
-        public FindFileRequest(ServoService.FindFileRequestBody Body)
+        public FindFileRequest(ServoReference.FindFileRequestBody Body)
         {
             this.Body = Body;
         }
@@ -151,13 +157,13 @@ namespace ServoService
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="FindFileResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ServoService.FindFileResponseBody Body;
+        public ServoReference.FindFileResponseBody Body;
         
         public FindFileResponse()
         {
         }
         
-        public FindFileResponse(ServoService.FindFileResponseBody Body)
+        public FindFileResponse(ServoReference.FindFileResponseBody Body)
         {
             this.Body = Body;
         }
@@ -184,13 +190,13 @@ namespace ServoService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface ServoSoapChannel : ServoService.ServoSoap, System.ServiceModel.IClientChannel
+    public interface ServoSoapChannel : ServoReference.ServoSoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class ServoSoapClient : System.ServiceModel.ClientBase<ServoService.ServoSoap>, ServoService.ServoSoap
+    public partial class ServoSoapClient : System.ServiceModel.ClientBase<ServoReference.ServoSoap>, ServoReference.ServoSoap
     {
         
         /// <summary>
@@ -227,59 +233,69 @@ namespace ServoService
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ServoService.HelloWorldResponse ServoService.ServoSoap.HelloWorld(ServoService.HelloWorldRequest request)
+        ServoReference.HelloWorldResponse ServoReference.ServoSoap.HelloWorld(ServoReference.HelloWorldRequest request)
         {
             return base.Channel.HelloWorld(request);
         }
         
         public string HelloWorld()
         {
-            ServoService.HelloWorldRequest inValue = new ServoService.HelloWorldRequest();
-            inValue.Body = new ServoService.HelloWorldRequestBody();
-            ServoService.HelloWorldResponse retVal = ((ServoService.ServoSoap)(this)).HelloWorld(inValue);
+            ServoReference.HelloWorldRequest inValue = new ServoReference.HelloWorldRequest();
+            inValue.Body = new ServoReference.HelloWorldRequestBody();
+            ServoReference.HelloWorldResponse retVal = ((ServoReference.ServoSoap)(this)).HelloWorld(inValue);
             return retVal.Body.HelloWorldResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServoService.HelloWorldResponse> ServoService.ServoSoap.HelloWorldAsync(ServoService.HelloWorldRequest request)
+        System.Threading.Tasks.Task<ServoReference.HelloWorldResponse> ServoReference.ServoSoap.HelloWorldAsync(ServoReference.HelloWorldRequest request)
         {
             return base.Channel.HelloWorldAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServoService.HelloWorldResponse> HelloWorldAsync()
+        public System.Threading.Tasks.Task<ServoReference.HelloWorldResponse> HelloWorldAsync()
         {
-            ServoService.HelloWorldRequest inValue = new ServoService.HelloWorldRequest();
-            inValue.Body = new ServoService.HelloWorldRequestBody();
-            return ((ServoService.ServoSoap)(this)).HelloWorldAsync(inValue);
+            ServoReference.HelloWorldRequest inValue = new ServoReference.HelloWorldRequest();
+            inValue.Body = new ServoReference.HelloWorldRequestBody();
+            return ((ServoReference.ServoSoap)(this)).HelloWorldAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ServoService.FindFileResponse ServoService.ServoSoap.FindFile(ServoService.FindFileRequest request)
+        ServoReference.FindFileResponse ServoReference.ServoSoap.FindFile(ServoReference.FindFileRequest request)
         {
             return base.Channel.FindFile(request);
         }
         
         public string FindFile(string fileName)
         {
-            ServoService.FindFileRequest inValue = new ServoService.FindFileRequest();
-            inValue.Body = new ServoService.FindFileRequestBody();
+            ServoReference.FindFileRequest inValue = new ServoReference.FindFileRequest();
+            inValue.Body = new ServoReference.FindFileRequestBody();
             inValue.Body.fileName = fileName;
-            ServoService.FindFileResponse retVal = ((ServoService.ServoSoap)(this)).FindFile(inValue);
+            ServoReference.FindFileResponse retVal = ((ServoReference.ServoSoap)(this)).FindFile(inValue);
             return retVal.Body.FindFileResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServoService.FindFileResponse> ServoService.ServoSoap.FindFileAsync(ServoService.FindFileRequest request)
+        System.Threading.Tasks.Task<ServoReference.FindFileResponse> ServoReference.ServoSoap.FindFileAsync(ServoReference.FindFileRequest request)
         {
             return base.Channel.FindFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServoService.FindFileResponse> FindFileAsync(string fileName)
+        public System.Threading.Tasks.Task<ServoReference.FindFileResponse> FindFileAsync(string fileName)
         {
-            ServoService.FindFileRequest inValue = new ServoService.FindFileRequest();
-            inValue.Body = new ServoService.FindFileRequestBody();
+            ServoReference.FindFileRequest inValue = new ServoReference.FindFileRequest();
+            inValue.Body = new ServoReference.FindFileRequestBody();
             inValue.Body.fileName = fileName;
-            return ((ServoService.ServoSoap)(this)).FindFileAsync(inValue);
+            return ((ServoReference.ServoSoap)(this)).FindFileAsync(inValue);
+        }
+        
+        public void GetTable()
+        {
+            base.Channel.GetTable();
+        }
+        
+        public System.Threading.Tasks.Task GetTableAsync()
+        {
+            return base.Channel.GetTableAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

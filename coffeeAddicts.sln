@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiClient", "GuiClient\GuiC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLib", "ClassLib\ClassLib.csproj", "{12C12AAB-5071-453F-8BFF-0FA1318E4D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService3", "WebService3\WebService3.csproj", "{8E147B1C-7B03-42FC-92E4-C911E42F74FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeAddictsService", "WebService3\CoffeeAddictsService.csproj", "{8E147B1C-7B03-42FC-92E4-C911E42F74FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

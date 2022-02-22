@@ -8,7 +8,7 @@
       "System.Collections.Generic.List`1"
     ],
     "namespaceMappings": [
-      "*, ServoService"
+      "*, ServoReference"
     ],
     "sync": true,
     "targetFramework": "net6.0",

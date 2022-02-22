@@ -27,6 +27,28 @@ public class DataAccessLayer
         }
     }
 
+    public DataSet GetTableNames()
+    {
+        using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand sqlCommand = new SqlCommand($"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", sqlConnection))
+            {
+                DataSet dataset = new DataSet();
+                
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    adapter.SelectCommand = sqlCommand;
+
+                    adapter.Fill(dataset);
+                   
+                    return dataset;
+                }
+                
+            }
+        }
+    }
+
     public DataSet GetMetaData(string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -52,14 +74,14 @@ public class DataAccessLayer
             {
                 using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM {tableName}", sqlConnection))
                 {
-                    DataTable dataSet = new DataTable();
+                    DataTable dataTable = new DataTable();
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
-                        adapter.Fill(dataSet);
+                        adapter.Fill(dataTable);
                     }
-                    return dataSet;
+                    return dataTable;
                 }
             }
         }
