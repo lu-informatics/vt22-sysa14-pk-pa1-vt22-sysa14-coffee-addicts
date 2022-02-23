@@ -77,9 +77,30 @@ namespace WebService3
         }
 
         [WebMethod]
+        public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
+        {
+            dataAccessLayer.CreateEmployee(employee);
+        }
+
+        [WebMethod]
         public List<CRONUS_Sverige_AB_Employee> GetEmployees()
         {
             return dataAccessLayer.GetEmployees();
         }
+
+        [WebMethod]
+        public void DeleteEmployee(string pk)
+        {
+            dataAccessLayer.DeleteEmployee(pk);
+        }
+
+        [WebMethod]
+        public string UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
+        {
+               
+            return dataAccessLayer.UpdateEmployee(employee);
+        }
+
+
     }
 }

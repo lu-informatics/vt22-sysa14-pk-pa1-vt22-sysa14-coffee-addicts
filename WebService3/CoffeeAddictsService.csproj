@@ -89,7 +89,6 @@
     <Content Include="CoffeeAddictsWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CreateAdapter.cs" />
     <Compile Include="CronusModel.Context.cs">
       <AutoGen>True</AutoGen>

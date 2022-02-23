@@ -48,6 +48,14 @@ namespace CoffeeAddictsService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetTableValuesAsList", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.GetTableValuesAsListResponse> GetTableValuesAsListAsync(CoffeeAddictsService.GetTableValuesAsListRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateEmployee", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        void CreateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateEmployee", ReplyAction="*")]
+        System.Threading.Tasks.Task CreateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployees", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
@@ -55,6 +63,22 @@ namespace CoffeeAddictsService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployees", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeleteEmployee", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        void DeleteEmployee(string pk);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeleteEmployee", ReplyAction="*")]
+        System.Threading.Tasks.Task DeleteEmployeeAsync(string pk);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEmployee", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        string UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEmployee", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
     }
     
     /// <remarks/>
@@ -943,6 +967,16 @@ namespace CoffeeAddictsService
             return ((CoffeeAddictsService.WebService1Soap)(this)).GetTableValuesAsListAsync(inValue);
         }
         
+        public void CreateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        {
+            base.Channel.CreateEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task CreateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        {
+            return base.Channel.CreateEmployeeAsync(employee);
+        }
+        
         public CoffeeAddictsService.CRONUS_Sverige_AB_Employee[] GetEmployees()
         {
             return base.Channel.GetEmployees();
@@ -951,6 +985,26 @@ namespace CoffeeAddictsService
         public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync()
         {
             return base.Channel.GetEmployeesAsync();
+        }
+        
+        public void DeleteEmployee(string pk)
+        {
+            base.Channel.DeleteEmployee(pk);
+        }
+        
+        public System.Threading.Tasks.Task DeleteEmployeeAsync(string pk)
+        {
+            return base.Channel.DeleteEmployeeAsync(pk);
+        }
+        
+        public string UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        {
+            return base.Channel.UpdateEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        {
+            return base.Channel.UpdateEmployeeAsync(employee);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

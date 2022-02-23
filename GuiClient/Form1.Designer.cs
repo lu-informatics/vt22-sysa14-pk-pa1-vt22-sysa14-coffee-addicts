@@ -38,10 +38,31 @@
             this.a3c2DataGridView = new System.Windows.Forms.DataGridView();
             this.a3c2TableNameComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.a4c1tab = new System.Windows.Forms.TabPage();
+            this.a4c1AddBtn = new System.Windows.Forms.Button();
+            this.a4c1DeleteBtn = new System.Windows.Forms.Button();
+            this.a4c1dataGridView = new System.Windows.Forms.DataGridView();
+            this.First_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Last_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Job_Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.a4c1FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.a4c1LastNameTextBox = new System.Windows.Forms.TextBox();
+            this.a4c1JobTitleTextBox = new System.Windows.Forms.TextBox();
+            this.a4c1PhoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.a4c1CityTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabA2C2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.A3C2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.a3c2DataGridView)).BeginInit();
+            this.a4c1tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.a4c1dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabA2C2
@@ -51,6 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabA2C2.Controls.Add(this.tabPage1);
             this.tabA2C2.Controls.Add(this.A3C2);
+            this.tabA2C2.Controls.Add(this.a4c1tab);
             this.tabA2C2.Location = new System.Drawing.Point(0, 0);
             this.tabA2C2.Name = "tabA2C2";
             this.tabA2C2.SelectedIndex = 0;
@@ -147,6 +169,177 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Table name:";
             // 
+            // a4c1tab
+            // 
+            this.a4c1tab.Controls.Add(this.label7);
+            this.a4c1tab.Controls.Add(this.label6);
+            this.a4c1tab.Controls.Add(this.label5);
+            this.a4c1tab.Controls.Add(this.label4);
+            this.a4c1tab.Controls.Add(this.label3);
+            this.a4c1tab.Controls.Add(this.a4c1CityTextBox);
+            this.a4c1tab.Controls.Add(this.a4c1PhoneNumberTextBox);
+            this.a4c1tab.Controls.Add(this.a4c1JobTitleTextBox);
+            this.a4c1tab.Controls.Add(this.a4c1LastNameTextBox);
+            this.a4c1tab.Controls.Add(this.a4c1FirstNameTextBox);
+            this.a4c1tab.Controls.Add(this.a4c1AddBtn);
+            this.a4c1tab.Controls.Add(this.a4c1DeleteBtn);
+            this.a4c1tab.Controls.Add(this.a4c1dataGridView);
+            this.a4c1tab.Location = new System.Drawing.Point(4, 24);
+            this.a4c1tab.Name = "a4c1tab";
+            this.a4c1tab.Padding = new System.Windows.Forms.Padding(3);
+            this.a4c1tab.Size = new System.Drawing.Size(790, 418);
+            this.a4c1tab.TabIndex = 2;
+            this.a4c1tab.Text = "A4C1";
+            this.a4c1tab.UseVisualStyleBackColor = true;
+            // 
+            // a4c1AddBtn
+            // 
+            this.a4c1AddBtn.Location = new System.Drawing.Point(293, 370);
+            this.a4c1AddBtn.Name = "a4c1AddBtn";
+            this.a4c1AddBtn.Size = new System.Drawing.Size(75, 23);
+            this.a4c1AddBtn.TabIndex = 2;
+            this.a4c1AddBtn.Text = "Add";
+            this.a4c1AddBtn.UseVisualStyleBackColor = true;
+            this.a4c1AddBtn.Click += new System.EventHandler(this.a4c1AddBtn_Click);
+            // 
+            // a4c1DeleteBtn
+            // 
+            this.a4c1DeleteBtn.Location = new System.Drawing.Point(415, 370);
+            this.a4c1DeleteBtn.Name = "a4c1DeleteBtn";
+            this.a4c1DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.a4c1DeleteBtn.TabIndex = 1;
+            this.a4c1DeleteBtn.Text = "Delete";
+            this.a4c1DeleteBtn.UseVisualStyleBackColor = true;
+            this.a4c1DeleteBtn.Click += new System.EventHandler(this.OnA4c1DeleteBtn_Click);
+            // 
+            // a4c1dataGridView
+            // 
+            this.a4c1dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.a4c1dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.First_Name,
+            this.Last_Name,
+            this.Job_Title,
+            this.Phone_No,
+            this.City});
+            this.a4c1dataGridView.Location = new System.Drawing.Point(3, 6);
+            this.a4c1dataGridView.Name = "a4c1dataGridView";
+            this.a4c1dataGridView.RowTemplate.Height = 25;
+            this.a4c1dataGridView.Size = new System.Drawing.Size(784, 248);
+            this.a4c1dataGridView.TabIndex = 0;
+            this.a4c1dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.a4c1dataGridView_CellEndEdit);
+            this.a4c1dataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.a4c1dataGridView_DataError);
+            // 
+            // First_Name
+            // 
+            this.First_Name.DataPropertyName = "First_Name";
+            this.First_Name.HeaderText = "First Name";
+            this.First_Name.Name = "First_Name";
+            // 
+            // Last_Name
+            // 
+            this.Last_Name.DataPropertyName = "Last_Name";
+            this.Last_Name.HeaderText = "Last Name";
+            this.Last_Name.Name = "Last_Name";
+            // 
+            // Job_Title
+            // 
+            this.Job_Title.DataPropertyName = "Job_Title";
+            this.Job_Title.HeaderText = "Job Title";
+            this.Job_Title.Name = "Job_Title";
+            // 
+            // Phone_No
+            // 
+            this.Phone_No.DataPropertyName = "Phone_No_";
+            this.Phone_No.HeaderText = "Phone Number";
+            this.Phone_No.Name = "Phone_No";
+            // 
+            // City
+            // 
+            this.City.DataPropertyName = "City";
+            this.City.HeaderText = "City";
+            this.City.Name = "City";
+            // 
+            // a4c1FirstNameTextBox
+            // 
+            this.a4c1FirstNameTextBox.Location = new System.Drawing.Point(83, 279);
+            this.a4c1FirstNameTextBox.Name = "a4c1FirstNameTextBox";
+            this.a4c1FirstNameTextBox.Size = new System.Drawing.Size(100, 23);
+            this.a4c1FirstNameTextBox.TabIndex = 3;
+            // 
+            // a4c1LastNameTextBox
+            // 
+            this.a4c1LastNameTextBox.Location = new System.Drawing.Point(83, 329);
+            this.a4c1LastNameTextBox.Name = "a4c1LastNameTextBox";
+            this.a4c1LastNameTextBox.Size = new System.Drawing.Size(100, 23);
+            this.a4c1LastNameTextBox.TabIndex = 4;
+            // 
+            // a4c1JobTitleTextBox
+            // 
+            this.a4c1JobTitleTextBox.Location = new System.Drawing.Point(293, 279);
+            this.a4c1JobTitleTextBox.Name = "a4c1JobTitleTextBox";
+            this.a4c1JobTitleTextBox.Size = new System.Drawing.Size(100, 23);
+            this.a4c1JobTitleTextBox.TabIndex = 5;
+            // 
+            // a4c1PhoneNumberTextBox
+            // 
+            this.a4c1PhoneNumberTextBox.Location = new System.Drawing.Point(293, 329);
+            this.a4c1PhoneNumberTextBox.Name = "a4c1PhoneNumberTextBox";
+            this.a4c1PhoneNumberTextBox.Size = new System.Drawing.Size(100, 23);
+            this.a4c1PhoneNumberTextBox.TabIndex = 6;
+            // 
+            // a4c1CityTextBox
+            // 
+            this.a4c1CityTextBox.Location = new System.Drawing.Point(534, 279);
+            this.a4c1CityTextBox.Name = "a4c1CityTextBox";
+            this.a4c1CityTextBox.Size = new System.Drawing.Size(100, 23);
+            this.a4c1CityTextBox.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 282);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "First Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 332);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Last Name";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(238, 282);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Job Title";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(238, 332);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Phone #";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(490, 282);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "City";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -161,6 +354,9 @@
             this.A3C2.ResumeLayout(false);
             this.A3C2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.a3c2DataGridView)).EndInit();
+            this.a4c1tab.ResumeLayout(false);
+            this.a4c1tab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.a4c1dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,5 +373,24 @@
         private DataGridView a3c2DataGridView;
         private ComboBox a3c2TableNameComboBox;
         private Label label2;
+        private TabPage a4c1tab;
+        private Button a4c1AddBtn;
+        private Button a4c1DeleteBtn;
+        private DataGridView a4c1dataGridView;
+        private DataGridViewTextBoxColumn First_Name;
+        private DataGridViewTextBoxColumn Last_Name;
+        private DataGridViewTextBoxColumn Job_Title;
+        private DataGridViewTextBoxColumn Phone_No;
+        private DataGridViewTextBoxColumn City;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private TextBox a4c1CityTextBox;
+        private TextBox a4c1PhoneNumberTextBox;
+        private TextBox a4c1JobTitleTextBox;
+        private TextBox a4c1LastNameTextBox;
+        private TextBox a4c1FirstNameTextBox;
     }
 }

@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using WebService3;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 public class DataAccessLayer
 {
     private string connectionString;
@@ -78,13 +79,40 @@ public class DataAccessLayer
         }
     }
 
-    public void SetEmployee(CRONUS_Sverige_AB_Employee employee)
+    public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
     {
         using(CronusEntities cronusEntities = new CronusEntities())
         {
             cronusEntities.CRONUS_Sverige_AB_Employee.Add(employee);
             cronusEntities.SaveChanges();
            
+        }
+    }
+
+    public string UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
+    {
+        using(CronusEntities cronusEntities = new CronusEntities())
+        {
+            CRONUS_Sverige_AB_Employee tmpEmployee = cronusEntities.CRONUS_Sverige_AB_Employee.Where(e => e.No_ == employee.No_).First();
+            //tmpEmployee = employee;
+
+            tmpEmployee.First_Name = employee.First_Name;
+            tmpEmployee.Last_Name = employee.Last_Name;
+            tmpEmployee.Job_Title = employee.Job_Title;
+            tmpEmployee.Phone_No_ = employee.Phone_No_;
+            tmpEmployee.City = employee.City;
+          
+            cronusEntities.SaveChanges();
+            return tmpEmployee.First_Name;
+        }
+    }
+    public void DeleteEmployee(string pk)
+    {
+        using (CronusEntities cronusEntities = new CronusEntities())
+        {
+            CRONUS_Sverige_AB_Employee tmpEmp = cronusEntities.CRONUS_Sverige_AB_Employee.Where(e => e.No_.Equals(pk)).First();
+            cronusEntities.CRONUS_Sverige_AB_Employee.Remove(tmpEmp);
+            cronusEntities.SaveChanges();
         }
     }
     public DataTable GetTable(string tableName)

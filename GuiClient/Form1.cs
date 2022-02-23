@@ -1,10 +1,8 @@
-using ServoReference;
-using static ServoReference.ServoSoapClient;
 using CoffeeAddictsService;
-using static CoffeeAddictsService.WebService1SoapClient;
-using System.Data.SqlClient;
+using ServoReference;
 using System.Data;
 using System.Diagnostics;
+
 
 namespace GuiClient
 {
@@ -18,32 +16,75 @@ namespace GuiClient
         public Form1()
         {
             InitializeComponent();
-        
-           
-            
+
+
+
             ArrayOfXElement arrayOfX = coffeeAddictsClient.GetTableNames();
-            DataSet dataSet = ToDataSet(arrayOfX); 
-            
-            
+            DataSet dataSet = ToDataSet(arrayOfX);
+
+            a4c1dataGridView.AutoGenerateColumns = false;
             a3c2TableNameComboBox.DisplayMember = "TABLE_NAME";
             a3c2TableNameComboBox.BindingContext = this.BindingContext;
             a3c2TableNameComboBox.DataSource = dataSet.Tables[0];
-            //a3c2TableNameComboBox.
-           var employees = coffeeAddictsClient.GetEmployees();
-            foreach(var employee in employees)
-            {
-                Debug.WriteLine(employee.First_Name);
-            }
-        }
 
+            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+
+        }
+        private CRONUS_Sverige_AB_Employee FillDefaultValues(CRONUS_Sverige_AB_Employee employee)
+        {
+            Random random = new Random();
+            employee.Address = "DEFAULT";
+            employee.Address_2 = "DEFAULT";
+            employee.Alt__Address_Code = "DEFAULT";
+            employee.Alt__Address_End_Date = DateTime.Now.AddDays(50);
+            employee.Alt__Address_Start_Date = DateTime.Now;
+            employee.Birth_Date = DateTime.Now;
+            employee.Cause_of_Inactivity_Code = "DEFAULT";
+            employee.Company_E_Mail = "DEFAULT";
+            employee.Country_Region_Code = "DEFAULT";
+            employee.County = "DEFAULT";
+            employee.Employment_Date = DateTime.Now;
+            employee.Emplymt__Contract_Code = "DEFAULT";
+            employee.Extension = "DEFAULT";
+            employee.E_Mail = "DEFAULT";
+            employee.Fax_No_ = "DEFAULT";
+            employee.Global_Dimension_1_Code = "DEFAULT";
+            employee.Global_Dimension_2_Code = "DEFAULT";
+            employee.Grounds_for_Term__Code = "DEFAULT";
+            employee.Inactive_Date = DateTime.Now;
+            employee.Initials  = "DEFAULT";
+            employee.Last_Date_Modified = DateTime.Now;
+            employee.Manager_No_ = "DEFAULT";
+            employee.Middle_Name = "DEFAULT";
+            employee.Mobile_Phone_No_ = "DEFAULT";
+            employee.No_ = random.Next().ToString();
+            employee.No__Series = "DEFAULT";
+            employee.Pager = "DEFAULT";
+            employee.Picture = null;
+            employee.Post_Code = "DEFAULT";
+            employee.Resource_No_ = "DEFAULT";
+            employee.Salespers__Purch__Code = "DEFAULT";
+            employee.Search_Name = "DEFAULT";
+            employee.Sex = 0;
+            employee.Social_Security_No_ = "DEFAULT";
+            employee.Statistics_Group_Code = "DEFAULT";
+            employee.Status = 0;
+            employee.Termination_Date = DateTime.Now;
+            //employee.timestamp = ;
+            employee.Title = "DEFAULT";
+            employee.Union_Code = "DEFAULT";
+            employee.Union_Membership_No_ = "DEFAULT";
+            return employee;
+        }
         private void OnA2C2FindButton_Click(object sender, EventArgs e)
         {
-         
+
             string fileName = fileNameTextBox.Text;
             if (fileName == null || fileName.Equals(""))
             {
                 a2c2OutputField.Text = "Please enter a file name.";
-            } else
+            }
+            else
             {
                 a2c2OutputField.Text = servoClient.FindFile(fileName);
             }
@@ -68,6 +109,62 @@ namespace GuiClient
             var tableArray = coffeeAddictsClient.GetTable(tableName);
             DataSet set = ToDataSet(tableArray);
             a3c2DataGridView.DataSource = set.Tables[0];
+        }
+
+        private void a4c1dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true; //This ignores the problems with pictures and timestamps! NOT ELEGANT #USCH
+        }
+
+        private void OnA4c1DeleteBtn_Click(object sender, EventArgs e)
+        {
+
+            CRONUS_Sverige_AB_Employee employee = a4c1dataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
+            coffeeAddictsClient.DeleteEmployee(employee.No_);
+            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+        }
+
+       
+        private void a4c1dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            CRONUS_Sverige_AB_Employee tmpEmp = a4c1dataGridView.Rows[e.RowIndex].DataBoundItem as CRONUS_Sverige_AB_Employee;
+            //Debug.Write(tmpEmp.First_Name);
+            string s = coffeeAddictsClient.UpdateEmployee(tmpEmp);
+            Debug.Write(s);
+            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void a4c1AddBtn_Click(object sender, EventArgs e)
+        {
+            string firstName = a4c1FirstNameTextBox.Text;
+            string lastName = a4c1LastNameTextBox.Text;
+            string jobTitle = a4c1JobTitleTextBox.Text;
+            string phoneNumber = a4c1PhoneNumberTextBox.Text;
+            string city = a4c1CityTextBox.Text;
+
+            CRONUS_Sverige_AB_Employee employee = new CRONUS_Sverige_AB_Employee();
+            employee = FillDefaultValues(employee);
+            employee.First_Name = firstName;
+            employee.Last_Name = lastName;
+            employee.Job_Title = jobTitle;
+            employee.Phone_No_ = phoneNumber;
+            employee.City = city;
+
+            coffeeAddictsClient.CreateEmployee(employee);
+            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+
+            a4c1CityTextBox.Text = "";
+            a4c1FirstNameTextBox.Text = "";
+            a4c1LastNameTextBox.Text = "";
+            a4c1JobTitleTextBox.Text = "";
+            a4c1PhoneNumberTextBox.Text = "";
+
         }
     }
 }
