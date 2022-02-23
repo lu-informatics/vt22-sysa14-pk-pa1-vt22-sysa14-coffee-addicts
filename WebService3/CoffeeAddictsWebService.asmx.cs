@@ -75,5 +75,11 @@ namespace WebService3
             { return null; }
 
         }
+
+        [WebMethod]
+        public List<CRONUS_Sverige_AB_Employee> GetEmployees()
+        {
+            return dataAccessLayer.GetEmployees();
+        }
     }
 }

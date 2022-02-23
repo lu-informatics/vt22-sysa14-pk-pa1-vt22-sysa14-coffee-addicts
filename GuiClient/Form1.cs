@@ -4,6 +4,7 @@ using CoffeeAddictsService;
 using static CoffeeAddictsService.WebService1SoapClient;
 using System.Data.SqlClient;
 using System.Data;
+using System.Diagnostics;
 
 namespace GuiClient
 {
@@ -28,7 +29,11 @@ namespace GuiClient
             a3c2TableNameComboBox.BindingContext = this.BindingContext;
             a3c2TableNameComboBox.DataSource = dataSet.Tables[0];
             //a3c2TableNameComboBox.
-           
+           var employees = coffeeAddictsClient.GetEmployees();
+            foreach(var employee in employees)
+            {
+                Debug.WriteLine(employee.First_Name);
+            }
         }
 
         private void OnA2C2FindButton_Click(object sender, EventArgs e)

@@ -47,6 +47,758 @@ namespace CoffeeAddictsService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetTableValuesAsList", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.GetTableValuesAsListResponse> GetTableValuesAsListAsync(CoffeeAddictsService.GetTableValuesAsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployees", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.CRONUS_Sverige_AB_Employee[] GetEmployees();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployees", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync();
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CRONUS_Sverige_AB_Employee
+    {
+        
+        private byte[] timestampField;
+        
+        private string no_Field;
+        
+        private string first_NameField;
+        
+        private string middle_NameField;
+        
+        private string last_NameField;
+        
+        private string initialsField;
+        
+        private string job_TitleField;
+        
+        private string search_NameField;
+        
+        private string addressField;
+        
+        private string address_2Field;
+        
+        private string cityField;
+        
+        private string post_CodeField;
+        
+        private string countyField;
+        
+        private string phone_No_Field;
+        
+        private string mobile_Phone_No_Field;
+        
+        private string e_MailField;
+        
+        private string alt__Address_CodeField;
+        
+        private System.DateTime alt__Address_Start_DateField;
+        
+        private System.DateTime alt__Address_End_DateField;
+        
+        private byte[] pictureField;
+        
+        private System.DateTime birth_DateField;
+        
+        private string social_Security_No_Field;
+        
+        private string union_CodeField;
+        
+        private string union_Membership_No_Field;
+        
+        private int sexField;
+        
+        private string country_Region_CodeField;
+        
+        private string manager_No_Field;
+        
+        private string emplymt__Contract_CodeField;
+        
+        private string statistics_Group_CodeField;
+        
+        private System.DateTime employment_DateField;
+        
+        private int statusField;
+        
+        private System.DateTime inactive_DateField;
+        
+        private string cause_of_Inactivity_CodeField;
+        
+        private System.DateTime termination_DateField;
+        
+        private string grounds_for_Term__CodeField;
+        
+        private string global_Dimension_1_CodeField;
+        
+        private string global_Dimension_2_CodeField;
+        
+        private string resource_No_Field;
+        
+        private System.DateTime last_Date_ModifiedField;
+        
+        private string extensionField;
+        
+        private string pagerField;
+        
+        private string fax_No_Field;
+        
+        private string company_E_MailField;
+        
+        private string titleField;
+        
+        private string salespers__Purch__CodeField;
+        
+        private string no__SeriesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] timestamp
+        {
+            get
+            {
+                return this.timestampField;
+            }
+            set
+            {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string No_
+        {
+            get
+            {
+                return this.no_Field;
+            }
+            set
+            {
+                this.no_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string First_Name
+        {
+            get
+            {
+                return this.first_NameField;
+            }
+            set
+            {
+                this.first_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Middle_Name
+        {
+            get
+            {
+                return this.middle_NameField;
+            }
+            set
+            {
+                this.middle_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string Last_Name
+        {
+            get
+            {
+                return this.last_NameField;
+            }
+            set
+            {
+                this.last_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Initials
+        {
+            get
+            {
+                return this.initialsField;
+            }
+            set
+            {
+                this.initialsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Job_Title
+        {
+            get
+            {
+                return this.job_TitleField;
+            }
+            set
+            {
+                this.job_TitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string Search_Name
+        {
+            get
+            {
+                return this.search_NameField;
+            }
+            set
+            {
+                this.search_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string Address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string Address_2
+        {
+            get
+            {
+                return this.address_2Field;
+            }
+            set
+            {
+                this.address_2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string City
+        {
+            get
+            {
+                return this.cityField;
+            }
+            set
+            {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public string Post_Code
+        {
+            get
+            {
+                return this.post_CodeField;
+            }
+            set
+            {
+                this.post_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public string County
+        {
+            get
+            {
+                return this.countyField;
+            }
+            set
+            {
+                this.countyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public string Phone_No_
+        {
+            get
+            {
+                return this.phone_No_Field;
+            }
+            set
+            {
+                this.phone_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public string Mobile_Phone_No_
+        {
+            get
+            {
+                return this.mobile_Phone_No_Field;
+            }
+            set
+            {
+                this.mobile_Phone_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public string E_Mail
+        {
+            get
+            {
+                return this.e_MailField;
+            }
+            set
+            {
+                this.e_MailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public string Alt__Address_Code
+        {
+            get
+            {
+                return this.alt__Address_CodeField;
+            }
+            set
+            {
+                this.alt__Address_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public System.DateTime Alt__Address_Start_Date
+        {
+            get
+            {
+                return this.alt__Address_Start_DateField;
+            }
+            set
+            {
+                this.alt__Address_Start_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public System.DateTime Alt__Address_End_Date
+        {
+            get
+            {
+                return this.alt__Address_End_DateField;
+            }
+            set
+            {
+                this.alt__Address_End_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=19)]
+        public byte[] Picture
+        {
+            get
+            {
+                return this.pictureField;
+            }
+            set
+            {
+                this.pictureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        public System.DateTime Birth_Date
+        {
+            get
+            {
+                return this.birth_DateField;
+            }
+            set
+            {
+                this.birth_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        public string Social_Security_No_
+        {
+            get
+            {
+                return this.social_Security_No_Field;
+            }
+            set
+            {
+                this.social_Security_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        public string Union_Code
+        {
+            get
+            {
+                return this.union_CodeField;
+            }
+            set
+            {
+                this.union_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        public string Union_Membership_No_
+        {
+            get
+            {
+                return this.union_Membership_No_Field;
+            }
+            set
+            {
+                this.union_Membership_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        public int Sex
+        {
+            get
+            {
+                return this.sexField;
+            }
+            set
+            {
+                this.sexField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        public string Country_Region_Code
+        {
+            get
+            {
+                return this.country_Region_CodeField;
+            }
+            set
+            {
+                this.country_Region_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        public string Manager_No_
+        {
+            get
+            {
+                return this.manager_No_Field;
+            }
+            set
+            {
+                this.manager_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        public string Emplymt__Contract_Code
+        {
+            get
+            {
+                return this.emplymt__Contract_CodeField;
+            }
+            set
+            {
+                this.emplymt__Contract_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        public string Statistics_Group_Code
+        {
+            get
+            {
+                return this.statistics_Group_CodeField;
+            }
+            set
+            {
+                this.statistics_Group_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        public System.DateTime Employment_Date
+        {
+            get
+            {
+                return this.employment_DateField;
+            }
+            set
+            {
+                this.employment_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        public int Status
+        {
+            get
+            {
+                return this.statusField;
+            }
+            set
+            {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        public System.DateTime Inactive_Date
+        {
+            get
+            {
+                return this.inactive_DateField;
+            }
+            set
+            {
+                this.inactive_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        public string Cause_of_Inactivity_Code
+        {
+            get
+            {
+                return this.cause_of_Inactivity_CodeField;
+            }
+            set
+            {
+                this.cause_of_Inactivity_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        public System.DateTime Termination_Date
+        {
+            get
+            {
+                return this.termination_DateField;
+            }
+            set
+            {
+                this.termination_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
+        public string Grounds_for_Term__Code
+        {
+            get
+            {
+                return this.grounds_for_Term__CodeField;
+            }
+            set
+            {
+                this.grounds_for_Term__CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        public string Global_Dimension_1_Code
+        {
+            get
+            {
+                return this.global_Dimension_1_CodeField;
+            }
+            set
+            {
+                this.global_Dimension_1_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
+        public string Global_Dimension_2_Code
+        {
+            get
+            {
+                return this.global_Dimension_2_CodeField;
+            }
+            set
+            {
+                this.global_Dimension_2_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        public string Resource_No_
+        {
+            get
+            {
+                return this.resource_No_Field;
+            }
+            set
+            {
+                this.resource_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=38)]
+        public System.DateTime Last_Date_Modified
+        {
+            get
+            {
+                return this.last_Date_ModifiedField;
+            }
+            set
+            {
+                this.last_Date_ModifiedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=39)]
+        public string Extension
+        {
+            get
+            {
+                return this.extensionField;
+            }
+            set
+            {
+                this.extensionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=40)]
+        public string Pager
+        {
+            get
+            {
+                return this.pagerField;
+            }
+            set
+            {
+                this.pagerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=41)]
+        public string Fax_No_
+        {
+            get
+            {
+                return this.fax_No_Field;
+            }
+            set
+            {
+                this.fax_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
+        public string Company_E_Mail
+        {
+            get
+            {
+                return this.company_E_MailField;
+            }
+            set
+            {
+                this.company_E_MailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=43)]
+        public string Title
+        {
+            get
+            {
+                return this.titleField;
+            }
+            set
+            {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        public string Salespers__Purch__Code
+        {
+            get
+            {
+                return this.salespers__Purch__CodeField;
+            }
+            set
+            {
+                this.salespers__Purch__CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=45)]
+        public string No__Series
+        {
+            get
+            {
+                return this.no__SeriesField;
+            }
+            set
+            {
+                this.no__SeriesField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -189,6 +941,16 @@ namespace CoffeeAddictsService
             CoffeeAddictsService.GetTableValuesAsListRequest inValue = new CoffeeAddictsService.GetTableValuesAsListRequest();
             inValue.tableName = tableName;
             return ((CoffeeAddictsService.WebService1Soap)(this)).GetTableValuesAsListAsync(inValue);
+        }
+        
+        public CoffeeAddictsService.CRONUS_Sverige_AB_Employee[] GetEmployees()
+        {
+            return base.Channel.GetEmployees();
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync()
+        {
+            return base.Channel.GetEmployeesAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

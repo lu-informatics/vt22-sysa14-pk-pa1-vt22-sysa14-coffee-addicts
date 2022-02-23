@@ -1,5 +1,8 @@
 using System.Data;
 using System.Data.SqlClient;
+using WebService3;
+using System.Collections.Generic;
+using System.Linq;
 public class DataAccessLayer
 {
     private string connectionString;
@@ -66,7 +69,24 @@ public class DataAccessLayer
             }
         }
     }
+    public List<CRONUS_Sverige_AB_Employee> GetEmployees()
+    {
+        using (CronusEntities cronusEntities = new CronusEntities())
+        {
+            List<CRONUS_Sverige_AB_Employee> employees = cronusEntities.CRONUS_Sverige_AB_Employee.ToList();
+            return employees;
+        }
+    }
 
+    public void SetEmployee(CRONUS_Sverige_AB_Employee employee)
+    {
+        using(CronusEntities cronusEntities = new CronusEntities())
+        {
+            cronusEntities.CRONUS_Sverige_AB_Employee.Add(employee);
+            cronusEntities.SaveChanges();
+           
+        }
+    }
     public DataTable GetTable(string tableName)
     {
         {
