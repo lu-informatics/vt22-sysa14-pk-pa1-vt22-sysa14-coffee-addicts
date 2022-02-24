@@ -1,7 +1,6 @@
 using CoffeeAddictsService;
 using ServoReference;
 using System.Data;
-using System.Diagnostics;
 
 
 namespace GuiClient
@@ -29,6 +28,20 @@ namespace GuiClient
 
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
 
+
+            a5c1MethodComboBox.Items.Add("All keys");
+            a5c1MethodComboBox.Items.Add("All indexes");
+            a5c1MethodComboBox.Items.Add("All table_constraints");
+            a5c1MethodComboBox.Items.Add("All tables #1");
+            a5c1MethodComboBox.Items.Add("All tables #2");
+            a5c1MethodComboBox.Items.Add("All employee columns #1");
+            a5c1MethodComboBox.Items.Add("All employee columns #2");
+            a5c1MethodComboBox.Items.Add("Absentee");
+            a5c1MethodComboBox.Items.Add("Sickness");
+            a5c1MethodComboBox.Items.Add("Employees and relatives");
+            a5c1MethodComboBox.Items.Add("All Employee Tables Metadata");
+
+
         }
         private CRONUS_Sverige_AB_Employee FillDefaultValues(CRONUS_Sverige_AB_Employee employee)
         {
@@ -52,7 +65,7 @@ namespace GuiClient
             employee.Global_Dimension_2_Code = "DEFAULT";
             employee.Grounds_for_Term__Code = "DEFAULT";
             employee.Inactive_Date = DateTime.Now;
-            employee.Initials  = "DEFAULT";
+            employee.Initials = "DEFAULT";
             employee.Last_Date_Modified = DateTime.Now;
             employee.Manager_No_ = "DEFAULT";
             employee.Middle_Name = "DEFAULT";
@@ -118,19 +131,18 @@ namespace GuiClient
 
         private void OnA4c1DeleteBtn_Click(object sender, EventArgs e)
         {
-
             CRONUS_Sverige_AB_Employee employee = a4c1dataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
             coffeeAddictsClient.DeleteEmployee(employee.No_);
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
         }
 
-       
+
         private void a4c1dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             CRONUS_Sverige_AB_Employee tmpEmp = a4c1dataGridView.Rows[e.RowIndex].DataBoundItem as CRONUS_Sverige_AB_Employee;
             //Debug.Write(tmpEmp.First_Name);
-            string s = coffeeAddictsClient.UpdateEmployee(tmpEmp);
-            Debug.Write(s);
+            coffeeAddictsClient.UpdateEmployee(tmpEmp);
+
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
 
         }
@@ -165,6 +177,11 @@ namespace GuiClient
             a4c1JobTitleTextBox.Text = "";
             a4c1PhoneNumberTextBox.Text = "";
 
+        }
+
+        private void OnA5c1MethodComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            a5c1OutputDataGridView.DataSource = ToDataSet(coffeeAddictsClient.GetCronusData(a5c1MethodComboBox.Text)).Tables[0];
         }
     }
 }

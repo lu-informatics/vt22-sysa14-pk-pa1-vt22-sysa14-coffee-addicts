@@ -7,12 +7,13 @@ using System.Diagnostics;
 public class DataAccessLayer
 {
     private string connectionString;
-
+    private string connectionStringCronus;
     public DataAccessLayer()
     {
         connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
+        connectionStringCronus = "Server=tcp:testservercoffeaddicts.database.windows.net,1433;Initial Catalog=Cronus AB;Persist Security Info=False;User ID=coffeaddicts;Password=HzbPvJEn7VVTNEJx3Naf;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
     }
-
+  
     public DataSet GetKeys(string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -89,13 +90,11 @@ public class DataAccessLayer
         }
     }
 
-    public string UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
+    public void UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
     {
         using(CronusEntities cronusEntities = new CronusEntities())
         {
             CRONUS_Sverige_AB_Employee tmpEmployee = cronusEntities.CRONUS_Sverige_AB_Employee.Where(e => e.No_ == employee.No_).First();
-            //tmpEmployee = employee;
-
             tmpEmployee.First_Name = employee.First_Name;
             tmpEmployee.Last_Name = employee.Last_Name;
             tmpEmployee.Job_Title = employee.Job_Title;
@@ -103,7 +102,7 @@ public class DataAccessLayer
             tmpEmployee.City = employee.City;
           
             cronusEntities.SaveChanges();
-            return tmpEmployee.First_Name;
+
         }
     }
     public void DeleteEmployee(string pk)
@@ -191,7 +190,7 @@ public class DataAccessLayer
 
     public bool IsServerConnected()
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlConnection connection = new SqlConnection(connectionStringCronus))
         {
             try
             {
@@ -203,5 +202,96 @@ public class DataAccessLayer
                 return false;
             }
         }
+    }
+
+    public DataSet GetCronusData(string methodName)
+    {
+        using (SqlConnection sqlConnection = new SqlConnection(connectionStringCronus))
+        {
+            using (SqlCommand sqlCommand = new SqlCommand(SelectCronusQuery(methodName), sqlConnection))
+            {
+                DataSet dataSet = new DataSet();
+                using (SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    adapter.SelectCommand = sqlCommand;
+                    adapter.Fill(dataSet);
+
+                    return dataSet;
+                }
+            }
+        }
+    }
+    public string SelectCronusQuery(string methodName)
+    {
+        string query = "";
+        switch (methodName)
+        {
+            case "All keys":
+                query = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_TYPE LIKE '%KEY'";
+                return query;
+            case "All indexes":
+                query = "SELECT * FROM sys.indexes";
+                return query;
+            case "All table_constraints":
+                query = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
+                return query;
+
+            case "All tables #1":
+                query = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
+                return query;
+
+            case "All tables #2":
+                query = "SELECT * FROM sys.tables";
+                return query;
+
+            case "All employee columns #1":
+                query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME LIKE 'CRONUS Sverige AB$Employee'";
+                return query;
+
+            case "All employee columns #2":
+                query = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.CRONUS Sverige AB$Employee')";
+                return query;
+
+            case "Absentee": //Are spaces needed in query?
+                query = "SELECT e.[First Name] " +
+                        "FROM [CRONUS Sverige AB$Employee] e " +
+                        "WHERE e.[No_] IN " +
+                        "( SELECT subquery.[Employee No_] " +
+                        "FROM " +
+                        "( SELECT TOP 1 [Employee No_], SUM([Quantity (Base)]) AS 'Absence Hours' " +
+                        "FROM [CRONUS Sverige AB$Employee Absence] " +
+                        "GROUP BY [Employee No_] " +
+                        "ORDER BY 'Absence Hours' DESC " +
+                        ") subquery) ";
+                return query;
+
+            case "Sickness":
+                query = "SELECT [First Name], [Last Name], [Job Title],[Phone No_], [City] FROM [CRONUS Sverige AB$Employee] " +
+                        "WHERE No_ IN " +
+                            "( SELECT [Employee No_] FROM [CRONUS Sverige AB$Employee Absence] " +
+                            "WHERE [Cause of Absence Code] LIKE 'SJUK' AND [From Date] BETWEEN " +
+                            "CONVERT(datetime, '2004-01-01') AND CONVERT(datetime, '2004-12-31') " +
+                            "GROUP BY [Employee No_] " +
+                            ") ";
+                return query;
+
+            case "Employees and relatives":
+                query = "SELECT e.[First Name] as 'Employee First Name', e.[Last Name] as 'Employee Last Name', er.[Relative Code] as 'Relative Relation', er.[First Name] as 'Relative First Name', er.[Last Name] as 'Relative Last Name' " +
+                        "FROM [CRONUS Sverige AB$Employee] e " +
+                        "JOIN [CRONUS Sverige AB$Employee Relative] er " +
+                        "ON er.[Employee No_] = e.No_ ";
+                return query;
+
+            case "All Employee Tables Metadata":
+                query = "SELECT TABLE_NAME, COLUMN_NAME, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH "+
+                        "FROM INFORMATION_SCHEMA.COLUMNS "+
+                        "WHERE TABLE_NAME LIKE 'CRONUS Sverige AB$Employee%' ";
+                return query;
+
+                default: return null;
+        }
+        
+
+        
     }
 }

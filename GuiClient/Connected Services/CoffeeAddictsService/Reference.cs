@@ -75,10 +75,18 @@ namespace CoffeeAddictsService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEmployee", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
-        string UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        void UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateEmployee", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        System.Threading.Tasks.Task UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusData", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.ArrayOfXElement GetCronusData(string methodName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusData", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.ArrayOfXElement> GetCronusDataAsync(string methodName);
     }
     
     /// <remarks/>
@@ -997,14 +1005,24 @@ namespace CoffeeAddictsService
             return base.Channel.DeleteEmployeeAsync(pk);
         }
         
-        public string UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        public void UpdateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
         {
-            return base.Channel.UpdateEmployee(employee);
+            base.Channel.UpdateEmployee(employee);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
+        public System.Threading.Tasks.Task UpdateEmployeeAsync(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
         {
             return base.Channel.UpdateEmployeeAsync(employee);
+        }
+        
+        public CoffeeAddictsService.ArrayOfXElement GetCronusData(string methodName)
+        {
+            return base.Channel.GetCronusData(methodName);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.ArrayOfXElement> GetCronusDataAsync(string methodName)
+        {
+            return base.Channel.GetCronusDataAsync(methodName);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

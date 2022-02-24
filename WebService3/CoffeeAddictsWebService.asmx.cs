@@ -95,10 +95,16 @@ namespace WebService3
         }
 
         [WebMethod]
-        public string UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
+        public void UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
         {
                
-            return dataAccessLayer.UpdateEmployee(employee);
+            dataAccessLayer.UpdateEmployee(employee);
+        }
+
+        [WebMethod]
+        public DataSet GetCronusData(string methodName)
+        { 
+            return dataAccessLayer.GetCronusData(methodName);
         }
 
 

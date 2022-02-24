@@ -3,9 +3,12 @@ using System.Data.SqlClient;
 public class DataAccessLayer
 {
     private string connectionString;
-
+    private string connectionStringCronus;
     public DataAccessLayer()
+
     {
+        connectionStringCronus = "Server=tcp:testservercoffeaddicts.database.windows.net,1433;Initial Catalog=Cronus AB;Persist Security Info=False;User ID=coffeaddicts;Password=HzbPvJEn7VVTNEJx3Naf;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+ 
         connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
     }
 
@@ -121,7 +124,7 @@ public class DataAccessLayer
 
     public bool IsServerConnected()
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlConnection connection = new SqlConnection(connectionStringCronus))
         {
             try
             {
