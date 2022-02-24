@@ -21,13 +21,14 @@ namespace GuiClient
             ArrayOfXElement arrayOfX = coffeeAddictsClient.GetTableNames();
             DataSet dataSet = ToDataSet(arrayOfX);
 
+            
             a4c1dataGridView.AutoGenerateColumns = false;
             a3c2TableNameComboBox.DisplayMember = "TABLE_NAME";
             a3c2TableNameComboBox.BindingContext = this.BindingContext;
             a3c2TableNameComboBox.DataSource = dataSet.Tables[0];
 
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
-
+            empTabEmployeesDataGridView.DataSource = coffeeAddictsClient.GetEmployees();
 
             a5c1MethodComboBox.Items.Add("All keys");
             a5c1MethodComboBox.Items.Add("All indexes");
@@ -40,6 +41,7 @@ namespace GuiClient
             a5c1MethodComboBox.Items.Add("Sickness");
             a5c1MethodComboBox.Items.Add("Employees and relatives");
             a5c1MethodComboBox.Items.Add("All Employee Tables Metadata");
+            
 
 
         }
@@ -182,6 +184,11 @@ namespace GuiClient
         private void OnA5c1MethodComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             a5c1OutputDataGridView.DataSource = ToDataSet(coffeeAddictsClient.GetCronusData(a5c1MethodComboBox.Text)).Tables[0];
+        }
+
+        private void empTabRelationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

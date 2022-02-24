@@ -87,7 +87,11 @@ namespace WebService3
         {
             return dataAccessLayer.GetEmployees();
         }
-
+        [WebMethod]
+        public List <object> GetCronusTable(string tableName)
+        {
+            return null;
+        }
         [WebMethod]
         public void DeleteEmployee(string pk)
         {

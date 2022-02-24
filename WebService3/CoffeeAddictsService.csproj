@@ -108,6 +108,21 @@
     <Compile Include="CRONUS_Sverige_AB_Employee.cs">
       <DependentUpon>CronusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CRONUS_Sverige_AB_Employee_Absence.cs">
+      <DependentUpon>CronusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRONUS_Sverige_AB_Employee_Portal_Setup.cs">
+      <DependentUpon>CronusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRONUS_Sverige_AB_Employee_Qualification.cs">
+      <DependentUpon>CronusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRONUS_Sverige_AB_Employee_Relative.cs">
+      <DependentUpon>CronusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRONUS_Sverige_AB_Employee_Statistics_Group.cs">
+      <DependentUpon>CronusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CoffeeAddictsWebService.asmx.cs">

@@ -62,7 +62,12 @@
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.a2c2FindButton = new System.Windows.Forms.Button();
             this.a2c2OutputField = new System.Windows.Forms.RichTextBox();
-            this.tabA2C2 = new System.Windows.Forms.TabControl();
+            this.Tabs = new System.Windows.Forms.TabControl();
+            this.employeeTablesTab = new System.Windows.Forms.TabPage();
+            this.empTabEmployeesDataGridView = new System.Windows.Forms.DataGridView();
+            this.empTabRelationsDataGridView = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.empTabRelationComboBox = new System.Windows.Forms.ComboBox();
             this.a5c1tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.a5c1OutputDataGridView)).BeginInit();
             this.a4c1tab.SuspendLayout();
@@ -70,7 +75,10 @@
             this.A3C2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.a3c2DataGridView)).BeginInit();
             this.tabPage1.SuspendLayout();
-            this.tabA2C2.SuspendLayout();
+            this.Tabs.SuspendLayout();
+            this.employeeTablesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empTabEmployeesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empTabRelationsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // a5c1tab
@@ -394,27 +402,78 @@
             this.a2c2OutputField.TabIndex = 3;
             this.a2c2OutputField.Text = "";
             // 
-            // tabA2C2
+            // Tabs
             // 
-            this.tabA2C2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabA2C2.Controls.Add(this.tabPage1);
-            this.tabA2C2.Controls.Add(this.A3C2);
-            this.tabA2C2.Controls.Add(this.a4c1tab);
-            this.tabA2C2.Controls.Add(this.a5c1tab);
-            this.tabA2C2.Location = new System.Drawing.Point(0, 0);
-            this.tabA2C2.Name = "tabA2C2";
-            this.tabA2C2.SelectedIndex = 0;
-            this.tabA2C2.Size = new System.Drawing.Size(798, 446);
-            this.tabA2C2.TabIndex = 0;
+            this.Tabs.Controls.Add(this.tabPage1);
+            this.Tabs.Controls.Add(this.A3C2);
+            this.Tabs.Controls.Add(this.a4c1tab);
+            this.Tabs.Controls.Add(this.a5c1tab);
+            this.Tabs.Controls.Add(this.employeeTablesTab);
+            this.Tabs.Location = new System.Drawing.Point(0, 0);
+            this.Tabs.Name = "Tabs";
+            this.Tabs.SelectedIndex = 0;
+            this.Tabs.Size = new System.Drawing.Size(798, 446);
+            this.Tabs.TabIndex = 0;
+            // 
+            // employeeTablesTab
+            // 
+            this.employeeTablesTab.Controls.Add(this.empTabRelationComboBox);
+            this.employeeTablesTab.Controls.Add(this.label9);
+            this.employeeTablesTab.Controls.Add(this.empTabRelationsDataGridView);
+            this.employeeTablesTab.Controls.Add(this.empTabEmployeesDataGridView);
+            this.employeeTablesTab.Location = new System.Drawing.Point(4, 24);
+            this.employeeTablesTab.Name = "employeeTablesTab";
+            this.employeeTablesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.employeeTablesTab.Size = new System.Drawing.Size(790, 418);
+            this.employeeTablesTab.TabIndex = 4;
+            this.employeeTablesTab.Text = "Employee Tables";
+            this.employeeTablesTab.UseVisualStyleBackColor = true;
+            // 
+            // empTabEmployeesDataGridView
+            // 
+            this.empTabEmployeesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.empTabEmployeesDataGridView.Location = new System.Drawing.Point(8, 6);
+            this.empTabEmployeesDataGridView.Name = "empTabEmployeesDataGridView";
+            this.empTabEmployeesDataGridView.RowTemplate.Height = 25;
+            this.empTabEmployeesDataGridView.Size = new System.Drawing.Size(776, 180);
+            this.empTabEmployeesDataGridView.TabIndex = 0;
+            // 
+            // empTabRelationsDataGridView
+            // 
+            this.empTabRelationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.empTabRelationsDataGridView.Location = new System.Drawing.Point(6, 248);
+            this.empTabRelationsDataGridView.Name = "empTabRelationsDataGridView";
+            this.empTabRelationsDataGridView.RowTemplate.Height = 25;
+            this.empTabRelationsDataGridView.Size = new System.Drawing.Size(778, 164);
+            this.empTabRelationsDataGridView.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 222);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 15);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Choose table:";
+            // 
+            // empTabRelationComboBox
+            // 
+            this.empTabRelationComboBox.FormattingEnabled = true;
+            this.empTabRelationComboBox.Location = new System.Drawing.Point(93, 219);
+            this.empTabRelationComboBox.Name = "empTabRelationComboBox";
+            this.empTabRelationComboBox.Size = new System.Drawing.Size(185, 23);
+            this.empTabRelationComboBox.TabIndex = 3;
+            this.empTabRelationComboBox.SelectedIndexChanged += new System.EventHandler(this.empTabRelationComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabA2C2);
+            this.Controls.Add(this.Tabs);
             this.Name = "Form1";
             this.Text = "Form1";
             this.a5c1tab.ResumeLayout(false);
@@ -428,7 +487,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.a3c2DataGridView)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabA2C2.ResumeLayout(false);
+            this.Tabs.ResumeLayout(false);
+            this.employeeTablesTab.ResumeLayout(false);
+            this.employeeTablesTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empTabEmployeesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empTabRelationsDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -469,6 +532,11 @@
         private TextBox fileNameTextBox;
         private Button a2c2FindButton;
         private Label label1;
-        private TabControl tabA2C2;
+        private TabControl Tabs;
+        private TabPage employeeTablesTab;
+        private ComboBox empTabRelationComboBox;
+        private Label label9;
+        private DataGridView empTabRelationsDataGridView;
+        private DataGridView empTabEmployeesDataGridView;
     }
 }
