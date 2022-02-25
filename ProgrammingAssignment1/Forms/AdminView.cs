@@ -10,8 +10,6 @@ public partial class AdminView : Form
 
     private DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
 
-    object oldValue;
-
     public AdminView()
     {
         InitializeComponent();
@@ -22,31 +20,34 @@ public partial class AdminView : Form
 
     }
 
-
-
     private void OnBeansSearchInput(object sender, EventArgs e)
     {
         (beansDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"EAN LIKE '%{beansSearchBox.Text}%' OR roast LIKE '%{beansSearchBox.Text}%' ");
+    }
+
+    private void OnBeverageSearchInput(object sender, EventArgs e)
+    {
+        (beverageDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"bevName LIKE '%{beverageSearchBox.Text}%' OR name LIKE '%{beverageSearchBox.Text}%' OR type LIKE '%{beverageSearchBox.Text}%' OR variety LIKE '%{beverageSearchBox.Text}%'");
+
+    }
+    private void OnCoffeeSearchInput(object sender, EventArgs e)
+    {
+        (coffeeDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{coffeeSearchBox.Text}%' OR EAN LIKE '%{coffeeSearchBox.Text}%' OR Convert(beanWeightGram, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR Convert(grindSize, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR size LIKE '%{coffeeSearchBox.Text}%'");
+
+    }
+    private void OnFoamSearchInput(object sender, EventArgs e)
+    {
+        (foamDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"type LIKE '%{foamSearchBox.Text}%' OR Convert(temperature, 'System.String') LIKE '%{foamSearchBox.Text}%' OR Convert(time, 'System.String') LIKE '%{foamSearchBox.Text}%'");
+
     }
     private void OnMilkSearchInput(object sender, EventArgs e)
     {
         (milkDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"variety LIKE '%{milkSearchBox.Text}%' OR brand LIKE '%{milkSearchBox.Text}%' ");
 
     }
-    private void coffeeSearchBox_TextChanged(object sender, EventArgs e)
-    {
-        (coffeeDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{coffeeSearchBox.Text}%' OR EAN LIKE '%{coffeeSearchBox.Text}%' OR Convert(beanWeightGram, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR Convert(grindSize, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR size LIKE '%{coffeeSearchBox.Text}%'");
-
-    }
     private void OnWaterSearchInput(object sender, EventArgs e)
     {
-        (waterDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"Size LIKE '%{waterSearchBox.Text}%' OR Convert(volumeML, 'System.String' LIKE '%{waterSearchBox.Text}%' ");
-
-    }
-
-    private void OnFoamSearchInput(object sender, EventArgs e)
-    {
-        (foamDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"type LIKE '%{foamSearchBox.Text}%' OR Convert(temperature, 'System.String') LIKE '%{foamSearchBox.Text}%' OR Convert(time, 'System.String') LIKE '%{foamSearchBox.Text}%'");
+        (waterDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"Size LIKE '%{waterSearchBox.Text}%' OR Convert(volumeML, 'System.String') LIKE '%{waterSearchBox.Text}%' ");
 
     }
     private void OnBeansAddButton(object sender, EventArgs e)
@@ -57,6 +58,9 @@ public partial class AdminView : Form
             string roast = beansRoastTextBox.Text;
             var bean = new string[] { ean, roast };
             dataAccessLayer.InsertRow(bean, "Beans");
+            lblUserMessage.Text = $"Bean with EAN {ean} was added.";
+            beansEANTextBox.Text = "";
+            beansRoastTextBox.Text = "";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -75,6 +79,7 @@ public partial class AdminView : Form
                 var ean = beansDataGridView.CurrentRow.Cells[0].Value;
                 var primaryKey = new object[] { ean };
                 dataAccessLayer.DeleteRow(primaryKey, "Beans");
+                lblUserMessage.Text = $"Bean with EAN {ean} was deleted.";
                 UpdateTables();
             }
 
@@ -91,8 +96,6 @@ public partial class AdminView : Form
     {
         try
         {
-            //bör lägga till liten koll så man skriver in en int!
-
             var name = coffeeNameTextBox.Text;
             var waterSize = (waterComboBox.SelectedItem as DataRowView)[0];
             var beanEan = (beanComboBox.SelectedItem as DataRowView)[0];
@@ -100,6 +103,8 @@ public partial class AdminView : Form
             int beanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
             var coffee = new object[] { name, beanEan, beanWeight, grindSize, waterSize };
             dataAccessLayer.InsertRow(coffee, "Coffee");
+            lblUserMessage.Text = $"{name} was added.";
+            coffeeNameTextBox.Text = "";
             UpdateTables();
             Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
 
@@ -120,7 +125,8 @@ public partial class AdminView : Form
 
             var foam = new object[] { name, temperature, time };
             dataAccessLayer.InsertRow(foam, "Foam");
-            //UpdateAll();
+            lblUserMessage.Text = $"Foam with name {name} was added.";
+            foamNameTextBox.Text = "";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -136,6 +142,7 @@ public partial class AdminView : Form
             var name = foamDataGridView.CurrentRow.Cells[0].Value;
             var primaryKeys = new object[] { name };
             dataAccessLayer.DeleteRow(primaryKeys, "Foam");
+            lblUserMessage.Text = $"Foam with name {name} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -145,11 +152,7 @@ public partial class AdminView : Form
         }
     }
 
-
-
-
-
-    private void OnAddWaterButton(object sender, EventArgs e)
+    private void OnWaterAddButton(object sender, EventArgs e)
     {
         try
         {
@@ -157,6 +160,8 @@ public partial class AdminView : Form
             int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
             var water = new object[] { size, volume };
             dataAccessLayer.InsertRow(water, "water");
+            lblUserMessage.Text = $"Water with size {size} was added.";
+            waterSizeTextBox.Text = "";
             UpdateTables();
             Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
         }
@@ -175,15 +180,16 @@ public partial class AdminView : Form
             var size = waterDataGridView.CurrentRow.Cells[0].Value;
             var primaryKey = new object[] { size };
             dataAccessLayer.DeleteRow(primaryKey, "Water");
+            lblUserMessage.Text = $"Water with size {size} was deleted.";
             UpdateTables();
         }
-        catch (SqlException  ex)
+        catch (SqlException ex)
         {
 
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
-    private void OnAddMilkButton(object sender, EventArgs e)
+    private void OnMilkAddButton(object sender, EventArgs e)
     {
         try
         {
@@ -191,6 +197,9 @@ public partial class AdminView : Form
             string brand = milkBrandTextBox.Text;
             var milk = new object[] { variety, brand };
             dataAccessLayer.InsertRow(milk, "milk");
+            lblUserMessage.Text = $"Milk with variety {variety} was added.";
+            milkBrandTextBox.Text = "";
+            milkVarietyTextBox.Text = "";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -208,6 +217,7 @@ public partial class AdminView : Form
             var variety = milkDataGridView.CurrentRow.Cells[0].Value;
             var primaryKeys = new object[] { variety };
             dataAccessLayer.DeleteRow(primaryKeys, "Milk");
+            lblUserMessage.Text = $"Milk with variety {variety} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -239,38 +249,47 @@ public partial class AdminView : Form
             var oldValue = dataGridView[e.ColumnIndex, e.RowIndex].Value;
             var newValue = e.FormattedValue;
             Debug.WriteLine(oldValue + "=" + newValue);
-            if (!newValue.Equals(oldValue) || newValue != oldValue) //Only happens on new cell value!
+            Debug.WriteLine(oldValue);
+            Debug.WriteLine(newValue.GetType);
+
+            if(!newValue.ToString().Equals(""))
             {
-                if (true)
+                if (!newValue.ToString().Equals(oldValue.ToString())) //Only happens on new cell value!
                 {
-                    var oldRow = dataGridView.Rows[e.RowIndex];
-                    var metaDataCount = dataAccessLayer.GetMetaData(tableName).Tables[0].Rows.Count;
-                    var keyDataCount = dataAccessLayer.GetKeys(tableName).Tables[0].Columns.Count;
-                    int count = metaDataCount + keyDataCount;
-                    var parameterArray = new object[count];
-                    parameterArray[e.ColumnIndex] = newValue;
-                    for (int i = 0; i < metaDataCount; i++)
-
+                    if (IntInputValidation(dataGridView, e, tableName))
                     {
-                        if (i != e.ColumnIndex)
+                        var oldRow = dataGridView.Rows[e.RowIndex];
+                        var metaDataCount = dataAccessLayer.GetMetaData(tableName).Tables[0].Rows.Count;
+                        var keyDataCount = dataAccessLayer.GetKeys(tableName).Tables[0].Columns.Count;
+                        int count = metaDataCount + keyDataCount;
+                        var parameterArray = new object[count];
+                        parameterArray[e.ColumnIndex] = newValue;
+                        for (int i = 0; i < metaDataCount; i++)
+
                         {
-                            parameterArray[i] = oldRow.Cells[i].Value;
+                            if (i != e.ColumnIndex)
+                            {
+                                parameterArray[i] = oldRow.Cells[i].Value;
+                            }
                         }
-                    }
-                    for (int i = 0; i < keyDataCount; i++)
-                    {
-                        parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
-                    }
-                    dataAccessLayer.UpdateRow(parameterArray, tableName);
+                        for (int i = 0; i < keyDataCount; i++)
+                        {
+                            parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
+                        }
+                        dataAccessLayer.UpdateRow(parameterArray, tableName);
 
-                    e.Cancel = true;
+                        e.Cancel = true;
+                        lblUserMessage.Text = $"Updated {oldValue} to {newValue}.";
+                    }
                     UpdateTables();
-                    lblUserMessage.Text = $"Updated {oldValue} to {newValue}.";
                 }
+            } else
+            {
+                lblUserMessage.Text = "New value cannot be empty.";
+                UpdateTables();
             }
-
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
@@ -386,9 +405,10 @@ public partial class AdminView : Form
     {
         try
         {
-            var primaryKey = coffeeDataGridView.CurrentRow.Cells[0].Value;
-            var primaryKeys = new object[] { primaryKey };
+            var name = coffeeDataGridView.CurrentRow.Cells[0].Value;
+            var primaryKeys = new object[] { name };
             dataAccessLayer.DeleteRow(primaryKeys, "Coffee");
+            lblUserMessage.Text = $"{name} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
@@ -409,14 +429,14 @@ public partial class AdminView : Form
 
             var beverage = new object[] { bevName, coffeeName, foamType, milkVariety };
             dataAccessLayer.InsertRow(beverage, "beverage");
+            lblUserMessage.Text = $"{bevName} was added.";
+            beverageNameTextBox.Text = "";
             UpdateTables();
         }
         catch (SqlException ex)
         {
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
-
-
     }
 
     //private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -451,7 +471,7 @@ public partial class AdminView : Form
     private bool IntInputValidation(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
         bool isValidated = true;
-        int num = 1000;
+        int num = -1;
 
         NumericUpDown fieldA = null;
         NumericUpDown fieldB = null;
@@ -519,11 +539,11 @@ public partial class AdminView : Form
         return isValidated;
     }
 
-    private void foamDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+    private void FoamDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
     {
         try
         {
-            
+
             DataGridView dataGridView = sender as DataGridView;
             e.Cancel = true;
             UpdateTables();
@@ -537,7 +557,7 @@ public partial class AdminView : Form
         }
     }
 
-    public string SqlErrorHandling(SqlException error)
+    public string SqlErrorHandling(SqlException error)//NEEDS EXPANDING, TODO...
     {
         int code = error.Number;
         string message = error.Message;
@@ -546,16 +566,56 @@ public partial class AdminView : Form
         {
             return "Connection couldn't be established";
         }
-        else if (message.Contains("pk__beans"))
+        else if (message.Contains("PK__Beans"))
         {
-            return "There already exists a bean with this EAN, try a new EAN.";
-        }else if (message.Contains(""))
+            return "There already exists a Bean with that EAN. Please try a new EAN.";
+        }
+        else if (message.Contains("PK__Beverage"))
         {
-            return "";
+            return "There already exists a Beverage with that name. Please choose a different name.";
+        }
+        else if (message.Contains("PK__Coffee"))
+        {
+            return "There already exists a Coffee with that name. Please choose a different name.";
+        }
+        else if (message.Contains("PK__Foam"))
+        {
+            return "There already exists a Foam with that name. Please choose a different name.";
+        }
+        else if (message.Contains("PK__Milk"))
+        {
+            return "There already exists a Milk of that variety. Please choose a different variety.";
+        }
+        else if (message.Contains("PK__Water"))
+        {
+            return "There already exists a Water with that size. Please choose a different size.";
         }
         else
         { return message; }
 
     }
+
+    private void OnBeverageDeleteBtn_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (beverageDataGridView.CurrentRow != null)
+            {
+                var name = beverageDataGridView.CurrentRow.Cells[0].Value;
+                var primaryKey = new object[] { name };
+                dataAccessLayer.DeleteRow(primaryKey, "Beverage");
+                lblUserMessage.Text = $"{name} was deleted.";
+                UpdateTables();
+            }
+
+
+        }
+        catch (SqlException ex)
+        {
+            SqlErrorHandling(ex);
+        }
+    }
+
+
 }
 
