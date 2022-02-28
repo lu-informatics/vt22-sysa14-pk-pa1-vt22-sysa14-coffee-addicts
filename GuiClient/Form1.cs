@@ -26,9 +26,13 @@ namespace GuiClient
             a3c2TableNameComboBox.DisplayMember = "TABLE_NAME";
             a3c2TableNameComboBox.BindingContext = this.BindingContext;
             a3c2TableNameComboBox.DataSource = dataSet.Tables[0];
+            empTabEmployeesDataGridView.AutoGenerateColumns = false;
 
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+          
             empTabEmployeesDataGridView.DataSource = coffeeAddictsClient.GetEmployees();
+            
+
 
             a5c1MethodComboBox.Items.Add("All keys");
             a5c1MethodComboBox.Items.Add("All indexes");
@@ -186,9 +190,51 @@ namespace GuiClient
             a5c1OutputDataGridView.DataSource = ToDataSet(coffeeAddictsClient.GetCronusData(a5c1MethodComboBox.Text)).Tables[0];
         }
 
-        private void empTabRelationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnRelationSelection(object sender, EventArgs e)
         {
+            var emp = empTabEmployeesDataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
+            
+            string relation = empTabRelationComboBox.Text;
+            string empID = emp.No_;
+
+            switch (relation)
+            {
+                case "Absences":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeAbsence(empID);
+                    break;
+                case "Relatives":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeRelatives(empID);
+                    break;
+                case "Qualifications":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeQualifications(empID);
+                    break;
+            }
+           
+        }
+
+        private void OnEmployeeTablesCellClickChangeRelationTable(object sender, DataGridViewCellEventArgs e)
+        {
+            var emp = empTabEmployeesDataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
+
+            string relation = empTabRelationComboBox.Text;
+            string empID = emp.No_;
+
+            switch (relation)
+            {
+                case "Absences":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeAbsence(empID);
+                    break;
+                case "Relatives":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeRelatives(empID);
+                    break;
+                case "Qualifications":
+                    empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeQualifications(empID);
+                    break;
+            }
             
         }
+        
+
+       
     }
 }

@@ -27,9 +27,7 @@ namespace WebService3
     
         public virtual DbSet<CRONUS_Sverige_AB_Employee> CRONUS_Sverige_AB_Employee { get; set; }
         public virtual DbSet<CRONUS_Sverige_AB_Employee_Absence> CRONUS_Sverige_AB_Employee_Absence { get; set; }
-        public virtual DbSet<CRONUS_Sverige_AB_Employee_Portal_Setup> CRONUS_Sverige_AB_Employee_Portal_Setup { get; set; }
         public virtual DbSet<CRONUS_Sverige_AB_Employee_Qualification> CRONUS_Sverige_AB_Employee_Qualification { get; set; }
         public virtual DbSet<CRONUS_Sverige_AB_Employee_Relative> CRONUS_Sverige_AB_Employee_Relative { get; set; }
-        public virtual DbSet<CRONUS_Sverige_AB_Employee_Statistics_Group> CRONUS_Sverige_AB_Employee_Statistics_Group { get; set; }
     }
 }

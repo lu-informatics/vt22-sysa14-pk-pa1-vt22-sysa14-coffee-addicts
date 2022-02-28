@@ -88,9 +88,21 @@ namespace WebService3
             return dataAccessLayer.GetEmployees();
         }
         [WebMethod]
-        public List <object> GetCronusTable(string tableName)
+        public List<CRONUS_Sverige_AB_Employee_Absence> GetEmployeeAbsence(string primaryKey)
         {
-            return null;
+            return dataAccessLayer.GetEmployeeAbsence(primaryKey);
+        }
+
+        [WebMethod]
+        public List<CRONUS_Sverige_AB_Employee_Relative> GetEmployeeRelatives(string primaryKey)
+        {
+            return dataAccessLayer.GetEmployeeRelatives(primaryKey);    
+        }
+
+        [WebMethod]
+        public List<CRONUS_Sverige_AB_Employee_Qualification> GetEmployeeQualifications(string primaryKey)
+        {
+            return dataAccessLayer.GetEmployeeQualifications(primaryKey);
         }
         [WebMethod]
         public void DeleteEmployee(string pk)

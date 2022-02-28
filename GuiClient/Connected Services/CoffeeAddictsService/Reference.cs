@@ -64,6 +64,30 @@ namespace CoffeeAddictsService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployees", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeAbsence", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Absence[] GetEmployeeAbsence(string primaryKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeAbsence", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Absence[]> GetEmployeeAbsenceAsync(string primaryKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeRelatives", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Relative[] GetEmployeeRelatives(string primaryKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeRelatives", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Relative[]> GetEmployeeRelativesAsync(string primaryKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeQualifications", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Qualification[] GetEmployeeQualifications(string primaryKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEmployeeQualifications", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Qualification[]> GetEmployeeQualificationsAsync(string primaryKey);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeleteEmployee", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
@@ -87,6 +111,574 @@ namespace CoffeeAddictsService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusData", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.ArrayOfXElement> GetCronusDataAsync(string methodName);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CRONUS_Sverige_AB_Employee_Qualification
+    {
+        
+        private byte[] timestampField;
+        
+        private string employee_No_Field;
+        
+        private int line_No_Field;
+        
+        private string qualification_CodeField;
+        
+        private System.DateTime from_DateField;
+        
+        private System.DateTime to_DateField;
+        
+        private int typeField;
+        
+        private string descriptionField;
+        
+        private string institution_CompanyField;
+        
+        private decimal costField;
+        
+        private string course_GradeField;
+        
+        private int employee_StatusField;
+        
+        private System.DateTime expiration_DateField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] timestamp
+        {
+            get
+            {
+                return this.timestampField;
+            }
+            set
+            {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Employee_No_
+        {
+            get
+            {
+                return this.employee_No_Field;
+            }
+            set
+            {
+                this.employee_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int Line_No_
+        {
+            get
+            {
+                return this.line_No_Field;
+            }
+            set
+            {
+                this.line_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Qualification_Code
+        {
+            get
+            {
+                return this.qualification_CodeField;
+            }
+            set
+            {
+                this.qualification_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public System.DateTime From_Date
+        {
+            get
+            {
+                return this.from_DateField;
+            }
+            set
+            {
+                this.from_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public System.DateTime To_Date
+        {
+            get
+            {
+                return this.to_DateField;
+            }
+            set
+            {
+                this.to_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public int Type
+        {
+            get
+            {
+                return this.typeField;
+            }
+            set
+            {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string Institution_Company
+        {
+            get
+            {
+                return this.institution_CompanyField;
+            }
+            set
+            {
+                this.institution_CompanyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public decimal Cost
+        {
+            get
+            {
+                return this.costField;
+            }
+            set
+            {
+                this.costField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string Course_Grade
+        {
+            get
+            {
+                return this.course_GradeField;
+            }
+            set
+            {
+                this.course_GradeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public int Employee_Status
+        {
+            get
+            {
+                return this.employee_StatusField;
+            }
+            set
+            {
+                this.employee_StatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public System.DateTime Expiration_Date
+        {
+            get
+            {
+                return this.expiration_DateField;
+            }
+            set
+            {
+                this.expiration_DateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CRONUS_Sverige_AB_Employee_Relative
+    {
+        
+        private byte[] timestampField;
+        
+        private string employee_No_Field;
+        
+        private int line_No_Field;
+        
+        private string relative_CodeField;
+        
+        private string first_NameField;
+        
+        private string middle_NameField;
+        
+        private string last_NameField;
+        
+        private System.DateTime birth_DateField;
+        
+        private string phone_No_Field;
+        
+        private string relative_s_Employee_No_Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] timestamp
+        {
+            get
+            {
+                return this.timestampField;
+            }
+            set
+            {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Employee_No_
+        {
+            get
+            {
+                return this.employee_No_Field;
+            }
+            set
+            {
+                this.employee_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int Line_No_
+        {
+            get
+            {
+                return this.line_No_Field;
+            }
+            set
+            {
+                this.line_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Relative_Code
+        {
+            get
+            {
+                return this.relative_CodeField;
+            }
+            set
+            {
+                this.relative_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string First_Name
+        {
+            get
+            {
+                return this.first_NameField;
+            }
+            set
+            {
+                this.first_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Middle_Name
+        {
+            get
+            {
+                return this.middle_NameField;
+            }
+            set
+            {
+                this.middle_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Last_Name
+        {
+            get
+            {
+                return this.last_NameField;
+            }
+            set
+            {
+                this.last_NameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public System.DateTime Birth_Date
+        {
+            get
+            {
+                return this.birth_DateField;
+            }
+            set
+            {
+                this.birth_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string Phone_No_
+        {
+            get
+            {
+                return this.phone_No_Field;
+            }
+            set
+            {
+                this.phone_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string Relative_s_Employee_No_
+        {
+            get
+            {
+                return this.relative_s_Employee_No_Field;
+            }
+            set
+            {
+                this.relative_s_Employee_No_Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CRONUS_Sverige_AB_Employee_Absence
+    {
+        
+        private byte[] timestampField;
+        
+        private int entry_No_Field;
+        
+        private string employee_No_Field;
+        
+        private System.DateTime from_DateField;
+        
+        private System.DateTime to_DateField;
+        
+        private string cause_of_Absence_CodeField;
+        
+        private string descriptionField;
+        
+        private decimal quantityField;
+        
+        private string unit_of_Measure_CodeField;
+        
+        private decimal quantity__Base_Field;
+        
+        private decimal qty__per_Unit_of_MeasureField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] timestamp
+        {
+            get
+            {
+                return this.timestampField;
+            }
+            set
+            {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int Entry_No_
+        {
+            get
+            {
+                return this.entry_No_Field;
+            }
+            set
+            {
+                this.entry_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Employee_No_
+        {
+            get
+            {
+                return this.employee_No_Field;
+            }
+            set
+            {
+                this.employee_No_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public System.DateTime From_Date
+        {
+            get
+            {
+                return this.from_DateField;
+            }
+            set
+            {
+                this.from_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public System.DateTime To_Date
+        {
+            get
+            {
+                return this.to_DateField;
+            }
+            set
+            {
+                this.to_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Cause_of_Absence_Code
+        {
+            get
+            {
+                return this.cause_of_Absence_CodeField;
+            }
+            set
+            {
+                this.cause_of_Absence_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public decimal Quantity
+        {
+            get
+            {
+                return this.quantityField;
+            }
+            set
+            {
+                this.quantityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string Unit_of_Measure_Code
+        {
+            get
+            {
+                return this.unit_of_Measure_CodeField;
+            }
+            set
+            {
+                this.unit_of_Measure_CodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public decimal Quantity__Base_
+        {
+            get
+            {
+                return this.quantity__Base_Field;
+            }
+            set
+            {
+                this.quantity__Base_Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public decimal Qty__per_Unit_of_Measure
+        {
+            get
+            {
+                return this.qty__per_Unit_of_MeasureField;
+            }
+            set
+            {
+                this.qty__per_Unit_of_MeasureField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -993,6 +1585,36 @@ namespace CoffeeAddictsService
         public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee[]> GetEmployeesAsync()
         {
             return base.Channel.GetEmployeesAsync();
+        }
+        
+        public CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Absence[] GetEmployeeAbsence(string primaryKey)
+        {
+            return base.Channel.GetEmployeeAbsence(primaryKey);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Absence[]> GetEmployeeAbsenceAsync(string primaryKey)
+        {
+            return base.Channel.GetEmployeeAbsenceAsync(primaryKey);
+        }
+        
+        public CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Relative[] GetEmployeeRelatives(string primaryKey)
+        {
+            return base.Channel.GetEmployeeRelatives(primaryKey);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Relative[]> GetEmployeeRelativesAsync(string primaryKey)
+        {
+            return base.Channel.GetEmployeeRelativesAsync(primaryKey);
+        }
+        
+        public CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Qualification[] GetEmployeeQualifications(string primaryKey)
+        {
+            return base.Channel.GetEmployeeQualifications(primaryKey);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.CRONUS_Sverige_AB_Employee_Qualification[]> GetEmployeeQualificationsAsync(string primaryKey)
+        {
+            return base.Channel.GetEmployeeQualificationsAsync(primaryKey);
         }
         
         public void DeleteEmployee(string pk)

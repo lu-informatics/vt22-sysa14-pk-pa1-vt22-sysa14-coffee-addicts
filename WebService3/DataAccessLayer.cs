@@ -101,6 +101,29 @@ public class DataAccessLayer
            
         }
     }
+    public List<CRONUS_Sverige_AB_Employee_Relative> GetEmployeeRelatives(string primaryKey)
+    {
+        using (CronusEntities cronus = new CronusEntities())
+        {
+            return cronus.CRONUS_Sverige_AB_Employee_Relative.ToList().Where(r => r.Employee_No_ == primaryKey).ToList();
+        }
+    }
+
+    public List<CRONUS_Sverige_AB_Employee_Absence> GetEmployeeAbsence(string primaryKey)
+    {
+        using (CronusEntities cronus = new CronusEntities())
+        {
+            return cronus.CRONUS_Sverige_AB_Employee_Absence.ToList().Where(a => a.Employee_No_ == primaryKey).ToList();
+        }
+    }
+
+    public List<CRONUS_Sverige_AB_Employee_Qualification> GetEmployeeQualifications(string primaryKey)
+    {
+        using (CronusEntities cronus = new CronusEntities())
+        {
+            return cronus.CRONUS_Sverige_AB_Employee_Qualification.ToList().Where(q => q.Employee_No_ == primaryKey).ToList();
+        }
+    }
 
     public void UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
     {
