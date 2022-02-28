@@ -19,13 +19,13 @@ namespace GuiClient
 
 
             ArrayOfXElement arrayOfX = coffeeAddictsClient.GetTableNames();
-            DataSet dataSet = ToDataSet(arrayOfX);
+            DataSet tableNames = ToDataSet(arrayOfX);
 
             
             a4c1dataGridView.AutoGenerateColumns = false;
             a3c2TableNameComboBox.DisplayMember = "TABLE_NAME";
             a3c2TableNameComboBox.BindingContext = this.BindingContext;
-            a3c2TableNameComboBox.DataSource = dataSet.Tables[0];
+            a3c2TableNameComboBox.DataSource = tableNames.Tables[0];
             empTabEmployeesDataGridView.AutoGenerateColumns = false;
 
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
@@ -150,11 +150,6 @@ namespace GuiClient
             coffeeAddictsClient.UpdateEmployee(tmpEmp);
 
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
 
         }
 

@@ -53,6 +53,25 @@ public class DataAccessLayer
             }
         }
     }
+    public DataTable GetColumnNames(string tableName)
+    {
+        using(SqlConnection sqlConnection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand sqlCommand = new SqlCommand($"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'",sqlConnection))
+            {
+                DataTable dataTable = new DataTable();
+                using(SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    adapter.SelectCommand=sqlCommand;
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+            
+
+        }
+           
+    }
 
     public DataSet GetMetaData(string tableName)
     {

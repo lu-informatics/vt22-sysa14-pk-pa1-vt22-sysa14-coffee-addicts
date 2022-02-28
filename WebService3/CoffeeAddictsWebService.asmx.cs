@@ -77,6 +77,31 @@ namespace WebService3
         }
 
         [WebMethod]
+        public List<object[]> GetColumnNamesAsList(string tableName)
+        {
+            try
+            {
+                DataTable table = dataAccessLayer.GetColumnNames(tableName);
+                List<object[]> list = new List<object[]>();
+                foreach (DataRow row in table.Rows)
+                {
+                    var array = row.ItemArray;
+                    list.Add(array);
+                }
+                return list;
+            }
+            catch (SqlException e)
+            {
+                return null;
+            }
+            catch (Exception e)
+            { return null; }
+
+        }
+
+
+
+        [WebMethod]
         public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
         {
             dataAccessLayer.CreateEmployee(employee);

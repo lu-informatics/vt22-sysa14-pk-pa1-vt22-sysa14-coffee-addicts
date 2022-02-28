@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class JavaGUIview extends JWindow{
 
@@ -17,6 +20,8 @@ public class JavaGUIview extends JWindow{
 	private JTextField a2c3fileNameTextField;
 	private JButton a2c3ReadBtn;
 	private JTextArea a2c3OutputTextArea;
+	private JTable a3c3tableJTable;
+	private JComboBox<String> a3c3tableNamesComboBox;
 
 	
 
@@ -42,7 +47,7 @@ public class JavaGUIview extends JWindow{
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel a2c3tab = new JPanel();
-		tabbedPane.addTab("Assignment 2 Client 3", null, a2c3tab, null);
+		tabbedPane.addTab("Assignment 2", null, a2c3tab, null);
 		a2c3tab.setLayout(null);
 		
 		JLabel a2c3lbl = new JLabel("File name:");
@@ -65,8 +70,26 @@ public class JavaGUIview extends JWindow{
 		a2c3OutputTextArea.setBounds(262, 194, 286, 187);
 		a2c3tab.add(a2c3OutputTextArea);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
+		JPanel a3c3_tab = new JPanel();
+		tabbedPane.addTab("Assignment 3", null, a3c3_tab, null);
+		a3c3_tab.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Table name:");
+		lblNewLabel.setBounds(289, 409, 62, 14);
+		a3c3_tab.add(lblNewLabel);
+		
+		a3c3tableNamesComboBox = new JComboBox();
+		
+		a3c3tableNamesComboBox.setBounds(354, 405, 176, 22);
+		a3c3_tab.add(a3c3tableNamesComboBox);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 862, 367);
+		a3c3_tab.add(scrollPane);
+		
+		a3c3tableJTable = new JTable();
+		a3c3tableJTable.setEnabled(false);
+		scrollPane.setViewportView(a3c3tableJTable);
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_2, null);
@@ -87,4 +110,10 @@ public class JavaGUIview extends JWindow{
 		return a2c3OutputTextArea;
 	}
 	
+	public JComboBox<String> getA3c3tableNamesComboBox() {
+		return a3c3tableNamesComboBox;
+	}
+	public JTable a3c3tableJTable() {
+		return a3c3tableJTable;
+	}
 }

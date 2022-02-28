@@ -169,16 +169,6 @@
             this.a4c1tab.Text = "A4C1";
             this.a4c1tab.UseVisualStyleBackColor = true;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(490, 282);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "City";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
