@@ -98,19 +98,7 @@ public class DataAccessLayer
             return employees;
         }
     }
-    public List<object> GetCronusTable(string tableName)
-    {
-        using (CronusEntities cronusEntities = new CronusEntities())
-        {
-            switch (tableName)
-            {
-                case "Relative":
-                    break;
-            }
-            List<CRONUS_Sverige_AB_Employee> employees = cronusEntities.CRONUS_Sverige_AB_Employee.ToList();
-            return null;
-        }
-    }
+   
     public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
     {
         using(CronusEntities cronusEntities = new CronusEntities())

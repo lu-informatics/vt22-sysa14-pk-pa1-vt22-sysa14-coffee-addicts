@@ -15,12 +15,8 @@ namespace GuiClient
         public Form1()
         {
             InitializeComponent();
-
-
-
             ArrayOfXElement arrayOfX = coffeeAddictsClient.GetTableNames();
             DataSet tableNames = ToDataSet(arrayOfX);
-
             
             a4c1dataGridView.AutoGenerateColumns = false;
             a3c2TableNameComboBox.DisplayMember = "TABLE_NAME";
@@ -28,8 +24,7 @@ namespace GuiClient
             a3c2TableNameComboBox.DataSource = tableNames.Tables[0];
             empTabEmployeesDataGridView.AutoGenerateColumns = false;
 
-            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
-          
+            a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();          
             empTabEmployeesDataGridView.DataSource = coffeeAddictsClient.GetEmployees();
             
 
@@ -122,7 +117,7 @@ namespace GuiClient
             return ds;
         }
 
-        private void A3c2TableNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnA3c2TableNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tableName = a3c2TableNameComboBox.Text;
             var tableArray = coffeeAddictsClient.GetTable(tableName);
@@ -130,7 +125,7 @@ namespace GuiClient
             a3c2DataGridView.DataSource = set.Tables[0];
         }
 
-        private void a4c1dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void OnDataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true; //This ignores the problems with pictures and timestamps! NOT ELEGANT #USCH
         }
@@ -143,7 +138,7 @@ namespace GuiClient
         }
 
 
-        private void a4c1dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void OnA4c1dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             CRONUS_Sverige_AB_Employee tmpEmp = a4c1dataGridView.Rows[e.RowIndex].DataBoundItem as CRONUS_Sverige_AB_Employee;
             //Debug.Write(tmpEmp.First_Name);
@@ -153,7 +148,7 @@ namespace GuiClient
 
         }
 
-        private void a4c1AddBtn_Click(object sender, EventArgs e)
+        private void OnA4c1AddBtn_Click(object sender, EventArgs e)
         {
             string firstName = a4c1FirstNameTextBox.Text;
             string lastName = a4c1LastNameTextBox.Text;

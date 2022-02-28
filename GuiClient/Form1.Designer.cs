@@ -248,7 +248,7 @@
             this.a4c1AddBtn.TabIndex = 2;
             this.a4c1AddBtn.Text = "Add";
             this.a4c1AddBtn.UseVisualStyleBackColor = true;
-            this.a4c1AddBtn.Click += new System.EventHandler(this.a4c1AddBtn_Click);
+            this.a4c1AddBtn.Click += new System.EventHandler(this.OnA4c1AddBtn_Click);
             // 
             // a4c1DeleteBtn
             // 
@@ -274,8 +274,8 @@
             this.a4c1dataGridView.RowTemplate.Height = 25;
             this.a4c1dataGridView.Size = new System.Drawing.Size(784, 248);
             this.a4c1dataGridView.TabIndex = 0;
-            this.a4c1dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.a4c1dataGridView_CellEndEdit);
-            this.a4c1dataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.a4c1dataGridView_DataError);
+            this.a4c1dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnA4c1dataGridView_CellEndEdit);
+            this.a4c1dataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.OnDataError);
             // 
             // First_Name
             // 
@@ -338,7 +338,7 @@
             this.a3c2TableNameComboBox.Name = "a3c2TableNameComboBox";
             this.a3c2TableNameComboBox.Size = new System.Drawing.Size(121, 23);
             this.a3c2TableNameComboBox.TabIndex = 1;
-            this.a3c2TableNameComboBox.SelectedIndexChanged += new System.EventHandler(this.A3c2TableNameComboBox_SelectedIndexChanged);
+            this.a3c2TableNameComboBox.SelectedIndexChanged += new System.EventHandler(this.OnA3c2TableNameComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -459,7 +459,7 @@
             this.empTabRelationsDataGridView.RowTemplate.Height = 25;
             this.empTabRelationsDataGridView.Size = new System.Drawing.Size(778, 164);
             this.empTabRelationsDataGridView.TabIndex = 1;
-            this.empTabRelationsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.a4c1dataGridView_DataError);
+            this.empTabRelationsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.OnDataError);
             // 
             // empTabEmployeesDataGridView
             // 
@@ -477,7 +477,7 @@
             this.empTabEmployeesDataGridView.Size = new System.Drawing.Size(776, 180);
             this.empTabEmployeesDataGridView.TabIndex = 0;
             this.empTabEmployeesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnEmployeeTablesCellClickChangeRelationTable);
-            this.empTabEmployeesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.a4c1dataGridView_DataError);
+            this.empTabEmployeesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.OnDataError);
             // 
             // EmployeeTablesFirstName
             // 

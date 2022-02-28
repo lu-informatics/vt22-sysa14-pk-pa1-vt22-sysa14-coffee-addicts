@@ -20,13 +20,6 @@ namespace ProgrammingAssignment2._1
     public class Servo : System.Web.Services.WebService
     {   
         
-        
-        [WebMethod]
-        public string HelloWorld()
-        {
-            return "Hello World";
-            
-        }
         [WebMethod]
         public string FindFile(string fileName)
         {
@@ -45,11 +38,6 @@ namespace ProgrammingAssignment2._1
 
         }
 
-        [WebMethod]
-        public void GetTable()
-        {
-           
-            
-        }
+
     }
 }

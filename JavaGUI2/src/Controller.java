@@ -1,18 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.sql.ResultSet;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-
-import org.apache.axis.utils.tcpmon;
 import org.tempuri.*;
-import java.util.*;
 public class Controller {
 	private JavaGUIview javaGUIview;
 	private ServoSoapProxy serverProxy = new ServoSoapProxy();
@@ -55,6 +49,7 @@ public class Controller {
 				}
 			}
 		});
+		
 	}
 	public void FillTable(JTable table, String tableName){
 		
@@ -70,10 +65,6 @@ public class Controller {
 				TableColumn tc = tableColumnModel.getColumn(i);
 				tc.setHeaderValue(headers[i][0]);
 				tHeader.repaint();
-				
-				
-				
-				
 			}
 			
 			for(int i = 0; i < objects.length; i++) {
@@ -81,9 +72,7 @@ public class Controller {
 				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 				tableModel.addRow(obj);
 
-			}
-			
-			
+			}			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
