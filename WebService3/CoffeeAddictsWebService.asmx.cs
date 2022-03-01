@@ -20,6 +20,7 @@ namespace WebService3
     public class WebService1 : System.Web.Services.WebService
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
+        private Utils utils = new Utils();  
 
         [WebMethod]
         public string HelloWorld()
@@ -59,14 +60,17 @@ namespace WebService3
         {
             try
             {
+
                 DataTable table = dataAccessLayer.GetTable(tableName);
-                List<object[]> list = new List<object[]>();
-                foreach (DataRow row in table.Rows)
-                {
-                    var array = row.ItemArray;
-                    list.Add(array);
-                }
-                return list;
+                return utils.ConvertDataTableToList(table);
+                //DataTable table = dataAccessLayer.GetTable(tableName);
+                //List<object[]> list = new List<object[]>();
+                //foreach (DataRow row in table.Rows)
+                //{
+                //    var array = row.ItemArray;
+                //    list.Add(array);
+                //}
+                //return list;
             }
             catch (SqlException e)
             {
@@ -82,13 +86,14 @@ namespace WebService3
             try
             {
                 DataTable table = dataAccessLayer.GetColumnNames(tableName);
-                List<object[]> list = new List<object[]>();
-                foreach (DataRow row in table.Rows)
-                {
-                    var array = row.ItemArray;
-                    list.Add(array);
-                }
-                return list;
+                return utils.ConvertDataTableToList(table);
+                //List<object[]> list = new List<object[]>();
+                //foreach (DataRow row in table.Rows)
+                //{
+                //    var array = row.ItemArray;
+                //    list.Add(array);
+                //}
+                //return list;
             }
             catch (SqlException e)
             {

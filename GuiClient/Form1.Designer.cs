@@ -35,7 +35,6 @@
             this.a5c1MethodComboBox = new System.Windows.Forms.ComboBox();
             this.a5c1lbl = new System.Windows.Forms.Label();
             this.a4c1tab = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,6 +72,7 @@
             this.EmployeeTablesJobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeTablesPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeTablesCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
             this.a5c1tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.a5c1OutputDataGridView)).BeginInit();
             this.a4c1tab.SuspendLayout();
@@ -514,6 +514,15 @@
             this.EmployeeTablesCity.Name = "EmployeeTablesCity";
             this.EmployeeTablesCity.ReadOnly = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(500, 282);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "City";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -551,7 +560,6 @@
         private ComboBox a5c1MethodComboBox;
         private Label a5c1lbl;
         private TabPage a4c1tab;
-        private Label label7;
         private Label label6;
         private Label label5;
         private Label label4;
@@ -589,5 +597,6 @@
         private DataGridViewTextBoxColumn EmployeeTablesJobTitle;
         private DataGridViewTextBoxColumn EmployeeTablesPhoneNumber;
         private DataGridViewTextBoxColumn EmployeeTablesCity;
+        private Label label7;
     }
 }

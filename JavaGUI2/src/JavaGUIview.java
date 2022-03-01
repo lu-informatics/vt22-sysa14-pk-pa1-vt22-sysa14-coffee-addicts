@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
 
 public class JavaGUIview extends JWindow{
 
@@ -22,6 +23,15 @@ public class JavaGUIview extends JWindow{
 	private JTextArea a2c3OutputTextArea;
 	private JTable a3c3tableJTable;
 	private JComboBox<String> a3c3tableNamesComboBox;
+	private JTable a4c2TableJTable;
+	private JTextField a4c2FirstNameTextField;
+	private JTextField a4c2LastNameTextField;
+	private JTextField a4c2JobTitleTextField;
+	private JTextField a4c2PhoneNumberTextField;
+	private JTextField a4c2CityTextField;
+	private JButton a4c2AddBtn;
+	private JButton a4c2DeleteBtn;
+	private JLabel lblUserMessage;
 
 	
 
@@ -91,13 +101,79 @@ public class JavaGUIview extends JWindow{
 		a3c3tableJTable.setEnabled(false);
 		scrollPane.setViewportView(a3c3tableJTable);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_2, null);
+		JPanel a4c2_tab = new JPanel();
+		tabbedPane.addTab("Assignment 4", null, a4c2_tab, null);
+		a4c2_tab.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 11, 862, 250);
+		a4c2_tab.add(scrollPane_1);
+		
+		a4c2TableJTable = new JTable();
+		scrollPane_1.setViewportView(a4c2TableJTable);
+		
+		JLabel lblNewLabel_1 = new JLabel("First Name");
+		lblNewLabel_1.setBounds(10, 302, 65, 14);
+		a4c2_tab.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Last Name");
+		lblNewLabel_2.setBounds(10, 377, 65, 14);
+		a4c2_tab.add(lblNewLabel_2);
+		
+		a4c2FirstNameTextField = new JTextField();
+		a4c2FirstNameTextField.setBounds(77, 299, 130, 20);
+		a4c2_tab.add(a4c2FirstNameTextField);
+		a4c2FirstNameTextField.setColumns(10);
+		
+		a4c2LastNameTextField = new JTextField();
+		a4c2LastNameTextField.setBounds(77, 374, 130, 20);
+		a4c2_tab.add(a4c2LastNameTextField);
+		a4c2LastNameTextField.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Job Title");
+		lblNewLabel_3.setBounds(307, 302, 56, 14);
+		a4c2_tab.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Phone #");
+		lblNewLabel_4.setBounds(307, 377, 56, 14);
+		a4c2_tab.add(lblNewLabel_4);
+		
+		a4c2JobTitleTextField = new JTextField();
+		a4c2JobTitleTextField.setBounds(367, 299, 130, 20);
+		a4c2_tab.add(a4c2JobTitleTextField);
+		a4c2JobTitleTextField.setColumns(10);
+		
+		a4c2PhoneNumberTextField = new JTextField();
+		a4c2PhoneNumberTextField.setBounds(367, 374, 130, 20);
+		a4c2_tab.add(a4c2PhoneNumberTextField);
+		a4c2PhoneNumberTextField.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("City");
+		lblNewLabel_5.setBounds(589, 302, 30, 14);
+		a4c2_tab.add(lblNewLabel_5);
+		
+		a4c2CityTextField = new JTextField();
+		a4c2CityTextField.setBounds(623, 299, 130, 20);
+		a4c2_tab.add(a4c2CityTextField);
+		a4c2CityTextField.setColumns(10);
+		
+		a4c2AddBtn = new JButton("Add");
+		a4c2AddBtn.setBounds(298, 437, 89, 23);
+		a4c2_tab.add(a4c2AddBtn);
+		
+		a4c2DeleteBtn = new JButton("Delete");
+		a4c2DeleteBtn.setBounds(443, 437, 89, 23);
+		a4c2_tab.add(a4c2DeleteBtn);
+		
+		lblUserMessage = new JLabel("");
+		lblUserMessage.setBounds(10, 468, 862, 14);
+		a4c2_tab.add(lblUserMessage);
 		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_3, null);
 		frame.setVisible(true);
 	}
+	
 	public JButton getA2C3ReadBtn() {
 		return this.a2c3ReadBtn;
 	}
@@ -113,7 +189,44 @@ public class JavaGUIview extends JWindow{
 	public JComboBox<String> getA3c3tableNamesComboBox() {
 		return a3c3tableNamesComboBox;
 	}
+	
 	public JTable a3c3tableJTable() {
 		return a3c3tableJTable;
+	}
+
+	public JTable getA4c2TableJTable() {
+		return a4c2TableJTable;
+	}
+
+	public JTextField getA4c2FirstNameTextField() {
+		return a4c2FirstNameTextField;
+	}
+
+	public JTextField getA4c2LastNameTextField() {
+		return a4c2LastNameTextField;
+	}
+
+	public JTextField getA4c2JobTitleTextField() {
+		return a4c2JobTitleTextField;
+	}
+
+	public JTextField getA4c2PhoneNumberTextField() {
+		return a4c2PhoneNumberTextField;
+	}
+
+	public JTextField getA4c2CityTextField() {
+		return a4c2CityTextField;
+	}
+
+	public JButton getA4c2AddBtn() {
+		return a4c2AddBtn;
+	}
+
+	public JButton getA4c2DeleteBtn() {
+		return a4c2DeleteBtn;
+	}
+
+	public JLabel getLblUserMessage() {
+		return lblUserMessage;
 	}
 }
