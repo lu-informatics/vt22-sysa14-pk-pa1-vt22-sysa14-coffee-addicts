@@ -48,6 +48,15 @@ namespace CoffeeAddictsService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetTableValuesAsList", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.GetTableValuesAsListResponse> GetTableValuesAsListAsync(CoffeeAddictsService.GetTableValuesAsListRequest request);
         
+        // CODEGEN: Parameter 'GetColumnNamesAsListResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'Microsoft.Xml.Serialization.XmlArrayItemAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetColumnNamesAsList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.GetColumnNamesAsListResponse GetColumnNamesAsList(CoffeeAddictsService.GetColumnNamesAsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetColumnNamesAsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.GetColumnNamesAsListResponse> GetColumnNamesAsListAsync(CoffeeAddictsService.GetColumnNamesAsListRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateEmployee", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
@@ -111,6 +120,15 @@ namespace CoffeeAddictsService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusData", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.ArrayOfXElement> GetCronusDataAsync(string methodName);
+        
+        // CODEGEN: Parameter 'GetCronusDataAsListResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'Microsoft.Xml.Serialization.XmlArrayItemAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusDataAsList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        CoffeeAddictsService.GetCronusDataAsListResponse GetCronusDataAsList(CoffeeAddictsService.GetCronusDataAsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusDataAsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<CoffeeAddictsService.GetCronusDataAsListResponse> GetCronusDataAsListAsync(CoffeeAddictsService.GetCronusDataAsListRequest request);
     }
     
     /// <remarks/>
@@ -1467,6 +1485,90 @@ namespace CoffeeAddictsService
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetColumnNamesAsList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetColumnNamesAsListRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string tableName;
+        
+        public GetColumnNamesAsListRequest()
+        {
+        }
+        
+        public GetColumnNamesAsListRequest(string tableName)
+        {
+            this.tableName = tableName;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetColumnNamesAsListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetColumnNamesAsListResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+        [System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+        public object[][] GetColumnNamesAsListResult;
+        
+        public GetColumnNamesAsListResponse()
+        {
+        }
+        
+        public GetColumnNamesAsListResponse(object[][] GetColumnNamesAsListResult)
+        {
+            this.GetColumnNamesAsListResult = GetColumnNamesAsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCronusDataAsList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCronusDataAsListRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string methodName;
+        
+        public GetCronusDataAsListRequest()
+        {
+        }
+        
+        public GetCronusDataAsListRequest(string methodName)
+        {
+            this.methodName = methodName;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCronusDataAsListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCronusDataAsListResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+        [System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+        public object[][] GetCronusDataAsListResult;
+        
+        public GetCronusDataAsListResponse()
+        {
+        }
+        
+        public GetCronusDataAsListResponse(object[][] GetCronusDataAsListResult)
+        {
+            this.GetCronusDataAsListResult = GetCronusDataAsListResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     public interface WebService1SoapChannel : CoffeeAddictsService.WebService1Soap, System.ServiceModel.IClientChannel
     {
@@ -1567,6 +1669,33 @@ namespace CoffeeAddictsService
             return ((CoffeeAddictsService.WebService1Soap)(this)).GetTableValuesAsListAsync(inValue);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CoffeeAddictsService.GetColumnNamesAsListResponse CoffeeAddictsService.WebService1Soap.GetColumnNamesAsList(CoffeeAddictsService.GetColumnNamesAsListRequest request)
+        {
+            return base.Channel.GetColumnNamesAsList(request);
+        }
+        
+        public object[][] GetColumnNamesAsList(string tableName)
+        {
+            CoffeeAddictsService.GetColumnNamesAsListRequest inValue = new CoffeeAddictsService.GetColumnNamesAsListRequest();
+            inValue.tableName = tableName;
+            CoffeeAddictsService.GetColumnNamesAsListResponse retVal = ((CoffeeAddictsService.WebService1Soap)(this)).GetColumnNamesAsList(inValue);
+            return retVal.GetColumnNamesAsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CoffeeAddictsService.GetColumnNamesAsListResponse> CoffeeAddictsService.WebService1Soap.GetColumnNamesAsListAsync(CoffeeAddictsService.GetColumnNamesAsListRequest request)
+        {
+            return base.Channel.GetColumnNamesAsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.GetColumnNamesAsListResponse> GetColumnNamesAsListAsync(string tableName)
+        {
+            CoffeeAddictsService.GetColumnNamesAsListRequest inValue = new CoffeeAddictsService.GetColumnNamesAsListRequest();
+            inValue.tableName = tableName;
+            return ((CoffeeAddictsService.WebService1Soap)(this)).GetColumnNamesAsListAsync(inValue);
+        }
+        
         public void CreateEmployee(CoffeeAddictsService.CRONUS_Sverige_AB_Employee employee)
         {
             base.Channel.CreateEmployee(employee);
@@ -1645,6 +1774,33 @@ namespace CoffeeAddictsService
         public System.Threading.Tasks.Task<CoffeeAddictsService.ArrayOfXElement> GetCronusDataAsync(string methodName)
         {
             return base.Channel.GetCronusDataAsync(methodName);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CoffeeAddictsService.GetCronusDataAsListResponse CoffeeAddictsService.WebService1Soap.GetCronusDataAsList(CoffeeAddictsService.GetCronusDataAsListRequest request)
+        {
+            return base.Channel.GetCronusDataAsList(request);
+        }
+        
+        public object[][] GetCronusDataAsList(string methodName)
+        {
+            CoffeeAddictsService.GetCronusDataAsListRequest inValue = new CoffeeAddictsService.GetCronusDataAsListRequest();
+            inValue.methodName = methodName;
+            CoffeeAddictsService.GetCronusDataAsListResponse retVal = ((CoffeeAddictsService.WebService1Soap)(this)).GetCronusDataAsList(inValue);
+            return retVal.GetCronusDataAsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CoffeeAddictsService.GetCronusDataAsListResponse> CoffeeAddictsService.WebService1Soap.GetCronusDataAsListAsync(CoffeeAddictsService.GetCronusDataAsListRequest request)
+        {
+            return base.Channel.GetCronusDataAsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CoffeeAddictsService.GetCronusDataAsListResponse> GetCronusDataAsListAsync(string methodName)
+        {
+            CoffeeAddictsService.GetCronusDataAsListRequest inValue = new CoffeeAddictsService.GetCronusDataAsListRequest();
+            inValue.methodName = methodName;
+            return ((CoffeeAddictsService.WebService1Soap)(this)).GetCronusDataAsListAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

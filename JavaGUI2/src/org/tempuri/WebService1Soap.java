@@ -21,4 +21,6 @@ public interface WebService1Soap extends java.rmi.Remote {
     public void deleteEmployee(java.lang.String pk) throws java.rmi.RemoteException;
     public void updateEmployee(org.tempuri.CRONUS_Sverige_AB_Employee employee) throws java.rmi.RemoteException;
     public org.tempuri.GetCronusDataResponseGetCronusDataResult getCronusData(java.lang.String methodName) throws java.rmi.RemoteException;
+    public java.lang.Object[][] getCronusDataAsList(java.lang.String methodName) throws java.rmi.RemoteException;
+    public java.lang.String[] getCronusHeaders(java.lang.String methodName) throws java.rmi.RemoteException;
 }

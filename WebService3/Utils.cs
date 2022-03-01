@@ -7,21 +7,66 @@ namespace WebService3
     public class Utils
     {
 
+        //public List<object[]> ConvertDataSetToList(DataSet dataSet)
+        //{
+        //    try
+        //    {
+
+        //        DataTable table = dataSet.Tables[0];
+        //        List<object[]> list = new List<object[]>();
+        //        foreach (DataRow row in table.Rows)
+        //        {
+        //            var array = row.ItemArray;
+        //            list.Add(array);
+        //        }
+        //        return list;
+        //    }
+        //    catch (Exception e)
+        //    { return new List<object[]>(); }
+
+        //}
         public List<object[]> ConvertDataSetToList(DataSet dataSet)
         {
             try
             {
+
                 DataTable table = dataSet.Tables[0];
                 List<object[]> list = new List<object[]>();
                 foreach (DataRow row in table.Rows)
                 {
-                    var array = row.ItemArray;
-                    list.Add(array);
+                    var rowArray = row.ItemArray;
+                    for (int i = 0; i < rowArray.Length; i++)
+                    {
+                        if(rowArray[i] == System.DBNull.Value)
+                        {
+                            rowArray[i] = null;
+                        }
+                    }
+
+                    
+                    list.Add(rowArray);
                 }
                 return list;
             }
             catch (Exception e)
             { return new List<object[]>(); }
+
+        }
+        public List<string> GetCronusHeaders(DataSet dataSet)
+        {
+            try
+            {
+                DataTable table = dataSet.Tables[0];
+                List<string> list = new List<string>();
+                foreach (DataColumn column in table.Columns)
+                {
+                    var header = column.ColumnName.ToString();
+                    list.Add(header);
+                }
+                return list;
+            }
+            catch (Exception e)
+            { return new List<string>(); }
 
         }
         public List<object[]> ConvertDataTableToList(DataTable dataTable)

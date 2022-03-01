@@ -1,11 +1,16 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.rmi.RemoteException;
 import java.sql.Time;
 
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -28,6 +33,18 @@ public class Controller {
 		javaGUIview.getA3c3tableNamesComboBox().addItem("Foam");
 		javaGUIview.getA3c3tableNamesComboBox().addItem("Milk");
 		javaGUIview.getA3c3tableNamesComboBox().addItem("Water");
+		
+		javaGUIview.getA5c2_1tableJComboBox().addItem("All keys");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All indexes");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All table_constraints");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All tables #1");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All tables #2");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All employee columns #1");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All employee columns #2");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("Absentee");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("Sickness");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("Employees and relatives");
+        javaGUIview.getA5c2_1tableJComboBox().addItem("All Employee Tables Metadata");
 		
 		DrawEmployeeTable();
 		declareListeners();
@@ -129,6 +146,54 @@ public class Controller {
 				}
 			}
 		});
+		javaGUIview.getA4c2TableJTable().getModel().addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				// TODO Auto-generated method stub
+				JTable table = javaGUIview.getA4c2TableJTable();
+				CRONUS_Sverige_AB_Employee employee = new CRONUS_Sverige_AB_Employee();
+				employee.setNo_(table.getValueAt(table.getSelectedRow(), 0).toString());
+				employee.setFirst_Name(table.getValueAt(table.getSelectedRow(), 1).toString());
+				employee.setLast_Name(table.getValueAt(table.getSelectedRow(), 2).toString());
+				employee.setJob_Title(table.getValueAt(table.getSelectedRow(), 3).toString());
+				employee.setPhone_No_(table.getValueAt(table.getSelectedRow(), 4).toString());
+				employee.setCity(table.getValueAt(table.getSelectedRow(), 5).toString());
+				employee.setAlt__Address_End_Date(Calendar.getInstance());
+				employee.setAlt__Address_Start_Date(Calendar.getInstance());
+				employee.setBirth_Date(Calendar.getInstance());
+				employee.setEmployment_Date(Calendar.getInstance());
+				employee.setInactive_Date(Calendar.getInstance());
+				employee.setLast_Date_Modified(Calendar.getInstance());
+				employee.setTermination_Date(Calendar.getInstance());
+				try {
+					coffeeAddictsProxy.updateEmployee(employee);
+					javaGUIview.getLblUserMessage().setText("Employee "+employee.getNo_()+" has been updated.");
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				DrawEmployeeTable();
+				
+				
+		
+				
+			}
+		});
+		javaGUIview.getA5c2_1tableJComboBox().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String methodName = javaGUIview.getA5c2_1tableJComboBox().getSelectedItem().toString();
+					Object[][] array = coffeeAddictsProxy.getCronusDataAsList(methodName);
+					String[] headersStrings = coffeeAddictsProxy.getCronusHeaders(methodName);			
+					JTable table = javaGUIview.getA5c2_1tableJTable();
+					FillTable(table, array,headersStrings);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+
 		
 	}
 	public void FillTable(JTable table, String tableName){
@@ -152,12 +217,38 @@ public class Controller {
 				DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 				tableModel.addRow(obj);
 
-			}			
+			}	
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
+	}
+	
+	public void FillTable(JTable table, Object[][] array, String[] headers){
+		
+		Object[][] objects = array;
+		DefaultTableModel model = new DefaultTableModel();
+		model.setColumnCount(objects[0].length);
+		table.setModel(model);
+
+			for(int i = 0; i < headers.length; i++) {
+				JTableHeader tHeader = table.getTableHeader();
+				TableColumnModel tableColumnModel = tHeader.getColumnModel();
+				TableColumn tc = tableColumnModel.getColumn(i);
+				tc.setHeaderValue(headers[i]);
+				tc.setMinWidth(130);
+				tHeader.repaint();
+			}
+		
+		for(int i = 0; i < objects.length; i++) {
+			Object[] obj = objects[i];
+			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+			tableModel.addRow(obj);
+		}
+		
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 	
 	public void DrawTable(String tableName) {
@@ -199,6 +290,8 @@ public class Controller {
 			TableColumn tc6 = tableColumnModel.getColumn(5);
 			tc6.setHeaderValue("City");
 			tHeader.repaint();
+			
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

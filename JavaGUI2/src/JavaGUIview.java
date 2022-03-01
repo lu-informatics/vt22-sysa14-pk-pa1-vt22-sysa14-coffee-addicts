@@ -9,11 +9,13 @@ import javax.swing.JWindow;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.security.PublicKey;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+import javax.swing.ScrollPaneConstants;
 
 public class JavaGUIview extends JWindow{
 
@@ -32,6 +34,11 @@ public class JavaGUIview extends JWindow{
 	private JButton a4c2AddBtn;
 	private JButton a4c2DeleteBtn;
 	private JLabel lblUserMessage;
+	private JPanel a5c2_tab;
+	private JScrollPane scrollPane_2;
+	private JTable a5c2_1tableJTable;
+	private JLabel lblNewLabel_6;
+	private JComboBox<String> a5c2_1tableJComboBox;
 
 	
 
@@ -109,7 +116,12 @@ public class JavaGUIview extends JWindow{
 		scrollPane_1.setBounds(10, 11, 862, 250);
 		a4c2_tab.add(scrollPane_1);
 		
-		a4c2TableJTable = new JTable();
+		a4c2TableJTable = new JTable() {
+			@Override
+			 public boolean isCellEditable(int row, int column) {
+		        return column != 0 ? true : false;
+		    }
+		};
 		scrollPane_1.setViewportView(a4c2TableJTable);
 		
 		JLabel lblNewLabel_1 = new JLabel("First Name");
@@ -169,11 +181,32 @@ public class JavaGUIview extends JWindow{
 		lblUserMessage.setBounds(10, 468, 862, 14);
 		a4c2_tab.add(lblUserMessage);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_3, null);
+		a5c2_tab = new JPanel();
+		tabbedPane.addTab("Assignment 5.1", null, a5c2_tab, null);
+		a5c2_tab.setLayout(null);
+		
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 11, 862, 304);
+		a5c2_tab.add(scrollPane_2);
+		
+		a5c2_1tableJTable = new JTable();
+		scrollPane_2.setViewportView(a5c2_1tableJTable);
+		
+		lblNewLabel_6 = new JLabel("Choose table:");
+		lblNewLabel_6.setBounds(84, 379, 84, 14);
+		a5c2_tab.add(lblNewLabel_6);
+		
+		a5c2_1tableJComboBox = new JComboBox();
+		a5c2_1tableJComboBox.setMaximumRowCount(20);
+		a5c2_1tableJComboBox.setBounds(178, 375, 195, 22);
+		a5c2_tab.add(a5c2_1tableJComboBox);
 		frame.setVisible(true);
 	}
 	
+	public JTable getA5c2_1tableJTable() {
+		return a5c2_1tableJTable;
+	}
+
 	public JButton getA2C3ReadBtn() {
 		return this.a2c3ReadBtn;
 	}
@@ -229,4 +262,11 @@ public class JavaGUIview extends JWindow{
 	public JLabel getLblUserMessage() {
 		return lblUserMessage;
 	}
+
+	public JComboBox<String> getA5c2_1tableJComboBox() {
+		return a5c2_1tableJComboBox;
+	}
+    
+	
+	
 }

@@ -122,5 +122,17 @@ public class WebService1SoapProxy implements org.tempuri.WebService1Soap {
     return webService1Soap.getCronusData(methodName);
   }
   
+  public java.lang.Object[][] getCronusDataAsList(java.lang.String methodName) throws java.rmi.RemoteException{
+    if (webService1Soap == null)
+      _initWebService1SoapProxy();
+    return webService1Soap.getCronusDataAsList(methodName);
+  }
+  
+  public java.lang.String[] getCronusHeaders(java.lang.String methodName) throws java.rmi.RemoteException{
+    if (webService1Soap == null)
+      _initWebService1SoapProxy();
+    return webService1Soap.getCronusHeaders(methodName);
+  }
+  
   
 }

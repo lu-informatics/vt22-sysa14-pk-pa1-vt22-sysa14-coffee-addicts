@@ -63,14 +63,7 @@ namespace WebService3
 
                 DataTable table = dataAccessLayer.GetTable(tableName);
                 return utils.ConvertDataTableToList(table);
-                //DataTable table = dataAccessLayer.GetTable(tableName);
-                //List<object[]> list = new List<object[]>();
-                //foreach (DataRow row in table.Rows)
-                //{
-                //    var array = row.ItemArray;
-                //    list.Add(array);
-                //}
-                //return list;
+         
             }
             catch (SqlException e)
             {
@@ -87,13 +80,7 @@ namespace WebService3
             {
                 DataTable table = dataAccessLayer.GetColumnNames(tableName);
                 return utils.ConvertDataTableToList(table);
-                //List<object[]> list = new List<object[]>();
-                //foreach (DataRow row in table.Rows)
-                //{
-                //    var array = row.ItemArray;
-                //    list.Add(array);
-                //}
-                //return list;
+        
             }
             catch (SqlException e)
             {
@@ -104,7 +91,7 @@ namespace WebService3
 
         }
 
-
+        
 
         [WebMethod]
         public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
@@ -153,6 +140,20 @@ namespace WebService3
             return dataAccessLayer.GetCronusData(methodName);
         }
 
+        [WebMethod]
+        public List<object[]> GetCronusDataAsList(string methodName)
+        {
+            DataSet dataSet = dataAccessLayer.GetCronusData(methodName);
+            return utils.ConvertDataSetToList(dataSet);
+        }
+         
+        [WebMethod]
+        public List<string> GetCronusHeaders(string methodName)
+        {
+            DataSet dataSet = dataAccessLayer.GetCronusData(methodName);
+            return utils.GetCronusHeaders(dataSet);
+        }
+       
 
     }
 }

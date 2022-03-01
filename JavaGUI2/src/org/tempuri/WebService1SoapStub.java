@@ -16,7 +16,7 @@ public class WebService1SoapStub extends org.apache.axis.client.Stub implements 
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[13];
+        _operations = new org.apache.axis.description.OperationDesc[15];
         _initOperationDesc1();
         _initOperationDesc2();
     }
@@ -182,6 +182,34 @@ public class WebService1SoapStub extends org.apache.axis.client.Stub implements 
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[12] = oper;
 
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("GetCronusDataAsList");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://tempuri.org/", "methodName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://tempuri.org/", "ArrayOfArrayOfAnyType"));
+        oper.setReturnClass(java.lang.Object[][].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://tempuri.org/", "GetCronusDataAsListResult"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("http://tempuri.org/", "ArrayOfAnyType"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[13] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("GetCronusHeaders");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://tempuri.org/", "methodName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://tempuri.org/", "ArrayOfString"));
+        oper.setReturnClass(java.lang.String[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://tempuri.org/", "GetCronusHeadersResult"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("http://tempuri.org/", "string"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[14] = oper;
+
     }
 
     public WebService1SoapStub() throws org.apache.axis.AxisFault {
@@ -283,9 +311,37 @@ public class WebService1SoapStub extends org.apache.axis.client.Stub implements 
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
+            qName = new javax.xml.namespace.QName("http://tempuri.org/", ">GetCronusDataAsList");
+            cachedSerQNames.add(qName);
+            cls = org.tempuri.GetCronusDataAsList.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://tempuri.org/", ">GetCronusDataAsListResponse");
+            cachedSerQNames.add(qName);
+            cls = org.tempuri.GetCronusDataAsListResponse.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
             qName = new javax.xml.namespace.QName("http://tempuri.org/", ">GetCronusDataResponse");
             cachedSerQNames.add(qName);
             cls = org.tempuri.GetCronusDataResponse.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://tempuri.org/", ">GetCronusHeaders");
+            cachedSerQNames.add(qName);
+            cls = org.tempuri.GetCronusHeaders.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://tempuri.org/", ">GetCronusHeadersResponse");
+            cachedSerQNames.add(qName);
+            cls = org.tempuri.GetCronusHeadersResponse.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -467,6 +523,15 @@ public class WebService1SoapStub extends org.apache.axis.client.Stub implements 
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://tempuri.org/", "CRONUS_Sverige_AB_Employee_Relative");
             qName2 = new javax.xml.namespace.QName("http://tempuri.org/", "CRONUS_Sverige_AB_Employee_Relative");
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("http://tempuri.org/", "ArrayOfString");
+            cachedSerQNames.add(qName);
+            cls = java.lang.String[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string");
+            qName2 = new javax.xml.namespace.QName("http://tempuri.org/", "string");
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
@@ -978,6 +1043,74 @@ public class WebService1SoapStub extends org.apache.axis.client.Stub implements 
                 return (org.tempuri.GetCronusDataResponseGetCronusDataResult) _resp;
             } catch (java.lang.Exception _exception) {
                 return (org.tempuri.GetCronusDataResponseGetCronusDataResult) org.apache.axis.utils.JavaUtils.convert(_resp, org.tempuri.GetCronusDataResponseGetCronusDataResult.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public java.lang.Object[][] getCronusDataAsList(java.lang.String methodName) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[13]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("http://tempuri.org/GetCronusDataAsList");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://tempuri.org/", "GetCronusDataAsList"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {methodName});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.Object[][]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.Object[][]) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.Object[][].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public java.lang.String[] getCronusHeaders(java.lang.String methodName) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[14]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("http://tempuri.org/GetCronusHeaders");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://tempuri.org/", "GetCronusHeaders"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {methodName});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.String[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.String[]) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
