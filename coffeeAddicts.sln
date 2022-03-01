@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingAssignment2.1", "ProgrammingAssignment2.1\ProgrammingAssignment2.1.csproj", "{29BF6219-AFF6-4F06-A66F-3B0FE2AA06CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoService", "ProgrammingAssignment2.1\ServoService.csproj", "{29BF6219-AFF6-4F06-A66F-3B0FE2AA06CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiClient", "GuiClient\GuiClient.csproj", "{26CEBFCE-78BE-4CFD-A183-9895C388AA48}"
 	ProjectSection(ProjectDependencies) = postProject
