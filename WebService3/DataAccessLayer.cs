@@ -8,6 +8,7 @@ public class DataAccessLayer
     private string connectionString;
     private string connectionStringCronus;
     private Utils utils = new Utils();
+
     public DataAccessLayer()
     {
         connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
@@ -25,7 +26,6 @@ public class DataAccessLayer
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
-
                     return dataSet;
                 }
             }
@@ -39,20 +39,16 @@ public class DataAccessLayer
             using (SqlCommand sqlCommand = new SqlCommand($"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'", sqlConnection))
             {
                 DataSet dataset = new DataSet();
-
-
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
                 {
                     adapter.SelectCommand = sqlCommand;
-
                     adapter.Fill(dataset);
-
                     return dataset;
                 }
-
             }
         }
     }
+
     public DataTable GetColumnNames(string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -67,10 +63,7 @@ public class DataAccessLayer
                     return dataTable;
                 }
             }
-
-
         }
-
     }
 
     public DataSet GetMetaData(string tableName)
@@ -84,12 +77,12 @@ public class DataAccessLayer
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
-
                     return dataSet;
                 }
             }
         }
     }
+
     public List<CRONUS_Sverige_AB_Employee> GetEmployees()
     {
         using (CronusEntities cronusEntities = new CronusEntities())
@@ -106,9 +99,9 @@ public class DataAccessLayer
             employee = utils.FillDefaultValues(employee);
             cronusEntities.CRONUS_Sverige_AB_Employee.Add(employee);
             cronusEntities.SaveChanges();
-
         }
     }
+
     public List<CRONUS_Sverige_AB_Employee_Relative> GetEmployeeRelatives(string primaryKey)
     {
         using (CronusEntities cronus = new CronusEntities())
@@ -145,9 +138,9 @@ public class DataAccessLayer
             tmpEmployee.City = employee.City;
 
             cronusEntities.SaveChanges();
-
         }
     }
+
     public void DeleteEmployee(string pk)
     {
         using (CronusEntities cronusEntities = new CronusEntities())
@@ -157,6 +150,7 @@ public class DataAccessLayer
             cronusEntities.SaveChanges();
         }
     }
+
     public DataTable GetTable(string tableName)
     {
         {
@@ -165,7 +159,6 @@ public class DataAccessLayer
                 using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM {tableName}", sqlConnection))
                 {
                     DataTable dataTable = new DataTable();
-
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
@@ -258,15 +251,9 @@ public class DataAccessLayer
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
-
                     return dataSet;
                 }
             }
         }
     }
-
-
-
-
-
 }

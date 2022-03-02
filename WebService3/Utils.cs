@@ -6,30 +6,10 @@ namespace WebService3
 {
     public class Utils
     {
-
-        //public List<object[]> ConvertDataSetToList(DataSet dataSet)
-        //{
-        //    try
-        //    {
-
-        //        DataTable table = dataSet.Tables[0];
-        //        List<object[]> list = new List<object[]>();
-        //        foreach (DataRow row in table.Rows)
-        //        {
-        //            var array = row.ItemArray;
-        //            list.Add(array);
-        //        }
-        //        return list;
-        //    }
-        //    catch (Exception e)
-        //    { return new List<object[]>(); }
-
-        //}
         public List<object[]> ConvertDataSetToList(DataSet dataSet)
         {
             try
             {
-
                 DataTable table = dataSet.Tables[0];
                 List<object[]> list = new List<object[]>();
                 foreach (DataRow row in table.Rows)
@@ -37,21 +17,19 @@ namespace WebService3
                     var rowArray = row.ItemArray;
                     for (int i = 0; i < rowArray.Length; i++)
                     {
-                        if(rowArray[i] == System.DBNull.Value)
+                        if (rowArray[i] == System.DBNull.Value)
                         {
                             rowArray[i] = null;
                         }
                     }
-
-                    
                     list.Add(rowArray);
                 }
                 return list;
             }
             catch (Exception e)
             { return new List<object[]>(); }
-
         }
+
         public List<string> GetCronusHeaders(DataSet dataSet)
         {
             try
@@ -66,9 +44,11 @@ namespace WebService3
                 return list;
             }
             catch (Exception e)
-            { return new List<string>(); }
-
+            {
+                return new List<string>();
+            }
         }
+
         public List<object[]> ConvertDataTableToList(DataTable dataTable)
         {
             try
@@ -82,9 +62,11 @@ namespace WebService3
                 return list;
             }
             catch (Exception e)
-            { return new List<object[]>(); }
-
+            {
+                return new List<object[]>();
+            }
         }
+
         public string SelectCronusQuery(string methodName)
         {
             string query = "";
@@ -93,9 +75,11 @@ namespace WebService3
                 case "All keys":
                     query = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_TYPE LIKE '%KEY'";
                     return query;
+
                 case "All indexes":
                     query = "SELECT * FROM sys.indexes";
                     return query;
+
                 case "All table_constraints":
                     query = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
                     return query;
@@ -116,7 +100,7 @@ namespace WebService3
                     query = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.CRONUS Sverige AB$Employee')";
                     return query;
 
-                case "Absentee": //Are spaces needed in query?
+                case "Absentee":
                     query = "SELECT e.[First Name] " +
                             "FROM [CRONUS Sverige AB$Employee] e " +
                             "WHERE e.[No_] IN " +
@@ -154,8 +138,8 @@ namespace WebService3
 
                 default: return null;
             }
-
         }
+
         public CRONUS_Sverige_AB_Employee FillDefaultValues(CRONUS_Sverige_AB_Employee employee)
         {
             Random random = new Random();
@@ -196,12 +180,10 @@ namespace WebService3
             employee.Statistics_Group_Code = "DEFAULT";
             employee.Status = 0;
             employee.Termination_Date = DateTime.Now;
-            //employee.timestamp = ;
             employee.Title = "DEFAULT";
             employee.Union_Code = "DEFAULT";
             employee.Union_Membership_No_ = "DEFAULT";
             return employee;
         }
-
     }
 }
