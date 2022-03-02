@@ -207,14 +207,24 @@ public class JavaGUIview extends JWindow{
 		scrollPane_3.setBounds(10, 11, 862, 187);
 		a5c2_2Tab.add(scrollPane_3);
 		
-		a5c2_2employeeTableJTable = new JTable();
+		a5c2_2employeeTableJTable = new JTable() {
+			@Override
+			 public boolean isCellEditable(int row, int column) {
+		        return false;
+		    }
+		};
 		scrollPane_3.setViewportView(a5c2_2employeeTableJTable);
 		
 		scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(10, 253, 862, 200);
 		a5c2_2Tab.add(scrollPane_4);
 		
-		a5c2_2relationsJTable = new JTable();
+		a5c2_2relationsJTable = new JTable() {
+			@Override
+			 public boolean isCellEditable(int row, int column) {
+		        return false;
+		    }
+		};
 		scrollPane_4.setViewportView(a5c2_2relationsJTable);
 		
 		a5c2_2userMessageLbl = new JLabel("");
