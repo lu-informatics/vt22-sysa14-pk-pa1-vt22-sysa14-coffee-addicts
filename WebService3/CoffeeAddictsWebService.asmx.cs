@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
+using System.Web.Services;
 
 namespace WebService3
 {
@@ -20,12 +17,12 @@ namespace WebService3
     public class WebService1 : System.Web.Services.WebService
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
-        private Utils utils = new Utils();  
+        private Utils utils = new Utils();
 
         [WebMethod]
         public string HelloWorld()
         {
-            
+
             return "Hello World";
         }
 
@@ -48,10 +45,7 @@ namespace WebService3
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed in GetTableNames()");
-
                 return null;
-                
             }
         }
 
@@ -63,12 +57,13 @@ namespace WebService3
 
                 DataTable table = dataAccessLayer.GetTable(tableName);
                 return utils.ConvertDataTableToList(table);
-         
+
             }
             catch (SqlException e)
             {
                 return null;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             { return null; }
 
         }
@@ -80,7 +75,7 @@ namespace WebService3
             {
                 DataTable table = dataAccessLayer.GetColumnNames(tableName);
                 return utils.ConvertDataTableToList(table);
-        
+
             }
             catch (SqlException e)
             {
@@ -91,7 +86,7 @@ namespace WebService3
 
         }
 
-        
+
 
         [WebMethod]
         public void CreateEmployee(CRONUS_Sverige_AB_Employee employee)
@@ -113,7 +108,7 @@ namespace WebService3
         [WebMethod]
         public List<CRONUS_Sverige_AB_Employee_Relative> GetEmployeeRelatives(string primaryKey)
         {
-            return dataAccessLayer.GetEmployeeRelatives(primaryKey);    
+            return dataAccessLayer.GetEmployeeRelatives(primaryKey);
         }
 
         [WebMethod]
@@ -130,13 +125,13 @@ namespace WebService3
         [WebMethod]
         public void UpdateEmployee(CRONUS_Sverige_AB_Employee employee)
         {
-               
+
             dataAccessLayer.UpdateEmployee(employee);
         }
 
         [WebMethod]
         public DataSet GetCronusData(string methodName)
-        { 
+        {
             return dataAccessLayer.GetCronusData(methodName);
         }
 
@@ -146,14 +141,14 @@ namespace WebService3
             DataSet dataSet = dataAccessLayer.GetCronusData(methodName);
             return utils.ConvertDataSetToList(dataSet);
         }
-         
+
         [WebMethod]
         public List<string> GetCronusHeaders(string methodName)
         {
             DataSet dataSet = dataAccessLayer.GetCronusData(methodName);
             return utils.GetCronusHeaders(dataSet);
         }
-       
+
 
     }
 }

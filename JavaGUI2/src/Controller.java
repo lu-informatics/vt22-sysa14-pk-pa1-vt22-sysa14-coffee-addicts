@@ -2,6 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
 import java.sql.Time;
 
@@ -45,9 +48,18 @@ public class Controller {
         javaGUIview.getA5c2_1tableJComboBox().addItem("Sickness");
         javaGUIview.getA5c2_1tableJComboBox().addItem("Employees and relatives");
         javaGUIview.getA5c2_1tableJComboBox().addItem("All Employee Tables Metadata");
-		
-		DrawEmployeeTable();
+
+
+        
+        javaGUIview.getA5c2_2relativeComboBox().addItem("Absences");
+        javaGUIview.getA5c2_2relativeComboBox().addItem("Relatives");
+        javaGUIview.getA5c2_2relativeComboBox().addItem("Qualifications");
+        
+		DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
+		DrawEmployeeTable(javaGUIview.getA5c2_2employeeTableJTable());
+		//DrawEmployeeAbsenceTable(javaGUIview.getA5c2_2relationsTableJTable(), "AL");
 		declareListeners();
+		
 		
 	}
 	
@@ -111,7 +123,7 @@ public class Controller {
 						employee.setTermination_Date(Calendar.getInstance());
 						
 						coffeeAddictsProxy.createEmployee(employee);
-						DrawEmployeeTable();
+						DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
 						
 						javaGUIview.getLblUserMessage().setText("Employee "+employee.getFirst_Name()+" "+employee.getLast_Name()+" has been added.");
 						javaGUIview.getA4c2FirstNameTextField().setText("");
@@ -135,7 +147,7 @@ public class Controller {
 					String firstName = table.getValueAt(table.getSelectedRow(), 1).toString();
 					String lastName = table.getValueAt(table.getSelectedRow(), 2).toString();
 					coffeeAddictsProxy.deleteEmployee(primaryKey);
-					DrawEmployeeTable();
+					DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
 					javaGUIview.getLblUserMessage().setText("Employee " + firstName + " " + lastName + " has been deleted.");
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
@@ -173,7 +185,7 @@ public class Controller {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				DrawEmployeeTable();
+				DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
 				
 				
 		
@@ -193,7 +205,73 @@ public class Controller {
 				}
 			}
 		});
+		javaGUIview.getA5c2_2relativeComboBox().addActionListener(new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					
+					String relationName = javaGUIview.getA5c2_2relativeComboBox().getSelectedItem().toString();
+					JTable table = javaGUIview.getA5c2_2employeeTableJTable();
+					String primaryKey = table.getValueAt(table.getSelectedRow(), 0).toString();
+					
 
+						switch (relationName) {
+
+						case "Absences":
+							DrawEmployeeAbsenceTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+
+							break;
+						case "Relatives":
+							DrawEmployeeRelativesTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+							break;
+						case "Qualifications":
+							DrawEmployeeQualificationsTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+							break;
+						}
+				} catch (ArrayIndexOutOfBoundsException ae) {
+					javaGUIview.getA5c2_2userMessageLbl().setText("Please select an employee.");
+				}
+				
+				
+				
+			}
+		});
+		javaGUIview.getA5c2_2employeeTableJTable().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+					try {
+					
+					
+					String relationName = javaGUIview.getA5c2_2relativeComboBox().getSelectedItem().toString();
+					JTable table = javaGUIview.getA5c2_2employeeTableJTable();
+					String primaryKey = table.getValueAt(table.getSelectedRow(), 0).toString();
+					
+
+						switch (relationName) {
+
+						case "Absences":
+							DrawEmployeeAbsenceTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+
+							break;
+						case "Relatives":
+							DrawEmployeeRelativesTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+							break;
+						case "Qualifications":
+							DrawEmployeeQualificationsTable(javaGUIview.getA5c2_2relationsJTable(), primaryKey);
+							break;
+						}
+				} catch (ArrayIndexOutOfBoundsException ae) {
+					javaGUIview.getA5c2_2userMessageLbl().setText("Please select an employee.");
+				}
+				
+			}
+		
+		
+		} );
+			
+			
 		
 	}
 	public void FillTable(JTable table, String tableName){
@@ -251,14 +329,12 @@ public class Controller {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 	
-	public void DrawTable(String tableName) {
-		
-	}
 
-	public void DrawEmployeeTable() {
+
+	public void DrawEmployeeTable(JTable table) {
 		try {
 			CRONUS_Sverige_AB_Employee[] employeeTable = coffeeAddictsProxy.getEmployees();
-			JTable empJTable = javaGUIview.getA4c2TableJTable();
+			JTable empJTable = table;
 			DefaultTableModel model = new DefaultTableModel();
 			model.setColumnCount(6);
 			
@@ -297,4 +373,122 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
+	
+	public void DrawEmployeeAbsenceTable(JTable table, String pkString) {
+		try {
+			CRONUS_Sverige_AB_Employee_Absence[] absenceTable = coffeeAddictsProxy.getEmployeeAbsence(pkString);
+		
+			DefaultTableModel model = new DefaultTableModel();
+			model.setColumnCount(5);
+			
+			for (CRONUS_Sverige_AB_Employee_Absence absence : absenceTable) {
+				Object[] tmpAbs = new Object[5];
+				tmpAbs[0] = absence.getDescription();
+				tmpAbs[1] = absence.getFrom_Date().toInstant();
+				tmpAbs[2] = absence.getTo_Date().toInstant();
+				tmpAbs[3] = absence.getQuantity();
+				
+				tmpAbs[4] = absence.getQuantity__Base_(); 
+
+				model.addRow(tmpAbs);
+			}
+			table.setModel(model);
+			
+			JTableHeader tHeader = table.getTableHeader();
+			TableColumnModel tableColumnModel = tHeader.getColumnModel();
+			
+			TableColumn tc1 = tableColumnModel.getColumn(0);
+			tc1.setHeaderValue("Description");
+			TableColumn tc2 = tableColumnModel.getColumn(1);
+			tc2.setHeaderValue("From Date");
+			TableColumn tc3 = tableColumnModel.getColumn(2);
+			tc3.setHeaderValue("To Date");
+			TableColumn tc4 = tableColumnModel.getColumn(3);
+			tc4.setHeaderValue("Quantity");
+			TableColumn tc5 = tableColumnModel.getColumn(4);
+			tc5.setHeaderValue("Quantity Base");
+			tHeader.repaint();
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void DrawEmployeeQualificationsTable(JTable table, String pkString) {
+		try {
+			CRONUS_Sverige_AB_Employee_Qualification[] qualificationTable = coffeeAddictsProxy.getEmployeeQualifications(pkString);
+		
+			DefaultTableModel model = new DefaultTableModel();
+			model.setColumnCount(3);
+			
+			for (CRONUS_Sverige_AB_Employee_Qualification qualification : qualificationTable) {
+				Object[] tmpQual = new Object[3];
+				tmpQual[0] = qualification.getQualification_Code();
+				tmpQual[1] = qualification.getDescription();
+				tmpQual[2] = qualification.getInstitution_Company();
+
+				model.addRow(tmpQual);
+			}
+			table.setModel(model);
+			
+			JTableHeader tHeader = table.getTableHeader();
+			TableColumnModel tableColumnModel = tHeader.getColumnModel();
+			
+			TableColumn tc1 = tableColumnModel.getColumn(0);
+			tc1.setHeaderValue("Qualification Code");
+			TableColumn tc2 = tableColumnModel.getColumn(1);
+			tc2.setHeaderValue("Description");
+			TableColumn tc3 = tableColumnModel.getColumn(2);
+			tc3.setHeaderValue("Institution Company");
+			
+			tHeader.repaint();
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void DrawEmployeeRelativesTable(JTable table, String pkString) {
+		try {
+			CRONUS_Sverige_AB_Employee_Relative[] relativesTable = coffeeAddictsProxy.getEmployeeRelatives(pkString);
+			
+		
+			DefaultTableModel model = new DefaultTableModel();
+			model.setColumnCount(3);
+			
+			for (CRONUS_Sverige_AB_Employee_Relative relative : relativesTable) {
+				Object[] tmpRel = new Object[3];
+				tmpRel[0] = relative.getFirst_Name();
+				tmpRel[1] = relative.getLast_Name();
+				tmpRel[2] = relative.getRelative_Code();
+				
+				model.addRow(tmpRel);
+			}
+			table.setModel(model);
+			
+			JTableHeader tHeader = table.getTableHeader();
+			TableColumnModel tableColumnModel = tHeader.getColumnModel();
+			
+			TableColumn tc1 = tableColumnModel.getColumn(0);
+			tc1.setHeaderValue("First Name");
+			TableColumn tc2 = tableColumnModel.getColumn(1);
+			tc2.setHeaderValue("Last Name");
+			TableColumn tc3 = tableColumnModel.getColumn(2);
+			tc3.setHeaderValue("Relative Code");
+
+			tHeader.repaint();
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }

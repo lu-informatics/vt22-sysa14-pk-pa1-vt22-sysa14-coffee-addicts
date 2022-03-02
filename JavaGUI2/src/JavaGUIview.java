@@ -39,6 +39,14 @@ public class JavaGUIview extends JWindow{
 	private JTable a5c2_1tableJTable;
 	private JLabel lblNewLabel_6;
 	private JComboBox<String> a5c2_1tableJComboBox;
+	private JPanel a5c2_2Tab;
+	private JScrollPane scrollPane_3;
+	private JTable a5c2_2employeeTableJTable;
+	private JScrollPane scrollPane_4;
+	private JTable a5c2_2relationsJTable;
+	private JLabel a5c2_2userMessageLbl;
+	private JComboBox<String> a5c2_2relativeComboBox;
+	private JLabel lblNewLabel_7;
 
 	
 
@@ -200,9 +208,43 @@ public class JavaGUIview extends JWindow{
 		a5c2_1tableJComboBox.setMaximumRowCount(20);
 		a5c2_1tableJComboBox.setBounds(178, 375, 195, 22);
 		a5c2_tab.add(a5c2_1tableJComboBox);
+		
+		a5c2_2Tab = new JPanel();
+		tabbedPane.addTab("Assignment 5.2", null, a5c2_2Tab, null);
+		a5c2_2Tab.setLayout(null);
+		
+		scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(10, 11, 862, 187);
+		a5c2_2Tab.add(scrollPane_3);
+		
+		a5c2_2employeeTableJTable = new JTable();
+		scrollPane_3.setViewportView(a5c2_2employeeTableJTable);
+		
+		scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(10, 253, 862, 200);
+		a5c2_2Tab.add(scrollPane_4);
+		
+		a5c2_2relationsJTable = new JTable();
+		scrollPane_4.setViewportView(a5c2_2relationsJTable);
+		
+		a5c2_2userMessageLbl = new JLabel("");
+		a5c2_2userMessageLbl.setBounds(10, 464, 862, 14);
+		a5c2_2Tab.add(a5c2_2userMessageLbl);
+		
+		a5c2_2relativeComboBox = new JComboBox();
+		a5c2_2relativeComboBox.setBounds(116, 220, 250, 22);
+		a5c2_2Tab.add(a5c2_2relativeComboBox);
+		
+		lblNewLabel_7 = new JLabel("Choose Table:");
+		lblNewLabel_7.setBounds(23, 224, 83, 14);
+		a5c2_2Tab.add(lblNewLabel_7);
 		frame.setVisible(true);
 	}
 	
+	public JComboBox<String> getA5c2_2relativeComboBox() {
+		return a5c2_2relativeComboBox;
+	}
+
 	public JTable getA5c2_1tableJTable() {
 		return a5c2_1tableJTable;
 	}
@@ -259,6 +301,22 @@ public class JavaGUIview extends JWindow{
 		return a4c2DeleteBtn;
 	}
 
+	public JTable getA5c2_2employeeTableJTable() {
+		return a5c2_2employeeTableJTable;
+	}
+
+	public JTable getA5c2_2relationsJTable() {
+		return a5c2_2relationsJTable;
+	}
+
+	public JLabel getA5c2_2userMessageLbl() {
+		return a5c2_2userMessageLbl;
+	}
+
+	public void setA5c2_1tableJComboBox(JComboBox<String> a5c2_1tableJComboBox) {
+		this.a5c2_1tableJComboBox = a5c2_1tableJComboBox;
+	}
+
 	public JLabel getLblUserMessage() {
 		return lblUserMessage;
 	}
@@ -266,7 +324,4 @@ public class JavaGUIview extends JWindow{
 	public JComboBox<String> getA5c2_1tableJComboBox() {
 		return a5c2_1tableJComboBox;
 	}
-    
-	
-	
 }
