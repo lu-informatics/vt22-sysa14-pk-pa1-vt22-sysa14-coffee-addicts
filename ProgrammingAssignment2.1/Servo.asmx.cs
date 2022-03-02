@@ -19,11 +19,9 @@ namespace ProgrammingAssignment2._1
     // [System.Web.Script.Services.ScriptService]
     public class Servo : System.Web.Services.WebService
     {   
-        
         [WebMethod]
         public string FindFile(string fileName)
         {
-
             try
             {
                 string path = "D:\\CSharpProjects\\CoffeeAddicts\\TestFiles\\";
@@ -32,12 +30,8 @@ namespace ProgrammingAssignment2._1
             }
             catch (IOException e)
             {
-
                 return "File could not be found.";
             }
-
         }
-
-
     }
 }
