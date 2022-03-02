@@ -2,7 +2,6 @@ using CoffeeAddictsService;
 using ServoReference;
 using System.Data;
 
-
 namespace GuiClient
 {
     public partial class Form1 : Form
@@ -12,6 +11,7 @@ namespace GuiClient
 
         private static ServoSoapClient.EndpointConfiguration endpointServo = ServoSoapClient.EndpointConfiguration.ServoSoap;
         private ServoSoapClient servoClient = new ServoSoapClient(endpointServo);
+
         public Form1()
         {
             InitializeComponent();
@@ -27,8 +27,6 @@ namespace GuiClient
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();          
             empTabEmployeesDataGridView.DataSource = coffeeAddictsClient.GetEmployees();
             
-
-
             a5c1MethodComboBox.Items.Add("All keys");
             a5c1MethodComboBox.Items.Add("All indexes");
             a5c1MethodComboBox.Items.Add("All table_constraints");
@@ -40,14 +38,10 @@ namespace GuiClient
             a5c1MethodComboBox.Items.Add("Sickness");
             a5c1MethodComboBox.Items.Add("Employees and relatives");
             a5c1MethodComboBox.Items.Add("All Employee Tables Metadata");
-            
-
-
         }
         
         private void OnA2C2FindButton_Click(object sender, EventArgs e)
         {
-
             string fileName = fileNameTextBox.Text;
             if (fileName == null || fileName.Equals(""))
             {
@@ -58,6 +52,7 @@ namespace GuiClient
                 a2c2OutputField.Text = servoClient.FindFile(fileName);
             }
         }
+
         public DataSet ToDataSet(ArrayOfXElement arrayOfXElement)
         {
             var strSchema = arrayOfXElement.Nodes[0].ToString();
@@ -68,7 +63,6 @@ namespace GuiClient
 
             DataSet ds = new DataSet("TestDataSet");
             ds.ReadXml(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(strXml)));
-
             return ds;
         }
 
@@ -92,15 +86,11 @@ namespace GuiClient
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
         }
 
-
         private void OnA4c1dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             CRONUS_Sverige_AB_Employee tmpEmp = a4c1dataGridView.Rows[e.RowIndex].DataBoundItem as CRONUS_Sverige_AB_Employee;
-            //Debug.Write(tmpEmp.First_Name);
             coffeeAddictsClient.UpdateEmployee(tmpEmp);
-
             a4c1dataGridView.DataSource = coffeeAddictsClient.GetEmployees();
-
         }
 
         private void OnA4c1AddBtn_Click(object sender, EventArgs e)
@@ -126,7 +116,6 @@ namespace GuiClient
             a4c1LastNameTextBox.Text = "";
             a4c1JobTitleTextBox.Text = "";
             a4c1PhoneNumberTextBox.Text = "";
-
         }
 
         private void OnA5c1MethodComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,7 +126,6 @@ namespace GuiClient
         private void OnRelationSelection(object sender, EventArgs e)
         {
             var emp = empTabEmployeesDataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
-            
             string relation = empTabRelationComboBox.Text;
             string empID = emp.No_;
 
@@ -146,20 +134,20 @@ namespace GuiClient
                 case "Absences":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeAbsence(empID);
                     break;
+
                 case "Relatives":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeRelatives(empID);
                     break;
+
                 case "Qualifications":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeQualifications(empID);
                     break;
             }
-           
         }
 
         private void OnEmployeeTablesCellClickChangeRelationTable(object sender, DataGridViewCellEventArgs e)
         {
             var emp = empTabEmployeesDataGridView.CurrentRow.DataBoundItem as CRONUS_Sverige_AB_Employee;
-
             string relation = empTabRelationComboBox.Text;
             string empID = emp.No_;
 
@@ -168,17 +156,15 @@ namespace GuiClient
                 case "Absences":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeAbsence(empID);
                     break;
+
                 case "Relatives":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeRelatives(empID);
                     break;
+
                 case "Qualifications":
                     empTabRelationsDataGridView.DataSource = coffeeAddictsClient.GetEmployeeQualifications(empID);
                     break;
             }
-            
         }
-        
-
-       
     }
 }
