@@ -1,5 +1,3 @@
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
@@ -8,14 +6,9 @@ import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.security.PublicKey;
-import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.ScrollPaneConstants;
 
 public class JavaGUIview extends JWindow{
 
@@ -48,14 +41,11 @@ public class JavaGUIview extends JWindow{
 	private JComboBox<String> a5c2_2relativeComboBox;
 	private JLabel lblNewLabel_7;
 
-	
-
 	/**
 	 * Create the application.
 	 */
 	public JavaGUIview(){
 		initialize();
-		
 	}
 
 	/**
