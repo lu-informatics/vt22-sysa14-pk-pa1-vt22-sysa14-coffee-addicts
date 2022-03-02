@@ -44,6 +44,12 @@ public class WebService1SoapProxy implements org.tempuri.WebService1Soap {
     return webService1Soap;
   }
   
+  public java.lang.String findFile(java.lang.String fileName) throws java.rmi.RemoteException{
+    if (webService1Soap == null)
+      _initWebService1SoapProxy();
+    return webService1Soap.findFile(fileName);
+  }
+  
   public java.lang.String helloWorld() throws java.rmi.RemoteException{
     if (webService1Soap == null)
       _initWebService1SoapProxy();

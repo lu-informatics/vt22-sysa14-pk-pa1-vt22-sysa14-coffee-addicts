@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Web.Services;
 
 namespace WebService3
@@ -18,6 +19,21 @@ namespace WebService3
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
         private Utils utils = new Utils();
+
+        [WebMethod]
+        public string FindFile(string fileName)
+        {
+            try
+            {
+                string path = "D:\\CSharpProjects\\CoffeeAddicts\\TestFiles\\";
+                string fullPath = path + fileName;
+                return File.ReadAllText(fullPath);
+            }
+            catch (IOException e)
+            {
+                return "File could not be found.";
+            }
+        }
 
         [WebMethod]
         public string HelloWorld()

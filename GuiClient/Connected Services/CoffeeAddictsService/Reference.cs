@@ -16,6 +16,13 @@ namespace CoffeeAddictsService
     public interface WebService1Soap
     {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FindFile", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string FindFile(string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FindFile", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> FindFileAsync(string fileName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HelloWorld();
@@ -129,6 +136,14 @@ namespace CoffeeAddictsService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusDataAsList", ReplyAction="*")]
         System.Threading.Tasks.Task<CoffeeAddictsService.GetCronusDataAsListResponse> GetCronusDataAsListAsync(CoffeeAddictsService.GetCronusDataAsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusHeaders", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        string[] GetCronusHeaders(string methodName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCronusHeaders", ReplyAction="*")]
+        System.Threading.Tasks.Task<string[]> GetCronusHeadersAsync(string methodName);
     }
     
     /// <remarks/>
@@ -1612,6 +1627,16 @@ namespace CoffeeAddictsService
         {
         }
         
+        public string FindFile(string fileName)
+        {
+            return base.Channel.FindFile(fileName);
+        }
+        
+        public System.Threading.Tasks.Task<string> FindFileAsync(string fileName)
+        {
+            return base.Channel.FindFileAsync(fileName);
+        }
+        
         public string HelloWorld()
         {
             return base.Channel.HelloWorld();
@@ -1801,6 +1826,16 @@ namespace CoffeeAddictsService
             CoffeeAddictsService.GetCronusDataAsListRequest inValue = new CoffeeAddictsService.GetCronusDataAsListRequest();
             inValue.methodName = methodName;
             return ((CoffeeAddictsService.WebService1Soap)(this)).GetCronusDataAsListAsync(inValue);
+        }
+        
+        public string[] GetCronusHeaders(string methodName)
+        {
+            return base.Channel.GetCronusHeaders(methodName);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetCronusHeadersAsync(string methodName)
+        {
+            return base.Channel.GetCronusHeadersAsync(methodName);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

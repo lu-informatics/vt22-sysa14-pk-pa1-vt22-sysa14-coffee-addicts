@@ -1,5 +1,4 @@
 using CoffeeAddictsService;
-using ServoReference;
 using System.Data;
 
 namespace GuiClient
@@ -9,8 +8,7 @@ namespace GuiClient
         private static WebService1SoapClient.EndpointConfiguration endpoint = WebService1SoapClient.EndpointConfiguration.WebService1Soap;
         private WebService1SoapClient coffeeAddictsClient = new WebService1SoapClient(endpoint);
 
-        private static ServoSoapClient.EndpointConfiguration endpointServo = ServoSoapClient.EndpointConfiguration.ServoSoap;
-        private ServoSoapClient servoClient = new ServoSoapClient(endpointServo);
+
 
         public Form1()
         {
@@ -49,7 +47,7 @@ namespace GuiClient
             }
             else
             {
-                a2c2OutputField.Text = servoClient.FindFile(fileName);
+                a2c2OutputField.Text = coffeeAddictsClient.FindFile(fileName);
             }
         }
 

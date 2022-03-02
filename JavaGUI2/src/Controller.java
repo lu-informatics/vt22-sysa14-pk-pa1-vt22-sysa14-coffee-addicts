@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.Calendar;
-
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -12,17 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import org.tempuri.CRONUS_Sverige_AB_Employee;
 import org.tempuri.CRONUS_Sverige_AB_Employee_Absence;
 import org.tempuri.CRONUS_Sverige_AB_Employee_Qualification;
 import org.tempuri.CRONUS_Sverige_AB_Employee_Relative;
-import org.tempuri.ServoSoapProxy;
 import org.tempuri.WebService1SoapProxy;
 
 public class Controller {
 	private JavaGUIview javaGUIview;
-	private ServoSoapProxy serverProxy = new ServoSoapProxy();
 	private WebService1SoapProxy coffeeAddictsProxy = new WebService1SoapProxy();
 
 	public Controller(JavaGUIview javaGUIview)  {
@@ -63,7 +59,7 @@ public class Controller {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String fileName = javaGUIview.getA2c3fileNameTextField().getText();
-					String resultString = serverProxy.findFile(fileName);
+					String resultString = coffeeAddictsProxy.findFile(fileName);
 					javaGUIview.getA2c3OutputTextArea().setText(resultString);
 				} catch (RemoteException ex) {
 					javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(ex));
@@ -149,7 +145,6 @@ public class Controller {
 					DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
 					javaGUIview.getLblUserMessage().setText("Employee " + firstName + " " + lastName + " has been deleted.");
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch(ArrayIndexOutOfBoundsException ae) {
 					javaGUIview.getLblUserMessage()
@@ -161,7 +156,6 @@ public class Controller {
 
 			@Override
 			public void tableChanged(TableModelEvent e) {
-				// TODO Auto-generated method stub
 				JTable table = javaGUIview.getA4c2TableJTable();
 				CRONUS_Sverige_AB_Employee employee = new CRONUS_Sverige_AB_Employee();
 				employee.setNo_(table.getValueAt(table.getSelectedRow(), 0).toString());
@@ -181,7 +175,6 @@ public class Controller {
 					coffeeAddictsProxy.updateEmployee(employee);
 					javaGUIview.getLblUserMessage().setText("Employee "+employee.getNo_()+" has been updated.");
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
