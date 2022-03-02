@@ -7,17 +7,12 @@ namespace ProgrammingAssignment1;
 public partial class AdminView : Form
 {
     private DataAccessLayer dataAccessLayer = new DataAccessLayer();
-
     private DataSet coffeeAddicts = new DataSet("CoffeeAddicts");
 
     public AdminView()
     {
         InitializeComponent();
-
         UpdateAll();
-
-        Debug.WriteLine(dataAccessLayer.IsServerConnected());
-
     }
 
     private void OnBeansSearchInput(object sender, EventArgs e)
@@ -28,28 +23,28 @@ public partial class AdminView : Form
     private void OnBeverageSearchInput(object sender, EventArgs e)
     {
         (beverageDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"bevName LIKE '%{beverageSearchBox.Text}%' OR name LIKE '%{beverageSearchBox.Text}%' OR type LIKE '%{beverageSearchBox.Text}%' OR variety LIKE '%{beverageSearchBox.Text}%'");
-
     }
+
     private void OnCoffeeSearchInput(object sender, EventArgs e)
     {
         (coffeeDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"name LIKE '%{coffeeSearchBox.Text}%' OR EAN LIKE '%{coffeeSearchBox.Text}%' OR Convert(beanWeightGram, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR Convert(grindSize, 'System.String') LIKE '%{coffeeSearchBox.Text}%' OR size LIKE '%{coffeeSearchBox.Text}%'");
-
     }
+
     private void OnFoamSearchInput(object sender, EventArgs e)
     {
         (foamDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"type LIKE '%{foamSearchBox.Text}%' OR Convert(temperature, 'System.String') LIKE '%{foamSearchBox.Text}%' OR Convert(time, 'System.String') LIKE '%{foamSearchBox.Text}%'");
-
     }
+
     private void OnMilkSearchInput(object sender, EventArgs e)
     {
         (milkDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"variety LIKE '%{milkSearchBox.Text}%' OR brand LIKE '%{milkSearchBox.Text}%' ");
-
     }
+
     private void OnWaterSearchInput(object sender, EventArgs e)
     {
         (waterDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format($"Size LIKE '%{waterSearchBox.Text}%' OR Convert(volumeML, 'System.String') LIKE '%{waterSearchBox.Text}%' ");
-
     }
+
     private void OnBeansAddButton(object sender, EventArgs e)
     {
         try
@@ -69,7 +64,6 @@ public partial class AdminView : Form
         }
     }
 
-
     private void OnBeansDeleteButton(object sender, EventArgs e)
     {
         try
@@ -82,14 +76,11 @@ public partial class AdminView : Form
                 lblUserMessage.Text = $"Bean with EAN {ean} was deleted.";
                 UpdateTables();
             }
-
-
         }
         catch (SqlException ex)
         {
             SqlErrorHandling(ex);
         }
-
     }
 
     private void OnCoffeeAddButton(object sender, EventArgs e)
@@ -102,12 +93,11 @@ public partial class AdminView : Form
             int grindSize = Convert.ToInt32(Math.Round(coffeeGrindSizeNumUpDown.Value, 0));
             int beanWeight = Convert.ToInt32(Math.Round(coffeeBeanWeightNumUpDown.Value, 0));
             var coffee = new object[] { name, beanEan, beanWeight, grindSize, waterSize };
+
             dataAccessLayer.InsertRow(coffee, "Coffee");
             lblUserMessage.Text = $"{name} was added.";
             coffeeNameTextBox.Text = "";
             UpdateTables();
-            Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
-
         }
         catch (SqlException ex)
         {
@@ -122,8 +112,8 @@ public partial class AdminView : Form
             int temperature = Convert.ToInt32(Math.Round(foamTemperatureNumUpDown.Value, 0));
             int time = Convert.ToInt32(Math.Round(foamTimeNumUpDown.Value, 0));
             string name = foamNameTextBox.Text;
-
             var foam = new object[] { name, temperature, time };
+
             dataAccessLayer.InsertRow(foam, "Foam");
             lblUserMessage.Text = $"Foam with name {name} was added.";
             foamNameTextBox.Text = "";
@@ -141,13 +131,13 @@ public partial class AdminView : Form
         {
             var name = foamDataGridView.CurrentRow.Cells[0].Value;
             var primaryKeys = new object[] { name };
+
             dataAccessLayer.DeleteRow(primaryKeys, "Foam");
             lblUserMessage.Text = $"Foam with name {name} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
@@ -159,18 +149,16 @@ public partial class AdminView : Form
             string size = waterSizeTextBox.Text;
             int volume = Convert.ToInt32(Math.Round(waterVolumeMlNumUpDown.Value, 0));
             var water = new object[] { size, volume };
+
             dataAccessLayer.InsertRow(water, "water");
             lblUserMessage.Text = $"Water with size {size} was added.";
             waterSizeTextBox.Text = "";
             UpdateTables();
-            Debug.WriteLine(coffeeDataGridView.Columns[4].GetType().Name);
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
-
     }
 
     private void OnWaterDeleteButton(object sender, EventArgs e)
@@ -179,16 +167,17 @@ public partial class AdminView : Form
         {
             var size = waterDataGridView.CurrentRow.Cells[0].Value;
             var primaryKey = new object[] { size };
+
             dataAccessLayer.DeleteRow(primaryKey, "Water");
             lblUserMessage.Text = $"Water with size {size} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
+
     private void OnMilkAddButton(object sender, EventArgs e)
     {
         try
@@ -196,6 +185,7 @@ public partial class AdminView : Form
             string variety = milkVarietyTextBox.Text;
             string brand = milkBrandTextBox.Text;
             var milk = new object[] { variety, brand };
+
             dataAccessLayer.InsertRow(milk, "milk");
             lblUserMessage.Text = $"Milk with variety {variety} was added.";
             milkBrandTextBox.Text = "";
@@ -204,25 +194,23 @@ public partial class AdminView : Form
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
-
-
     }
+
     private void OnMilkDeleteButton(object sender, EventArgs e)
     {
         try
         {
             var variety = milkDataGridView.CurrentRow.Cells[0].Value;
             var primaryKeys = new object[] { variety };
+
             dataAccessLayer.DeleteRow(primaryKeys, "Milk");
             lblUserMessage.Text = $"Milk with variety {variety} was deleted.";
             UpdateTables();
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
@@ -233,24 +221,22 @@ public partial class AdminView : Form
         {
             DataGridView dataGridView = sender as DataGridView;
             string tableName = dataGridView.Name;
+
             tableName = tableName.Remove(tableName.Length - 12, 12);
             UpdateCellValue(dataGridView, e, tableName);
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
+
     public void UpdateCellValue(DataGridView dataGridView, DataGridViewCellValidatingEventArgs e, string tableName)
     {
         try
         {
             var oldValue = dataGridView[e.ColumnIndex, e.RowIndex].Value;
             var newValue = e.FormattedValue;
-            Debug.WriteLine(oldValue + "=" + newValue);
-            Debug.WriteLine(oldValue);
-            Debug.WriteLine(newValue.GetType);
 
             if(!newValue.ToString().Equals(""))
             {
@@ -264,21 +250,23 @@ public partial class AdminView : Form
                         int count = metaDataCount + keyDataCount;
                         var parameterArray = new object[count];
                         parameterArray[e.ColumnIndex] = newValue;
-                        for (int i = 0; i < metaDataCount; i++)
 
+                        for (int i = 0; i < metaDataCount; i++)
                         {
                             if (i != e.ColumnIndex)
                             {
                                 parameterArray[i] = oldRow.Cells[i].Value;
                             }
                         }
+
                         for (int i = 0; i < keyDataCount; i++)
                         {
                             parameterArray[metaDataCount + i] = oldRow.Cells[i].Value;
                         }
+
                         dataAccessLayer.UpdateRow(parameterArray, tableName);
 
-                        e.Cancel = true;
+                        e.Cancel = true; //Bypassing error where dataGridView cannot handle displaying certain data types, i.e. Timestamp and binary pictures
                         lblUserMessage.Text = $"Updated {oldValue} to {newValue}.";
                     }
                     UpdateTables();
@@ -298,6 +286,7 @@ public partial class AdminView : Form
             lblUserMessage.Text = ex.Message;
         }
     }
+
     public void UpdateTables()
     {
         coffeeAddicts.Tables[0].Clear();
@@ -320,8 +309,8 @@ public partial class AdminView : Form
         coffeeAddicts.Tables[3].Load(dataReader4);
         coffeeAddicts.Tables[4].Load(dataReader5);
         coffeeAddicts.Tables[5].Load(dataReader6);
-
     }
+
     public void UpdateAll()
     {
         try
@@ -368,8 +357,6 @@ public partial class AdminView : Form
             typeof(string),
             "EAN + ' | ' + roast");
             beanComboBox.DisplayMember = "FullString";
-
-            //beanComboBox.DisplayMember = "EAN";
             beanComboBox.BindingContext = this.BindingContext;
 
             coffeeBeanEANColumn.DataSource = coffeeAddicts.Tables[0];
@@ -392,14 +379,12 @@ public partial class AdminView : Form
             beverageDataGridView.DataSource = coffeeAddicts.Tables[5];
 
             beansDataGridView.Columns[2].Visible = false;
-
         }
         catch (SqlException ex)
         {
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
-
 
     private void OnCoffeeDeleteButton(object sender, EventArgs e)
     {
@@ -413,7 +398,6 @@ public partial class AdminView : Form
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
@@ -439,30 +423,6 @@ public partial class AdminView : Form
         }
     }
 
-    //private void beverageDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-    //{
-    //    DataGridView dgv = (DataGridView)sender;
-    //    if (e.Exception is ArgumentException)
-    //    {
-    //        object value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-    //        if (!((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Contains(value))
-    //        {
-    //            dgv.Columns[4].DataPropertyName = "size";
-    //            //dgv.Columns[4] = DataGridViewComboBoxColumn;
-    //            //((DataGridViewComboBoxCell)dgv[e.ColumnIndex, e.RowIndex]).Value = DBNull.Value;
-
-    //            //((DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex]).Items.Add(value);
-    //            e.ThrowException = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        lblUserMessage.Text = (e.Exception.Message);
-    //        e.Cancel = true;
-    //    }
-    //    e.Cancel = true;
-    //}
-
     private void OnReturnButton(object sender, EventArgs e)
     {
         MessageBox.Show("Front End Is Under Development!", "Front End");
@@ -472,12 +432,10 @@ public partial class AdminView : Form
     {
         bool isValidated = true;
         int num = -1;
-
         NumericUpDown fieldA = null;
         NumericUpDown fieldB = null;
         int fieldAcolumnIndex = 0;
         int fieldBcolumnIndex = 0;
-        Debug.WriteLine(num);
 
         switch (tableName)
         {
@@ -514,6 +472,7 @@ public partial class AdminView : Form
             {
                 lblUserMessage.Text = (ex.Message);
             }
+
             if (num < fieldA.Minimum || num > fieldA.Maximum)
             {
                 isValidated = false;
@@ -530,6 +489,7 @@ public partial class AdminView : Form
             {
                 lblUserMessage.Text = (ex.Message);
             }
+
             if (num < fieldB.Minimum || num > fieldB.Maximum)
             {
                 isValidated = false;
@@ -543,16 +503,13 @@ public partial class AdminView : Form
     {
         try
         {
-
             DataGridView dataGridView = sender as DataGridView;
             e.Cancel = true;
             UpdateTables();
             dataGridView[e.ColumnIndex, e.RowIndex].ErrorText = "Wrong type of input";
-
         }
         catch (SqlException ex)
         {
-
             lblUserMessage.Text = SqlErrorHandling(ex);
         }
     }
@@ -591,8 +548,9 @@ public partial class AdminView : Form
             return "There already exists a Water with that size. Please choose a different size.";
         }
         else
-        { return message; }
-
+        {
+            return message;
+        }
     }
 
     private void OnBeverageDeleteBtn_Click(object sender, EventArgs e)
@@ -607,15 +565,10 @@ public partial class AdminView : Form
                 lblUserMessage.Text = $"{name} was deleted.";
                 UpdateTables();
             }
-
-
         }
         catch (SqlException ex)
         {
             SqlErrorHandling(ex);
         }
     }
-
-
 }
-

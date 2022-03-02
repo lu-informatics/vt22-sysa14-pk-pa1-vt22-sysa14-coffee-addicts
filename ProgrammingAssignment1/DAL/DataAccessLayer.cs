@@ -4,12 +4,11 @@ public class DataAccessLayer
 {
     private string connectionString;
     public DataAccessLayer()
-
     { 
         connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
     }
 
-    public DataSet GetKeys(string tableName) //
+    public DataSet GetKeys(string tableName)
     {
         using (SqlConnection sqlConnection = new SqlConnection(connectionString))
         {
@@ -20,7 +19,6 @@ public class DataAccessLayer
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
-
                     return dataSet;
                 }
             }
@@ -38,7 +36,6 @@ public class DataAccessLayer
                 {
                     adapter.SelectCommand = sqlCommand;
                     adapter.Fill(dataSet);
-
                     return dataSet;
                 }
             }
@@ -53,7 +50,6 @@ public class DataAccessLayer
                 using (SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM {tableName}", sqlConnection))
                 {
                     DataTable dataSet = new DataTable();
-
                     using (SqlDataAdapter adapter = new SqlDataAdapter())
                     {
                         adapter.SelectCommand = sqlCommand;
