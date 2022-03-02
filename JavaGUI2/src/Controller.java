@@ -23,12 +23,10 @@ import org.tempuri.WebService1SoapProxy;
 public class Controller {
 	private JavaGUIview javaGUIview;
 	private ServoSoapProxy serverProxy = new ServoSoapProxy();
-
 	private WebService1SoapProxy coffeeAddictsProxy = new WebService1SoapProxy();
 
 	public Controller(JavaGUIview javaGUIview)  {
 		this.javaGUIview = javaGUIview;
-
 
 		javaGUIview.getA3c3tableNamesComboBox().addItem("Beans");
 		javaGUIview.getA3c3tableNamesComboBox().addItem("Beverage");
@@ -49,18 +47,14 @@ public class Controller {
         javaGUIview.getA5c2_1tableJComboBox().addItem("Employees and relatives");
         javaGUIview.getA5c2_1tableJComboBox().addItem("All Employee Tables Metadata");
 
-
-
         javaGUIview.getA5c2_2relativeComboBox().addItem("Absences");
         javaGUIview.getA5c2_2relativeComboBox().addItem("Relatives");
         javaGUIview.getA5c2_2relativeComboBox().addItem("Qualifications");
 
 		DrawEmployeeTable(javaGUIview.getA4c2TableJTable());
 		DrawEmployeeTable(javaGUIview.getA5c2_2employeeTableJTable());
-		//DrawEmployeeAbsenceTable(javaGUIview.getA5c2_2relationsTableJTable(), "AL");
+		
 		declareListeners();
-
-
 	}
 
 	public void declareListeners() {
@@ -71,11 +65,10 @@ public class Controller {
 					String fileName = javaGUIview.getA2c3fileNameTextField().getText();
 					String resultString = serverProxy.findFile(fileName);
 					javaGUIview.getA2c3OutputTextArea().setText(resultString);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					javaGUIview.getA2c3OutputTextArea().setText("Fatal error occurred! Please contact support.");
+				} catch (RemoteException ex) {
+					javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(ex));
+					javaGUIview.getLblUserMessage().setText(ErrorHandling(ex));
 				}
-
 			}
 		});
 
@@ -85,7 +78,8 @@ public class Controller {
 				try {
 					FillTable(javaGUIview.a3c3tableJTable(), javaGUIview.getA3c3tableNamesComboBox().getSelectedItem().toString());
 				} catch (Exception ex) {
-
+					javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(ex));
+					javaGUIview.getLblUserMessage().setText(ErrorHandling(ex));
 				}
 			}
 		});
@@ -137,7 +131,8 @@ public class Controller {
 					}
 
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(ex));
+					javaGUIview.getLblUserMessage().setText(ErrorHandling(ex));
 				}
 			}
 		});
@@ -254,7 +249,7 @@ public class Controller {
 							break;
 						}
 				} catch (ArrayIndexOutOfBoundsException ae) {
-					javaGUIview.getA5c2_2userMessageLbl().setText("Please select an employee.");
+					javaGUIview.getLblUserMessage().setText(ErrorHandling(ae));
 				}
 			}
 		} );
@@ -280,10 +275,8 @@ public class Controller {
 			}
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			javaGUIview.getLblUserMessage().setText(ErrorHandling(e));
 		}
-
 	}
 
 	public void FillTable(JTable table, Object[][] array, String[] headers){
@@ -344,9 +337,8 @@ public class Controller {
 			tc6.setHeaderValue("City");
 			tHeader.repaint();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(e));
+			javaGUIview.getLblUserMessage().setText(ErrorHandling(e));}
 	}
 
 	public void DrawEmployeeAbsenceTable(JTable table, String pkString) {
@@ -385,9 +377,7 @@ public class Controller {
 
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(e));		}
 	}
 
 	public void DrawEmployeeQualificationsTable(JTable table, String pkString) {
@@ -416,8 +406,7 @@ public class Controller {
 			tc3.setHeaderValue("Institution Company");
 			tHeader.repaint();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(e));
 		}
 	}
 
@@ -447,8 +436,16 @@ public class Controller {
 			tc3.setHeaderValue("Relative Code");
 			tHeader.repaint();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			javaGUIview.getA5c2_2userMessageLbl().setText(ErrorHandling(e));
 		}
+	}
+	
+	public String ErrorHandling(Exception ex) {
+		if(ex.getClass().equals(ArrayIndexOutOfBoundsException.class)) {
+			return "Please select a row";
+		}else if(ex.getClass().equals(RemoteException.class)) {
+			return "Webservice is not responding, please try later";
+		}
+		return "Something fatal happened, please call support!";
 	}
 }
