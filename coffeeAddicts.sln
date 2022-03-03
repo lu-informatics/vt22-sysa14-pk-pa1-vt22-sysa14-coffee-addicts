@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiClient", "GuiClient\GuiClient.csproj", "{26CEBFCE-78BE-4CFD-A183-9895C388AA48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C-Sharp Client", "GuiClient\C-Sharp Client.csproj", "{26CEBFCE-78BE-4CFD-A183-9895C388AA48}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E4B13484-C73B-415F-9C7B-B96BB8BCB59F} = {E4B13484-C73B-415F-9C7B-B96BB8BCB59F}
 	EndProjectSection
