@@ -1,7 +1,7 @@
 using System;
 public class Program{
     public static void Main(string[] args){
-        Servo client = new Servo();
+        WebService1 client = new WebService1();
         
         while (true)
         {

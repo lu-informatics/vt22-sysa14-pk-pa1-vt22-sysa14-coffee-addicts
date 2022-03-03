@@ -10,6 +10,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Web.Services;
 using System.Web.Services.Protocols;
@@ -24,61 +25,94 @@ using System.Xml.Serialization;
 [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Web.Services.WebServiceBindingAttribute(Name="ServoSoap", Namespace="http://tempuri.org/")]
-public partial class Servo : System.Web.Services.Protocols.SoapHttpClientProtocol {
-    
-    private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+[System.Web.Services.WebServiceBindingAttribute(Name="WebService1Soap", Namespace="http://tempuri.org/")]
+[System.Xml.Serialization.XmlIncludeAttribute(typeof(object[][]))]
+public partial class WebService1 : System.Web.Services.Protocols.SoapHttpClientProtocol {
     
     private System.Threading.SendOrPostCallback FindFileOperationCompleted;
     
-    /// <remarks/>
-    public Servo() {
-        this.Url = "http://localhost/ProgrammingAssignment2/Servo.asmx";
-    }
+    private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetTableOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetTableNamesOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetTableValuesAsListOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetColumnNamesAsListOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback CreateEmployeeOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetEmployeesOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetEmployeeAbsenceOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetEmployeeRelativesOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetEmployeeQualificationsOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback DeleteEmployeeOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback UpdateEmployeeOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetCronusDataOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetCronusDataAsListOperationCompleted;
+    
+    private System.Threading.SendOrPostCallback GetCronusHeadersOperationCompleted;
     
     /// <remarks/>
-    public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+    public WebService1() {
+        this.Url = "http://localhost/WebService3/CoffeeAddictsWebService.asmx";
+    }
     
     /// <remarks/>
     public event FindFileCompletedEventHandler FindFileCompleted;
     
     /// <remarks/>
-    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-    public string HelloWorld() {
-        object[] results = this.Invoke("HelloWorld", new object[0]);
-        return ((string)(results[0]));
-    }
+    public event HelloWorldCompletedEventHandler HelloWorldCompleted;
     
     /// <remarks/>
-    public System.IAsyncResult BeginHelloWorld(System.AsyncCallback callback, object asyncState) {
-        return this.BeginInvoke("HelloWorld", new object[0], callback, asyncState);
-    }
+    public event GetTableCompletedEventHandler GetTableCompleted;
     
     /// <remarks/>
-    public string EndHelloWorld(System.IAsyncResult asyncResult) {
-        object[] results = this.EndInvoke(asyncResult);
-        return ((string)(results[0]));
-    }
+    public event GetTableNamesCompletedEventHandler GetTableNamesCompleted;
     
     /// <remarks/>
-    public void HelloWorldAsync() {
-        this.HelloWorldAsync(null);
-    }
+    public event GetTableValuesAsListCompletedEventHandler GetTableValuesAsListCompleted;
     
     /// <remarks/>
-    public void HelloWorldAsync(object userState) {
-        if ((this.HelloWorldOperationCompleted == null)) {
-            this.HelloWorldOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHelloWorldOperationCompleted);
-        }
-        this.InvokeAsync("HelloWorld", new object[0], this.HelloWorldOperationCompleted, userState);
-    }
+    public event GetColumnNamesAsListCompletedEventHandler GetColumnNamesAsListCompleted;
     
-    private void OnHelloWorldOperationCompleted(object arg) {
-        if ((this.HelloWorldCompleted != null)) {
-            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-            this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-        }
-    }
+    /// <remarks/>
+    public event CreateEmployeeCompletedEventHandler CreateEmployeeCompleted;
+    
+    /// <remarks/>
+    public event GetEmployeesCompletedEventHandler GetEmployeesCompleted;
+    
+    /// <remarks/>
+    public event GetEmployeeAbsenceCompletedEventHandler GetEmployeeAbsenceCompleted;
+    
+    /// <remarks/>
+    public event GetEmployeeRelativesCompletedEventHandler GetEmployeeRelativesCompleted;
+    
+    /// <remarks/>
+    public event GetEmployeeQualificationsCompletedEventHandler GetEmployeeQualificationsCompleted;
+    
+    /// <remarks/>
+    public event DeleteEmployeeCompletedEventHandler DeleteEmployeeCompleted;
+    
+    /// <remarks/>
+    public event UpdateEmployeeCompletedEventHandler UpdateEmployeeCompleted;
+    
+    /// <remarks/>
+    public event GetCronusDataCompletedEventHandler GetCronusDataCompleted;
+    
+    /// <remarks/>
+    public event GetCronusDataAsListCompletedEventHandler GetCronusDataAsListCompleted;
+    
+    /// <remarks/>
+    public event GetCronusHeadersCompletedEventHandler GetCronusHeadersCompleted;
     
     /// <remarks/>
     [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FindFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -122,8 +156,1641 @@ public partial class Servo : System.Web.Services.Protocols.SoapHttpClientProtoco
     }
     
     /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public string HelloWorld() {
+        object[] results = this.Invoke("HelloWorld", new object[0]);
+        return ((string)(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginHelloWorld(System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("HelloWorld", new object[0], callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public string EndHelloWorld(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((string)(results[0]));
+    }
+    
+    /// <remarks/>
+    public void HelloWorldAsync() {
+        this.HelloWorldAsync(null);
+    }
+    
+    /// <remarks/>
+    public void HelloWorldAsync(object userState) {
+        if ((this.HelloWorldOperationCompleted == null)) {
+            this.HelloWorldOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHelloWorldOperationCompleted);
+        }
+        this.InvokeAsync("HelloWorld", new object[0], this.HelloWorldOperationCompleted, userState);
+    }
+    
+    private void OnHelloWorldOperationCompleted(object arg) {
+        if ((this.HelloWorldCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public System.Data.DataSet GetTable(string tableName) {
+        object[] results = this.Invoke("GetTable", new object[] {
+                    tableName});
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetTable(string tableName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetTable", new object[] {
+                    tableName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet EndGetTable(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetTableAsync(string tableName) {
+        this.GetTableAsync(tableName, null);
+    }
+    
+    /// <remarks/>
+    public void GetTableAsync(string tableName, object userState) {
+        if ((this.GetTableOperationCompleted == null)) {
+            this.GetTableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTableOperationCompleted);
+        }
+        this.InvokeAsync("GetTable", new object[] {
+                    tableName}, this.GetTableOperationCompleted, userState);
+    }
+    
+    private void OnGetTableOperationCompleted(object arg) {
+        if ((this.GetTableCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetTableCompleted(this, new GetTableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTableNames", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public System.Data.DataSet GetTableNames() {
+        object[] results = this.Invoke("GetTableNames", new object[0]);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetTableNames(System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetTableNames", new object[0], callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet EndGetTableNames(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetTableNamesAsync() {
+        this.GetTableNamesAsync(null);
+    }
+    
+    /// <remarks/>
+    public void GetTableNamesAsync(object userState) {
+        if ((this.GetTableNamesOperationCompleted == null)) {
+            this.GetTableNamesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTableNamesOperationCompleted);
+        }
+        this.InvokeAsync("GetTableNames", new object[0], this.GetTableNamesOperationCompleted, userState);
+    }
+    
+    private void OnGetTableNamesOperationCompleted(object arg) {
+        if ((this.GetTableNamesCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetTableNamesCompleted(this, new GetTableNamesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTableValuesAsList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+    public object[][] GetTableValuesAsList(string tableName) {
+        object[] results = this.Invoke("GetTableValuesAsList", new object[] {
+                    tableName});
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetTableValuesAsList(string tableName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetTableValuesAsList", new object[] {
+                    tableName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public object[][] EndGetTableValuesAsList(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetTableValuesAsListAsync(string tableName) {
+        this.GetTableValuesAsListAsync(tableName, null);
+    }
+    
+    /// <remarks/>
+    public void GetTableValuesAsListAsync(string tableName, object userState) {
+        if ((this.GetTableValuesAsListOperationCompleted == null)) {
+            this.GetTableValuesAsListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTableValuesAsListOperationCompleted);
+        }
+        this.InvokeAsync("GetTableValuesAsList", new object[] {
+                    tableName}, this.GetTableValuesAsListOperationCompleted, userState);
+    }
+    
+    private void OnGetTableValuesAsListOperationCompleted(object arg) {
+        if ((this.GetTableValuesAsListCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetTableValuesAsListCompleted(this, new GetTableValuesAsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetColumnNamesAsList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+    public object[][] GetColumnNamesAsList(string tableName) {
+        object[] results = this.Invoke("GetColumnNamesAsList", new object[] {
+                    tableName});
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetColumnNamesAsList(string tableName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetColumnNamesAsList", new object[] {
+                    tableName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public object[][] EndGetColumnNamesAsList(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetColumnNamesAsListAsync(string tableName) {
+        this.GetColumnNamesAsListAsync(tableName, null);
+    }
+    
+    /// <remarks/>
+    public void GetColumnNamesAsListAsync(string tableName, object userState) {
+        if ((this.GetColumnNamesAsListOperationCompleted == null)) {
+            this.GetColumnNamesAsListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetColumnNamesAsListOperationCompleted);
+        }
+        this.InvokeAsync("GetColumnNamesAsList", new object[] {
+                    tableName}, this.GetColumnNamesAsListOperationCompleted, userState);
+    }
+    
+    private void OnGetColumnNamesAsListOperationCompleted(object arg) {
+        if ((this.GetColumnNamesAsListCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetColumnNamesAsListCompleted(this, new GetColumnNamesAsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public void CreateEmployee(CRONUS_Sverige_AB_Employee employee) {
+        this.Invoke("CreateEmployee", new object[] {
+                    employee});
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginCreateEmployee(CRONUS_Sverige_AB_Employee employee, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("CreateEmployee", new object[] {
+                    employee}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public void EndCreateEmployee(System.IAsyncResult asyncResult) {
+        this.EndInvoke(asyncResult);
+    }
+    
+    /// <remarks/>
+    public void CreateEmployeeAsync(CRONUS_Sverige_AB_Employee employee) {
+        this.CreateEmployeeAsync(employee, null);
+    }
+    
+    /// <remarks/>
+    public void CreateEmployeeAsync(CRONUS_Sverige_AB_Employee employee, object userState) {
+        if ((this.CreateEmployeeOperationCompleted == null)) {
+            this.CreateEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateEmployeeOperationCompleted);
+        }
+        this.InvokeAsync("CreateEmployee", new object[] {
+                    employee}, this.CreateEmployeeOperationCompleted, userState);
+    }
+    
+    private void OnCreateEmployeeOperationCompleted(object arg) {
+        if ((this.CreateEmployeeCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.CreateEmployeeCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEmployees", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public CRONUS_Sverige_AB_Employee[] GetEmployees() {
+        object[] results = this.Invoke("GetEmployees", new object[0]);
+        return ((CRONUS_Sverige_AB_Employee[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetEmployees(System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetEmployees", new object[0], callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee[] EndGetEmployees(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((CRONUS_Sverige_AB_Employee[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetEmployeesAsync() {
+        this.GetEmployeesAsync(null);
+    }
+    
+    /// <remarks/>
+    public void GetEmployeesAsync(object userState) {
+        if ((this.GetEmployeesOperationCompleted == null)) {
+            this.GetEmployeesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmployeesOperationCompleted);
+        }
+        this.InvokeAsync("GetEmployees", new object[0], this.GetEmployeesOperationCompleted, userState);
+    }
+    
+    private void OnGetEmployeesOperationCompleted(object arg) {
+        if ((this.GetEmployeesCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetEmployeesCompleted(this, new GetEmployeesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEmployeeAbsence", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public CRONUS_Sverige_AB_Employee_Absence[] GetEmployeeAbsence(string primaryKey) {
+        object[] results = this.Invoke("GetEmployeeAbsence", new object[] {
+                    primaryKey});
+        return ((CRONUS_Sverige_AB_Employee_Absence[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetEmployeeAbsence(string primaryKey, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetEmployeeAbsence", new object[] {
+                    primaryKey}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Absence[] EndGetEmployeeAbsence(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((CRONUS_Sverige_AB_Employee_Absence[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeAbsenceAsync(string primaryKey) {
+        this.GetEmployeeAbsenceAsync(primaryKey, null);
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeAbsenceAsync(string primaryKey, object userState) {
+        if ((this.GetEmployeeAbsenceOperationCompleted == null)) {
+            this.GetEmployeeAbsenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmployeeAbsenceOperationCompleted);
+        }
+        this.InvokeAsync("GetEmployeeAbsence", new object[] {
+                    primaryKey}, this.GetEmployeeAbsenceOperationCompleted, userState);
+    }
+    
+    private void OnGetEmployeeAbsenceOperationCompleted(object arg) {
+        if ((this.GetEmployeeAbsenceCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetEmployeeAbsenceCompleted(this, new GetEmployeeAbsenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEmployeeRelatives", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public CRONUS_Sverige_AB_Employee_Relative[] GetEmployeeRelatives(string primaryKey) {
+        object[] results = this.Invoke("GetEmployeeRelatives", new object[] {
+                    primaryKey});
+        return ((CRONUS_Sverige_AB_Employee_Relative[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetEmployeeRelatives(string primaryKey, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetEmployeeRelatives", new object[] {
+                    primaryKey}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Relative[] EndGetEmployeeRelatives(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((CRONUS_Sverige_AB_Employee_Relative[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeRelativesAsync(string primaryKey) {
+        this.GetEmployeeRelativesAsync(primaryKey, null);
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeRelativesAsync(string primaryKey, object userState) {
+        if ((this.GetEmployeeRelativesOperationCompleted == null)) {
+            this.GetEmployeeRelativesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmployeeRelativesOperationCompleted);
+        }
+        this.InvokeAsync("GetEmployeeRelatives", new object[] {
+                    primaryKey}, this.GetEmployeeRelativesOperationCompleted, userState);
+    }
+    
+    private void OnGetEmployeeRelativesOperationCompleted(object arg) {
+        if ((this.GetEmployeeRelativesCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetEmployeeRelativesCompleted(this, new GetEmployeeRelativesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEmployeeQualifications", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public CRONUS_Sverige_AB_Employee_Qualification[] GetEmployeeQualifications(string primaryKey) {
+        object[] results = this.Invoke("GetEmployeeQualifications", new object[] {
+                    primaryKey});
+        return ((CRONUS_Sverige_AB_Employee_Qualification[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetEmployeeQualifications(string primaryKey, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetEmployeeQualifications", new object[] {
+                    primaryKey}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Qualification[] EndGetEmployeeQualifications(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((CRONUS_Sverige_AB_Employee_Qualification[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeQualificationsAsync(string primaryKey) {
+        this.GetEmployeeQualificationsAsync(primaryKey, null);
+    }
+    
+    /// <remarks/>
+    public void GetEmployeeQualificationsAsync(string primaryKey, object userState) {
+        if ((this.GetEmployeeQualificationsOperationCompleted == null)) {
+            this.GetEmployeeQualificationsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmployeeQualificationsOperationCompleted);
+        }
+        this.InvokeAsync("GetEmployeeQualifications", new object[] {
+                    primaryKey}, this.GetEmployeeQualificationsOperationCompleted, userState);
+    }
+    
+    private void OnGetEmployeeQualificationsOperationCompleted(object arg) {
+        if ((this.GetEmployeeQualificationsCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetEmployeeQualificationsCompleted(this, new GetEmployeeQualificationsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public void DeleteEmployee(string pk) {
+        this.Invoke("DeleteEmployee", new object[] {
+                    pk});
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginDeleteEmployee(string pk, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("DeleteEmployee", new object[] {
+                    pk}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public void EndDeleteEmployee(System.IAsyncResult asyncResult) {
+        this.EndInvoke(asyncResult);
+    }
+    
+    /// <remarks/>
+    public void DeleteEmployeeAsync(string pk) {
+        this.DeleteEmployeeAsync(pk, null);
+    }
+    
+    /// <remarks/>
+    public void DeleteEmployeeAsync(string pk, object userState) {
+        if ((this.DeleteEmployeeOperationCompleted == null)) {
+            this.DeleteEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteEmployeeOperationCompleted);
+        }
+        this.InvokeAsync("DeleteEmployee", new object[] {
+                    pk}, this.DeleteEmployeeOperationCompleted, userState);
+    }
+    
+    private void OnDeleteEmployeeOperationCompleted(object arg) {
+        if ((this.DeleteEmployeeCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.DeleteEmployeeCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public void UpdateEmployee(CRONUS_Sverige_AB_Employee employee) {
+        this.Invoke("UpdateEmployee", new object[] {
+                    employee});
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginUpdateEmployee(CRONUS_Sverige_AB_Employee employee, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("UpdateEmployee", new object[] {
+                    employee}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public void EndUpdateEmployee(System.IAsyncResult asyncResult) {
+        this.EndInvoke(asyncResult);
+    }
+    
+    /// <remarks/>
+    public void UpdateEmployeeAsync(CRONUS_Sverige_AB_Employee employee) {
+        this.UpdateEmployeeAsync(employee, null);
+    }
+    
+    /// <remarks/>
+    public void UpdateEmployeeAsync(CRONUS_Sverige_AB_Employee employee, object userState) {
+        if ((this.UpdateEmployeeOperationCompleted == null)) {
+            this.UpdateEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateEmployeeOperationCompleted);
+        }
+        this.InvokeAsync("UpdateEmployee", new object[] {
+                    employee}, this.UpdateEmployeeOperationCompleted, userState);
+    }
+    
+    private void OnUpdateEmployeeOperationCompleted(object arg) {
+        if ((this.UpdateEmployeeCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.UpdateEmployeeCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCronusData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public System.Data.DataSet GetCronusData(string methodName) {
+        object[] results = this.Invoke("GetCronusData", new object[] {
+                    methodName});
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetCronusData(string methodName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetCronusData", new object[] {
+                    methodName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet EndGetCronusData(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((System.Data.DataSet)(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetCronusDataAsync(string methodName) {
+        this.GetCronusDataAsync(methodName, null);
+    }
+    
+    /// <remarks/>
+    public void GetCronusDataAsync(string methodName, object userState) {
+        if ((this.GetCronusDataOperationCompleted == null)) {
+            this.GetCronusDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCronusDataOperationCompleted);
+        }
+        this.InvokeAsync("GetCronusData", new object[] {
+                    methodName}, this.GetCronusDataOperationCompleted, userState);
+    }
+    
+    private void OnGetCronusDataOperationCompleted(object arg) {
+        if ((this.GetCronusDataCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetCronusDataCompleted(this, new GetCronusDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCronusDataAsList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfAnyType")]
+    [return: System.Xml.Serialization.XmlArrayItemAttribute(NestingLevel=1)]
+    public object[][] GetCronusDataAsList(string methodName) {
+        object[] results = this.Invoke("GetCronusDataAsList", new object[] {
+                    methodName});
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetCronusDataAsList(string methodName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetCronusDataAsList", new object[] {
+                    methodName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public object[][] EndGetCronusDataAsList(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((object[][])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetCronusDataAsListAsync(string methodName) {
+        this.GetCronusDataAsListAsync(methodName, null);
+    }
+    
+    /// <remarks/>
+    public void GetCronusDataAsListAsync(string methodName, object userState) {
+        if ((this.GetCronusDataAsListOperationCompleted == null)) {
+            this.GetCronusDataAsListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCronusDataAsListOperationCompleted);
+        }
+        this.InvokeAsync("GetCronusDataAsList", new object[] {
+                    methodName}, this.GetCronusDataAsListOperationCompleted, userState);
+    }
+    
+    private void OnGetCronusDataAsListOperationCompleted(object arg) {
+        if ((this.GetCronusDataAsListCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetCronusDataAsListCompleted(this, new GetCronusDataAsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCronusHeaders", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    public string[] GetCronusHeaders(string methodName) {
+        object[] results = this.Invoke("GetCronusHeaders", new object[] {
+                    methodName});
+        return ((string[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public System.IAsyncResult BeginGetCronusHeaders(string methodName, System.AsyncCallback callback, object asyncState) {
+        return this.BeginInvoke("GetCronusHeaders", new object[] {
+                    methodName}, callback, asyncState);
+    }
+    
+    /// <remarks/>
+    public string[] EndGetCronusHeaders(System.IAsyncResult asyncResult) {
+        object[] results = this.EndInvoke(asyncResult);
+        return ((string[])(results[0]));
+    }
+    
+    /// <remarks/>
+    public void GetCronusHeadersAsync(string methodName) {
+        this.GetCronusHeadersAsync(methodName, null);
+    }
+    
+    /// <remarks/>
+    public void GetCronusHeadersAsync(string methodName, object userState) {
+        if ((this.GetCronusHeadersOperationCompleted == null)) {
+            this.GetCronusHeadersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCronusHeadersOperationCompleted);
+        }
+        this.InvokeAsync("GetCronusHeaders", new object[] {
+                    methodName}, this.GetCronusHeadersOperationCompleted, userState);
+    }
+    
+    private void OnGetCronusHeadersOperationCompleted(object arg) {
+        if ((this.GetCronusHeadersCompleted != null)) {
+            System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+            this.GetCronusHeadersCompleted(this, new GetCronusHeadersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        }
+    }
+    
+    /// <remarks/>
     public new void CancelAsync(object userState) {
         base.CancelAsync(userState);
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+public partial class CRONUS_Sverige_AB_Employee_Qualification {
+    
+    private byte[] timestampField;
+    
+    private string employee_No_Field;
+    
+    private int line_No_Field;
+    
+    private string qualification_CodeField;
+    
+    private System.DateTime from_DateField;
+    
+    private System.DateTime to_DateField;
+    
+    private int typeField;
+    
+    private string descriptionField;
+    
+    private string institution_CompanyField;
+    
+    private decimal costField;
+    
+    private string course_GradeField;
+    
+    private int employee_StatusField;
+    
+    private System.DateTime expiration_DateField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+    public byte[] timestamp {
+        get {
+            return this.timestampField;
+        }
+        set {
+            this.timestampField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Employee_No_ {
+        get {
+            return this.employee_No_Field;
+        }
+        set {
+            this.employee_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Line_No_ {
+        get {
+            return this.line_No_Field;
+        }
+        set {
+            this.line_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Qualification_Code {
+        get {
+            return this.qualification_CodeField;
+        }
+        set {
+            this.qualification_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime From_Date {
+        get {
+            return this.from_DateField;
+        }
+        set {
+            this.from_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime To_Date {
+        get {
+            return this.to_DateField;
+        }
+        set {
+            this.to_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Description {
+        get {
+            return this.descriptionField;
+        }
+        set {
+            this.descriptionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Institution_Company {
+        get {
+            return this.institution_CompanyField;
+        }
+        set {
+            this.institution_CompanyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public decimal Cost {
+        get {
+            return this.costField;
+        }
+        set {
+            this.costField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Course_Grade {
+        get {
+            return this.course_GradeField;
+        }
+        set {
+            this.course_GradeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Employee_Status {
+        get {
+            return this.employee_StatusField;
+        }
+        set {
+            this.employee_StatusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Expiration_Date {
+        get {
+            return this.expiration_DateField;
+        }
+        set {
+            this.expiration_DateField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+public partial class CRONUS_Sverige_AB_Employee_Relative {
+    
+    private byte[] timestampField;
+    
+    private string employee_No_Field;
+    
+    private int line_No_Field;
+    
+    private string relative_CodeField;
+    
+    private string first_NameField;
+    
+    private string middle_NameField;
+    
+    private string last_NameField;
+    
+    private System.DateTime birth_DateField;
+    
+    private string phone_No_Field;
+    
+    private string relative_s_Employee_No_Field;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+    public byte[] timestamp {
+        get {
+            return this.timestampField;
+        }
+        set {
+            this.timestampField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Employee_No_ {
+        get {
+            return this.employee_No_Field;
+        }
+        set {
+            this.employee_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Line_No_ {
+        get {
+            return this.line_No_Field;
+        }
+        set {
+            this.line_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Relative_Code {
+        get {
+            return this.relative_CodeField;
+        }
+        set {
+            this.relative_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string First_Name {
+        get {
+            return this.first_NameField;
+        }
+        set {
+            this.first_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Middle_Name {
+        get {
+            return this.middle_NameField;
+        }
+        set {
+            this.middle_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Last_Name {
+        get {
+            return this.last_NameField;
+        }
+        set {
+            this.last_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Birth_Date {
+        get {
+            return this.birth_DateField;
+        }
+        set {
+            this.birth_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Phone_No_ {
+        get {
+            return this.phone_No_Field;
+        }
+        set {
+            this.phone_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Relative_s_Employee_No_ {
+        get {
+            return this.relative_s_Employee_No_Field;
+        }
+        set {
+            this.relative_s_Employee_No_Field = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+public partial class CRONUS_Sverige_AB_Employee_Absence {
+    
+    private byte[] timestampField;
+    
+    private int entry_No_Field;
+    
+    private string employee_No_Field;
+    
+    private System.DateTime from_DateField;
+    
+    private System.DateTime to_DateField;
+    
+    private string cause_of_Absence_CodeField;
+    
+    private string descriptionField;
+    
+    private decimal quantityField;
+    
+    private string unit_of_Measure_CodeField;
+    
+    private decimal quantity__Base_Field;
+    
+    private decimal qty__per_Unit_of_MeasureField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+    public byte[] timestamp {
+        get {
+            return this.timestampField;
+        }
+        set {
+            this.timestampField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Entry_No_ {
+        get {
+            return this.entry_No_Field;
+        }
+        set {
+            this.entry_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Employee_No_ {
+        get {
+            return this.employee_No_Field;
+        }
+        set {
+            this.employee_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime From_Date {
+        get {
+            return this.from_DateField;
+        }
+        set {
+            this.from_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime To_Date {
+        get {
+            return this.to_DateField;
+        }
+        set {
+            this.to_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Cause_of_Absence_Code {
+        get {
+            return this.cause_of_Absence_CodeField;
+        }
+        set {
+            this.cause_of_Absence_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Description {
+        get {
+            return this.descriptionField;
+        }
+        set {
+            this.descriptionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public decimal Quantity {
+        get {
+            return this.quantityField;
+        }
+        set {
+            this.quantityField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Unit_of_Measure_Code {
+        get {
+            return this.unit_of_Measure_CodeField;
+        }
+        set {
+            this.unit_of_Measure_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public decimal Quantity__Base_ {
+        get {
+            return this.quantity__Base_Field;
+        }
+        set {
+            this.quantity__Base_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public decimal Qty__per_Unit_of_Measure {
+        get {
+            return this.qty__per_Unit_of_MeasureField;
+        }
+        set {
+            this.qty__per_Unit_of_MeasureField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+public partial class CRONUS_Sverige_AB_Employee {
+    
+    private byte[] timestampField;
+    
+    private string no_Field;
+    
+    private string first_NameField;
+    
+    private string middle_NameField;
+    
+    private string last_NameField;
+    
+    private string initialsField;
+    
+    private string job_TitleField;
+    
+    private string search_NameField;
+    
+    private string addressField;
+    
+    private string address_2Field;
+    
+    private string cityField;
+    
+    private string post_CodeField;
+    
+    private string countyField;
+    
+    private string phone_No_Field;
+    
+    private string mobile_Phone_No_Field;
+    
+    private string e_MailField;
+    
+    private string alt__Address_CodeField;
+    
+    private System.DateTime alt__Address_Start_DateField;
+    
+    private System.DateTime alt__Address_End_DateField;
+    
+    private byte[] pictureField;
+    
+    private System.DateTime birth_DateField;
+    
+    private string social_Security_No_Field;
+    
+    private string union_CodeField;
+    
+    private string union_Membership_No_Field;
+    
+    private int sexField;
+    
+    private string country_Region_CodeField;
+    
+    private string manager_No_Field;
+    
+    private string emplymt__Contract_CodeField;
+    
+    private string statistics_Group_CodeField;
+    
+    private System.DateTime employment_DateField;
+    
+    private int statusField;
+    
+    private System.DateTime inactive_DateField;
+    
+    private string cause_of_Inactivity_CodeField;
+    
+    private System.DateTime termination_DateField;
+    
+    private string grounds_for_Term__CodeField;
+    
+    private string global_Dimension_1_CodeField;
+    
+    private string global_Dimension_2_CodeField;
+    
+    private string resource_No_Field;
+    
+    private System.DateTime last_Date_ModifiedField;
+    
+    private string extensionField;
+    
+    private string pagerField;
+    
+    private string fax_No_Field;
+    
+    private string company_E_MailField;
+    
+    private string titleField;
+    
+    private string salespers__Purch__CodeField;
+    
+    private string no__SeriesField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+    public byte[] timestamp {
+        get {
+            return this.timestampField;
+        }
+        set {
+            this.timestampField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string No_ {
+        get {
+            return this.no_Field;
+        }
+        set {
+            this.no_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string First_Name {
+        get {
+            return this.first_NameField;
+        }
+        set {
+            this.first_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Middle_Name {
+        get {
+            return this.middle_NameField;
+        }
+        set {
+            this.middle_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Last_Name {
+        get {
+            return this.last_NameField;
+        }
+        set {
+            this.last_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Initials {
+        get {
+            return this.initialsField;
+        }
+        set {
+            this.initialsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Job_Title {
+        get {
+            return this.job_TitleField;
+        }
+        set {
+            this.job_TitleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Search_Name {
+        get {
+            return this.search_NameField;
+        }
+        set {
+            this.search_NameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Address {
+        get {
+            return this.addressField;
+        }
+        set {
+            this.addressField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Address_2 {
+        get {
+            return this.address_2Field;
+        }
+        set {
+            this.address_2Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string City {
+        get {
+            return this.cityField;
+        }
+        set {
+            this.cityField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Post_Code {
+        get {
+            return this.post_CodeField;
+        }
+        set {
+            this.post_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string County {
+        get {
+            return this.countyField;
+        }
+        set {
+            this.countyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Phone_No_ {
+        get {
+            return this.phone_No_Field;
+        }
+        set {
+            this.phone_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Mobile_Phone_No_ {
+        get {
+            return this.mobile_Phone_No_Field;
+        }
+        set {
+            this.mobile_Phone_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string E_Mail {
+        get {
+            return this.e_MailField;
+        }
+        set {
+            this.e_MailField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Alt__Address_Code {
+        get {
+            return this.alt__Address_CodeField;
+        }
+        set {
+            this.alt__Address_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Alt__Address_Start_Date {
+        get {
+            return this.alt__Address_Start_DateField;
+        }
+        set {
+            this.alt__Address_Start_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Alt__Address_End_Date {
+        get {
+            return this.alt__Address_End_DateField;
+        }
+        set {
+            this.alt__Address_End_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+    public byte[] Picture {
+        get {
+            return this.pictureField;
+        }
+        set {
+            this.pictureField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Birth_Date {
+        get {
+            return this.birth_DateField;
+        }
+        set {
+            this.birth_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Social_Security_No_ {
+        get {
+            return this.social_Security_No_Field;
+        }
+        set {
+            this.social_Security_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Union_Code {
+        get {
+            return this.union_CodeField;
+        }
+        set {
+            this.union_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Union_Membership_No_ {
+        get {
+            return this.union_Membership_No_Field;
+        }
+        set {
+            this.union_Membership_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Sex {
+        get {
+            return this.sexField;
+        }
+        set {
+            this.sexField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Country_Region_Code {
+        get {
+            return this.country_Region_CodeField;
+        }
+        set {
+            this.country_Region_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Manager_No_ {
+        get {
+            return this.manager_No_Field;
+        }
+        set {
+            this.manager_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Emplymt__Contract_Code {
+        get {
+            return this.emplymt__Contract_CodeField;
+        }
+        set {
+            this.emplymt__Contract_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Statistics_Group_Code {
+        get {
+            return this.statistics_Group_CodeField;
+        }
+        set {
+            this.statistics_Group_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Employment_Date {
+        get {
+            return this.employment_DateField;
+        }
+        set {
+            this.employment_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public int Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Inactive_Date {
+        get {
+            return this.inactive_DateField;
+        }
+        set {
+            this.inactive_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Cause_of_Inactivity_Code {
+        get {
+            return this.cause_of_Inactivity_CodeField;
+        }
+        set {
+            this.cause_of_Inactivity_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Termination_Date {
+        get {
+            return this.termination_DateField;
+        }
+        set {
+            this.termination_DateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Grounds_for_Term__Code {
+        get {
+            return this.grounds_for_Term__CodeField;
+        }
+        set {
+            this.grounds_for_Term__CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Global_Dimension_1_Code {
+        get {
+            return this.global_Dimension_1_CodeField;
+        }
+        set {
+            this.global_Dimension_1_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Global_Dimension_2_Code {
+        get {
+            return this.global_Dimension_2_CodeField;
+        }
+        set {
+            this.global_Dimension_2_CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Resource_No_ {
+        get {
+            return this.resource_No_Field;
+        }
+        set {
+            this.resource_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime Last_Date_Modified {
+        get {
+            return this.last_Date_ModifiedField;
+        }
+        set {
+            this.last_Date_ModifiedField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Extension {
+        get {
+            return this.extensionField;
+        }
+        set {
+            this.extensionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Pager {
+        get {
+            return this.pagerField;
+        }
+        set {
+            this.pagerField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Fax_No_ {
+        get {
+            return this.fax_No_Field;
+        }
+        set {
+            this.fax_No_Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Company_E_Mail {
+        get {
+            return this.company_E_MailField;
+        }
+        set {
+            this.company_E_MailField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Title {
+        get {
+            return this.titleField;
+        }
+        set {
+            this.titleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Salespers__Purch__Code {
+        get {
+            return this.salespers__Purch__CodeField;
+        }
+        set {
+            this.salespers__Purch__CodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string No__Series {
+        get {
+            return this.no__SeriesField;
+        }
+        set {
+            this.no__SeriesField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void FindFileCompletedEventHandler(object sender, FindFileCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class FindFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal FindFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public string Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((string)(this.results[0]));
+        }
     }
 }
 
@@ -155,26 +1822,298 @@ public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncC
 
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
-public delegate void FindFileCompletedEventHandler(object sender, FindFileCompletedEventArgs e);
+public delegate void GetTableCompletedEventHandler(object sender, GetTableCompletedEventArgs e);
 
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class FindFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+public partial class GetTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
     
     private object[] results;
     
-    internal FindFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+    internal GetTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
             base(exception, cancelled, userState) {
         this.results = results;
     }
     
     /// <remarks/>
-    public string Result {
+    public System.Data.DataSet Result {
         get {
             this.RaiseExceptionIfNecessary();
-            return ((string)(this.results[0]));
+            return ((System.Data.DataSet)(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetTableNamesCompletedEventHandler(object sender, GetTableNamesCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetTableNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetTableNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((System.Data.DataSet)(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetTableValuesAsListCompletedEventHandler(object sender, GetTableValuesAsListCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetTableValuesAsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetTableValuesAsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public object[][] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((object[][])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetColumnNamesAsListCompletedEventHandler(object sender, GetColumnNamesAsListCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetColumnNamesAsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetColumnNamesAsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public object[][] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((object[][])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void CreateEmployeeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetEmployeesCompletedEventHandler(object sender, GetEmployeesCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetEmployeesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetEmployeesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee[] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((CRONUS_Sverige_AB_Employee[])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetEmployeeAbsenceCompletedEventHandler(object sender, GetEmployeeAbsenceCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetEmployeeAbsenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetEmployeeAbsenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Absence[] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((CRONUS_Sverige_AB_Employee_Absence[])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetEmployeeRelativesCompletedEventHandler(object sender, GetEmployeeRelativesCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetEmployeeRelativesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetEmployeeRelativesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Relative[] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((CRONUS_Sverige_AB_Employee_Relative[])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetEmployeeQualificationsCompletedEventHandler(object sender, GetEmployeeQualificationsCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetEmployeeQualificationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetEmployeeQualificationsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public CRONUS_Sverige_AB_Employee_Qualification[] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((CRONUS_Sverige_AB_Employee_Qualification[])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void DeleteEmployeeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void UpdateEmployeeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetCronusDataCompletedEventHandler(object sender, GetCronusDataCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetCronusDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetCronusDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public System.Data.DataSet Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((System.Data.DataSet)(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetCronusDataAsListCompletedEventHandler(object sender, GetCronusDataAsListCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetCronusDataAsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetCronusDataAsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public object[][] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((object[][])(this.results[0]));
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+public delegate void GetCronusHeadersCompletedEventHandler(object sender, GetCronusHeadersCompletedEventArgs e);
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.8.3928.0")]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+public partial class GetCronusHeadersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    
+    private object[] results;
+    
+    internal GetCronusHeadersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState) {
+        this.results = results;
+    }
+    
+    /// <remarks/>
+    public string[] Result {
+        get {
+            this.RaiseExceptionIfNecessary();
+            return ((string[])(this.results[0]));
         }
     }
 }
