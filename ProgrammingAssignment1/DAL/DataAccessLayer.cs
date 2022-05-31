@@ -5,7 +5,7 @@ public class DataAccessLayer
     private string connectionString;
     public DataAccessLayer()
     { 
-        connectionString = "Server = tcp:testservercoffeaddicts.database.windows.net,1433; Initial Catalog = CoffeeAddicts; Persist Security Info = False; User ID = coffeaddicts; Password =HzbPvJEn7VVTNEJx3Naf; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
+        connectionString = "[insert connectionString]";
     }
 
     public DataSet GetKeys(string tableName)
